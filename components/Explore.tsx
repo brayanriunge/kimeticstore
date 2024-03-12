@@ -67,8 +67,8 @@ const explores: Array<categoryType> = [
 export default function Explore() {
   return (
     <section className="p-5">
-      <div className="mb-2 text-xl font-light">Explore Categories :</div>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="mb-2 text-xl font-bold">Explore Categories :</div>
+      <div className="md:grid md:grid-cols-4 gap-4">
         {explores.map((explore) => (
           <div className="relative mb-5 block " key={explore.id}>
             <Image

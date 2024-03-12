@@ -36,7 +36,7 @@ export default function Navbar() {
 
             {/**right side */}
             {isAboveMediaScreens ? (
-              <div className={`${flexStyles} w-full text-montserrat`}>
+              <div className={`${flexStyles} w-full text-montserrat font-sans`}>
                 <div
                   className={`${flexStyles} text-sm text-primary-gray-500  gap-8`}
                 >
