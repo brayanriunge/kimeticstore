@@ -30,7 +30,7 @@ export default function Navbar() {
               className="rounded-full"
             />
             <h2 className="font-bold text-red-500 text-3xl text-montserrat">
-              eMental {""}
+              KEMETIC AMEZAN {""}
             </h2>
 
             {/**right side */}
@@ -50,49 +50,104 @@ export default function Navbar() {
                       Home
                     </a>
                   </Link>
-                  <Link legacyBehavior href={"/assessment"}>
+                  <Link legacyBehavior href={"/agricultural"}>
                     <a
                       className={`${
-                        router.pathname === "/assessment"
+                        router.pathname === "/agricultural"
                           ? "text-red-800"
                           : "text-gray-20"
                       } hover:text-red-600`}
                     >
-                      Assessment
+                      Agriculture Produce
                     </a>
                   </Link>
-                  <Link legacyBehavior href="/articles">
+                  <Link legacyBehavior href="/art">
                     <a
                       className={`${
-                        router.pathname === "/articles"
+                        router.pathname === "/art"
                           ? "text-red-800"
                           : "text-gray-20"
                       } hover:text-red-600`}
                     >
-                      Articles
+                      Art
                     </a>
                   </Link>
 
-                  <Link legacyBehavior href="/community">
+                  <Link legacyBehavior href="/land">
                     <a
                       className={`${
-                        router.pathname === "/community"
+                        router.pathname === "/land"
                           ? "text-red-800"
                           : "text-gray-20"
                       } hover:text-red-600`}
                     >
-                      Community
+                      Land
                     </a>
                   </Link>
-                  <Link legacyBehavior href="/#contactus">
+                  <Link legacyBehavior href="/gems">
                     <a
                       className={`${
-                        router.pathname === "/#contactus"
+                        router.pathname === "/gems"
                           ? "text-red-800"
                           : "text-gray-20"
                       } hover:text-red-600`}
                     >
-                      Contact Us
+                      Gems
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/cars">
+                    <a
+                      className={`${
+                        router.pathname === "/cars"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Cars
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/herbs">
+                    <a
+                      className={`${
+                        router.pathname === "/herbs"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Herbs
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/houses">
+                    <a
+                      className={`${
+                        router.pathname === "/houses"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Houses
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/cigarettes">
+                    <a
+                      className={`${
+                        router.pathname === "/cigarettes"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Cigarettes
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/construction">
+                    <a
+                      className={`${
+                        router.pathname === "/construction"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Construction Materials
                     </a>
                   </Link>
                 </div>
@@ -134,48 +189,104 @@ export default function Navbar() {
                       Home
                     </a>
                   </Link>
-                  <Link legacyBehavior href={"/assessment"}>
+                  <Link legacyBehavior href={"/agricultural"}>
                     <a
                       className={`${
-                        router.pathname === "/assessment"
+                        router.pathname === "/agricultural"
                           ? "text-red-800"
                           : "text-gray-20"
                       } hover:text-red-600`}
                     >
-                      Assessment
+                      Agriculture Produce
                     </a>
                   </Link>
-                  <Link legacyBehavior href={"/articles"}>
+                  <Link legacyBehavior href="/art">
                     <a
                       className={`${
-                        router.pathname === "/articles"
+                        router.pathname === "/art"
                           ? "text-red-800"
                           : "text-gray-20"
                       } hover:text-red-600`}
                     >
-                      Articles
+                      Art
                     </a>
                   </Link>
-                  <Link legacyBehavior href={"/community"}>
+
+                  <Link legacyBehavior href="/land">
                     <a
                       className={`${
-                        router.pathname === "/community"
+                        router.pathname === "/land"
                           ? "text-red-800"
                           : "text-gray-20"
                       } hover:text-red-600`}
                     >
-                      Community
+                      Land
                     </a>
                   </Link>
-                  <Link legacyBehavior href={"/#contactus"}>
+                  <Link legacyBehavior href="/gems">
                     <a
                       className={`${
-                        router.pathname === "/#contactus"
+                        router.pathname === "/gems"
                           ? "text-red-800"
                           : "text-gray-20"
                       } hover:text-red-600`}
                     >
-                      Contact Us
+                      Gems
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/cars">
+                    <a
+                      className={`${
+                        router.pathname === "/cars"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Cars
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/herbs">
+                    <a
+                      className={`${
+                        router.pathname === "/herbs"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Herbs
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/houses">
+                    <a
+                      className={`${
+                        router.pathname === "/houses"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Houses
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/cigarettes">
+                    <a
+                      className={`${
+                        router.pathname === "/cigarettes"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Cigarettes
+                    </a>
+                  </Link>
+                  <Link legacyBehavior href="/construction">
+                    <a
+                      className={`${
+                        router.pathname === "/construction"
+                          ? "text-red-800"
+                          : "text-gray-20"
+                      } hover:text-red-600`}
+                    >
+                      Construction Materials
                     </a>
                   </Link>
                 </div>
