@@ -6,6 +6,9 @@ import Art from "@/public/art.jpeg";
 import Car from "@/public/car.jpeg";
 import Gem from "@/public/gem.jpeg";
 import House from "@/public/house.jpeg";
+import Herbs from "@/public/herbs.jpg";
+import Cigars from "@/public/cigars.jpg";
+import Construction from "@/public/construction.jpg";
 
 type props = {
   id: number;
@@ -43,6 +46,21 @@ const explores: Array<categoryType> = [
     id: 6,
     name: "House",
     picture: House,
+  },
+  {
+    id: 7,
+    name: "Cigars",
+    picture: Cigars,
+  },
+  {
+    id: 8,
+    name: "Construction materials",
+    picture: Construction,
+  },
+  {
+    id: 9,
+    name: "Herbs",
+    picture: Herbs,
   },
 ];
 
