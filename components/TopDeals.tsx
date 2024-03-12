@@ -24,7 +24,7 @@ export default function TopDeal() {
         scrollbar={{ draggable: true }}
         spaceBetween={40}
         slidesPerView={4}
-        className="h-40"
+        className="md:h-40"
       >
         <SwiperSlide>
           <Image
