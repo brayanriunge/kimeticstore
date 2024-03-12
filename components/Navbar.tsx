@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <nav>
       <div
-        className={`${flexStyles} w-full top-0 z-30 fixed py-2  bg-primary-gray-200 shadow`}
+        className={`${flexStyles} w-full top-0 z-30 fixed py-2  bg-teal-200 shadow`}
       >
         <div className={`${flexStyles} mx-auto w-5/6`}>
           {/**put logo here  */}
@@ -24,13 +24,13 @@ export default function Navbar() {
             src={Logo}
             alt="logo"
             width={90}
-            height={20}
-            className="rounded-full"
+            height={90}
+            className="rounded-full m-4"
           />
           <div className={`${flexStyles} w-full gap-10`}>
             {/**left side */}
 
-            <h2 className="font-bold text-red-500 text-3xl text-montserrat">
+            <h2 className="font-bold text-red-500 text-2xl text-montserrat">
               KEMETIC AMEZAN {""}
             </h2>
 
@@ -170,7 +170,7 @@ export default function Navbar() {
 
             {/**mobile menu modal */}
             {!isAboveMediaScreens && isMenuToggled && (
-              <div className="bg-gradient-to-r from-blue-400 via-blue-600 to-green-400 fixed right-0 bottom-0 h-full w-[300px] z-40 p-5 text-montserrat drop-shadow-xl">
+              <div className=" bg-teal-200 fixed right-0 bottom-0 h-full w-[300px] z-40 p-5 text-montserrat drop-shadow-xl">
                 {/**close icon */}
                 <div className="p-4 flex justify-end ">
                   <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
@@ -178,7 +178,7 @@ export default function Navbar() {
                   </button>
                 </div>
                 {/**menu items */}
-                <div className=" flex flex-col gap-10 items-center text-justify text-2xl ">
+                <div className=" flex flex-col gap-6 items-center text-justify text-2xl ">
                   <Link legacyBehavior href={"/"}>
                     <a
                       className={`${
