@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Logo from "@/public/Logo.jpeg";
+import Logo from "@/public/Logo.png";
 import { HiOutlineX } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
 
@@ -19,16 +19,17 @@ export default function Navbar() {
         className={`${flexStyles} w-full top-0 z-30 fixed py-2  bg-primary-gray-200 shadow`}
       >
         <div className={`${flexStyles} mx-auto w-5/6`}>
+          {/**put logo here  */}
+          <Image
+            src={Logo}
+            alt="logo"
+            width={90}
+            height={20}
+            className="rounded-full"
+          />
           <div className={`${flexStyles} w-full gap-10`}>
             {/**left side */}
-            {/**put logo here  */}
-            <Image
-              src={Logo}
-              alt="logo"
-              width={90}
-              height={20}
-              className="rounded-full"
-            />
+
             <h2 className="font-bold text-red-500 text-3xl text-montserrat">
               KEMETIC AMEZAN {""}
             </h2>
