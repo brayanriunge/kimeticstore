@@ -151,6 +151,9 @@ export default function Navbar() {
                       Construction Materials
                     </a>
                   </Link>
+                  <button className="m-4 p-4 bg-orange-400 rounded-md font-bold hover:bg-orange-300 hover:text-white">
+                    <Link href="/dashboard">Dashboard</Link>
+                  </button>
                 </div>
                 {/** left side */}
                 {/* {status === "authenticated" && data !== null && (
