@@ -33,17 +33,15 @@ export default function Dashboard() {
 
   //event handler for form submission
   const handleFormSubmission = async (data: formValues) => {
-    const { begin, description, name, price, venue } = data;
-    const ticket = {
-      begin,
-      description,
+    const { description, category, name } = data;
+    const product = {
       name,
-      price,
-      venue,
+      description,
+      category,
     };
     //creating formData to send to the server
     const formData = new FormData();
-    formData.append("ticket", JSON.stringify(ticket));
+    formData.append("product", JSON.stringify(product));
     if (selectedImage) formData.append("image", selectedImage);
   };
 
@@ -58,7 +56,7 @@ export default function Dashboard() {
             <input
               type="name"
               id="name"
-              placeholder="Ticket Name"
+              placeholder="Name"
               required
               className="rounded-xl px-5 py-5 focus:outline-none border-none "
               {...register("name")}
