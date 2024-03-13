@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 type formValues = {
   name: string;
-  venue: string;
+  category: string;
   price: number;
   description: string;
   begin: number;
@@ -68,14 +68,16 @@ export default function Dashboard() {
           <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
             <input
               type="text"
-              id="venue"
-              placeholder="Venue"
+              id="category"
+              placeholder="Category"
               required
               className="rounded-xl px-5 py-5 focus:outline-none border-none "
-              {...register("venue")}
+              {...register("category")}
             />
-            {errors.venue?.message && (
-              <div className="text-red-500 text-sm">{errors.venue.message}</div>
+            {errors.category?.message && (
+              <div className="text-red-500 text-sm">
+                {errors.category.message}
+              </div>
             )}
           </div>
           <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
@@ -91,32 +93,6 @@ export default function Dashboard() {
               <div className="text-red-500 text-sm">
                 {errors.description.message}
               </div>
-            )}
-          </div>
-          <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
-            <input
-              type="number"
-              id="price"
-              placeholder="Price"
-              required
-              {...register("price")}
-              className="rounded-xl px-5 py-5 focus:outline-none border-none"
-            />
-            {errors.price?.message && (
-              <div className="text-red-500 text-sm">{errors.price.message}</div>
-            )}
-          </div>
-          <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
-            <input
-              type="number"
-              id="begin"
-              placeholder="Starts at what time"
-              required
-              className="rounded-xl px-5 py-5 focus:outline-none border-none "
-              {...register("begin")}
-            />
-            {errors.begin?.message && (
-              <div className="text-red-500 text-sm">{errors.begin.message}</div>
             )}
           </div>
         </div>
