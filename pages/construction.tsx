@@ -1,3 +1,3 @@
 export default function Construction() {
-  return <div></div>;
+  return <div className="min-h-full"></div>;
 }
