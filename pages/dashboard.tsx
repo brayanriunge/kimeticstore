@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 type formValues = {
@@ -50,7 +51,9 @@ export default function Dashboard() {
       <div className="flex items-center justify-between py-4 px-10">
         <h1 className="font-bold text-xl ">Add Ticket</h1>
       </div>
-      <form action="">
+      <form action=""
+      className="flex items-center justify-between gap-16"
+      onSubmit={handleSubmit(handleFormSubmission)}>
         <div className="md:flex flex-col w-5/6 mx-auto md:h-5/6 items-center justify-between p-5 m-5 gap-8">
           <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
             <input
@@ -95,6 +98,21 @@ export default function Dashboard() {
               </div>
             )}
           </div>
+
+        </div>
+        <div className="flex flex-col justify-between gap-4">
+        <label htmlFor="dropzone-ile">
+          {selectedImage ?(
+            <Image
+            src={selectedImage}
+            alt="selected"
+            height={280}
+            width={280}
+            className="rounded-md bg-gray-200"
+            />
+          ):()}
+        </label>
+
         </div>
       </form>
     </section>
