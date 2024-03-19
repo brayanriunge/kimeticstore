@@ -54,10 +54,10 @@ export default function Dashboard() {
       </div>
       <form
         action=""
-        className="flex items-center justify-between gap-16"
+        className="flex items-center justify-between gap-16 w-5/6 h-5/6 mx-auto "
         onSubmit={handleSubmit(handleFormSubmission)}
       >
-        <div className="md:flex flex-col w-5/6 mx-auto md:h-5/6 items-center justify-between p-5 m-5 gap-8">
+        <div className="md:flex flex-col  mx-auto m items-center justify-between p-5 m-5 gap-8">
           <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
             <input
               type="name"
@@ -102,8 +102,8 @@ export default function Dashboard() {
             )}
           </div>
         </div>
-        <div className="flex flex-col justify-between gap-4">
-          <label htmlFor="dropzone-ile">
+        <div className="flex flex-col justify-between gap-4 pt-6 mt-5 mx-auto">
+          <label htmlFor="dropzone-file">
             {selectedImage ? (
               <Image
                 src={selectedImage}
@@ -113,12 +113,22 @@ export default function Dashboard() {
                 className="rounded-md bg-gray-200"
               />
             ) : (
-              <div className="flex flex-col items-center justify-between ">
-                <MdCloudUpload className="w-12 h-12 mb-4 text-gray-500" />
-                <p className="text-gray-200 font-semibold">
-                  Click to select a File
-                  <span className="text-sm">or Drag and Drop</span>
-                </p>
+              <div className="">
+                <div className="flex flex-col items-center justify-between ">
+                  <MdCloudUpload className="w-12 h-12 mb-4 text-gray-500" />
+                  <p className="text-gray-200 font-semibold">
+                    Click to select a File
+                    <span className="text-sm">or Drag and Drop</span>
+                  </p>
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    placeholder="picture"
+                    required
+                    className="rounded-xl px-10 py-5 focus:outline-none w-5/6 border-dotted"
+                    onChange={handleFileUploadChange}
+                  />
+                </div>
               </div>
             )}
           </label>
