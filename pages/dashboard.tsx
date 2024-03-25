@@ -7,9 +7,8 @@ import { MdCloudUpload } from "react-icons/md";
 type formValues = {
   name: string;
   category: string;
-  price: number;
+
   description: string;
-  begin: number;
 };
 
 export default function Dashboard() {
