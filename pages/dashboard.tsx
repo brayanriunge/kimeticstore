@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -15,6 +16,7 @@ export default function Dashboard() {
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -46,11 +48,27 @@ export default function Dashboard() {
     const formData = new FormData();
     formData.append("product", JSON.stringify(product));
     if (selectedImage) formData.append("image", selectedImage);
+    try {
+      const res = await fetch("http://localhost3000/api/Admin/register", {
+        method: "POST",
+        body: formData,
+      });
+      console.log(res);
+      if (res.ok) {
+        router.push("/");
+      } else {
+        throw new Error(`Http error ${res.status}`);
+      }
+    } catch (error) {
+      return console.log(error);
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (
     <section className="gap-16 bg-indigo-200 md:h-full  min-h-full ">
-      <div className="flex items-center justify-between py-4 px-10">
+      <div className="md:flex items-center justify-between py-4 px-10">
         <h1 className="font-bold text-xl ">Add Ticket</h1>
       </div>
       <form
