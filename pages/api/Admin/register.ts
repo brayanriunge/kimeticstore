@@ -59,9 +59,15 @@ export default async function handler(
   try {
     //extracting fields and files from form data
     const { fields, files } = await getFormData(req, res);
+    console.log(files);
 
     // Extract the uploaded file from the form data
-    const myFile = files.image as formidable.File[];
+    const myFile = files.image as formidable.File[] | undefined;
+    if (!myFile || myFile.length === 0) {
+      return res
+        .status(400)
+        .json({ message: 'No file uploaded with the name "image"' });
+    }
     const file = myFile[0];
 
     // uploading image to cloudinary

@@ -38,6 +38,7 @@ export default function Dashboard() {
 
   //event handler for form submission
   const handleFormSubmission = async (data: formValues) => {
+    setIsUploading(true);
     const { description, category, name } = data;
     const product = {
       name,
@@ -47,15 +48,16 @@ export default function Dashboard() {
     //creating formData to send to the server
     const formData = new FormData();
     formData.append("product", JSON.stringify(product));
-    if (selectedImage) formData.append("image", selectedImage);
+    if (selectedFile) formData.append("image", selectedFile);
+    console.log("before fetch");
     try {
-      const res = await fetch("http://localhost3000/api/Admin/register", {
+      const res = await fetch("http://localhost:3000/api/Admin/register", {
         method: "POST",
         body: formData,
       });
       console.log(res);
       if (res.ok) {
-        router.push("/");
+        console.log(res.status);
       } else {
         throw new Error(`Http error ${res.status}`);
       }
