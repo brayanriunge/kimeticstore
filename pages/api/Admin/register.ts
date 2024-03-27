@@ -59,7 +59,6 @@ export default async function handler(
   try {
     //extracting fields and files from form data
     const { fields, files } = await getFormData(req, res);
-    console.log(files);
 
     // Extract the uploaded file from the form data
     const myFile = files.image as formidable.File[] | undefined;

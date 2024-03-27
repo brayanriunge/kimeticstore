@@ -56,7 +56,7 @@ export default function Dashboard() {
       });
       console.log(res);
       if (res.ok) {
-        console.log(res.status);
+        router.push("/");
       } else {
         throw new Error(`Http error ${res.status}`);
       }
