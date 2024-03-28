@@ -1,3 +1,4 @@
+import ProductItem from "@/components/ProductItem";
 import { productType } from "@/hooks/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -29,5 +30,13 @@ export default function categoryPage() {
     }
   }, [category]);
 
-  return <div></div>;
+  return (
+    <div className="grid grid-cols-4 gap-6">
+      {products.map((product) => (
+        <div key={product.id}>
+          <ProductItem {...product} />
+        </div>
+      ))}
+    </div>
+  );
 }
