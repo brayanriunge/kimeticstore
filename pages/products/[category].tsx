@@ -1,0 +1,33 @@
+import { productType } from "@/hooks/types";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+
+export default function categoryPage() {
+  const router = useRouter();
+  const [products, setProducts] = useState<productType[]>([]);
+  const { category } = router.query;
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:3000/api/products/${category}`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setProducts(data);
+        } else {
+          throw new Error(`Http Error: ${res.status}`);
+        }
+      } catch (error) {
+        console.log("Failed to fetch data:", error);
+      }
+    };
+
+    if (category) {
+      fetchItem();
+    }
+  }, [category]);
+
+  return <div></div>;
+}
