@@ -9,6 +9,7 @@ import House from "@/public/house.jpeg";
 import Herbs from "@/public/herbs.jpg";
 import Cigars from "@/public/cigars.jpg";
 import Construction from "@/public/construction.jpg";
+import Link from "next/link";
 
 type props = {
   id: number;
@@ -21,46 +22,55 @@ const explores: Array<categoryType> = [
     id: 1,
     name: "Art",
     picture: Art,
+    href: "/products/art",
   },
   {
     id: 2,
     name: "Cars",
     picture: Car,
+    href: "/products/cars",
   },
   {
     id: 3,
     name: "Crop",
     picture: Crop,
+    href: "/products/agriculture",
   },
   {
     id: 4,
     name: "Gem",
     picture: Gem,
+    href: "/products/gem",
   },
   {
     id: 5,
     name: "Land",
     picture: Land,
+    href: "/products/land",
   },
   {
     id: 6,
     name: "House",
     picture: House,
+    href: "/products/house",
   },
   {
     id: 7,
     name: "Cigars",
     picture: Cigars,
+    href: "/products/cigars",
   },
   {
     id: 8,
     name: "Construction materials",
     picture: Construction,
+    href: "/products/construction",
   },
   {
     id: 9,
     name: "Herbs",
     picture: Herbs,
+    href: "/products/herbs",
   },
 ];
 
@@ -71,13 +81,16 @@ export default function Explore() {
       <div className="md:grid md:grid-cols-4 gap-4">
         {explores.map((explore) => (
           <div className="relative mb-5 block " key={explore.id}>
-            <Image
-              src={explore.picture}
-              alt="picture"
-              height={192}
-              width={192}
-              className="mb-2 h-48 w-48 flex items-center cursor-pointer overflow-hidden rounded-full"
-            />
+            <Link href={explore.href}>
+              <Image
+                src={explore.picture}
+                alt="picture"
+                height={192}
+                width={192}
+                className="mb-2 h-48 w-48 flex items-center cursor-pointer overflow-hidden rounded-full"
+              />
+            </Link>
+
             <div className=" font-mono">{explore.name}</div>
           </div>
         ))}
