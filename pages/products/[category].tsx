@@ -32,6 +32,7 @@ export default function categoryPage() {
 
   return (
     <div className="grid grid-cols-4 gap-6">
+      <h1>Category:{category}</h1>
       {products.map((product) => (
         <div key={product.id}>
           <ProductItem {...product} />
