@@ -17,10 +17,11 @@ model Product{
   id  String    @id @default(cuid())
   description String
   name String
-  category Category[]
+  category String
 }
-model Category{
-  id String @id @default(cuid())
-  productId String
-  product Product @relation(fields: [productId], references: [id])
-}
+// model Category{
+//   id String @id @default(cuid())
+//   productId String
+//   categoryName String
+//   product Product @relation(fields: [productId], references: [id])
+// }
