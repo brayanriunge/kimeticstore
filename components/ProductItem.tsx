@@ -8,7 +8,10 @@ export default function ProductItem({
   name,
 }: productType) {
   return (
-    <div className="flex flex-col items-start justify-between gap-8 mx-auto rounded-md shadow-sm ">
+    <div
+      className="flex flex-col items-start justify-between gap-8 mx-auto rounded-md shadow-sm "
+      key={id}
+    >
       <div className="p-5 m-5">
         <Image height={194} width={194} src={imgUrl} alt="image" />
       </div>

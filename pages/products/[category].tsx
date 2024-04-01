@@ -17,6 +17,7 @@ export default function categoryPage() {
         if (res.ok) {
           const data = await res.json();
           setProducts(data);
+          console.log(data);
         } else {
           throw new Error(`Http Error: ${res.status}`);
         }
@@ -35,7 +36,8 @@ export default function categoryPage() {
       <h1>Category:{category}</h1>
       {products.map((product) => (
         <div key={product.id}>
-          <ProductItem {...product} />
+          {/* <ProductItem {...product} /> */}
+          <div>{product.imgUrl}</div>
         </div>
       ))}
     </div>
