@@ -12,11 +12,12 @@ export default async function handler(
   }
 
   try {
-    const products = prisma.product.findMany({
+    const product = prisma.product.findMany({
       where: {
         category: category as string,
       },
     });
+    console.log(product);
   } catch (error) {
     console.log("Error fetching category products:", error);
     res.status(500).json({ message: "Internal server error" });
