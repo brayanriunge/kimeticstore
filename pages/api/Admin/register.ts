@@ -90,6 +90,7 @@ export default async function handler(
         description: description as unknown as string,
         name: name as unknown as string,
         category: category as unknown as string,
+        imgUrl: uploadImage.secure_url,
       },
     });
     console.log(newProduct);

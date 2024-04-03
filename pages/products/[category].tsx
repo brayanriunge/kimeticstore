@@ -12,7 +12,7 @@ export default function categoryPage() {
     const fetchItem = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/products/${category}`
+          `http://localhost:3000/api/products?catgory=${category}`
         );
         if (res.ok) {
           const data = await res.json();

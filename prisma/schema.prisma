@@ -18,6 +18,7 @@ model Product{
   description String
   name String
   category String
+  imgUrl String
 }
 // model Category{
 //   id String @id @default(cuid())
