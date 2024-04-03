@@ -19,6 +19,7 @@ model Product{
   name String
   category String
   imgUrl String
+  createdAt DateTime @default(now())
 }
 // model Category{
 //   id String @id @default(cuid())

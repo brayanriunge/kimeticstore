@@ -11,4 +11,5 @@ export interface productType {
   imgUrl: string;
   description: string;
   name: string;
+  category: string;
 }
