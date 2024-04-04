@@ -13,16 +13,16 @@ export default async function handler(
 
   try {
     const product = await prisma.product.findMany({
-      where: {
-        category: category as string,
-      },
-      select: {
-        id: true,
-        name: true,
-        description: true,
+      include: {
         category: true,
       },
     });
+    // if (!product) {
+    //   // Handle case where no products are found for the given category
+    //   return res
+    //     .status(404)
+    //     .json({ message: "No products found for the category" });
+    // }
     res.status(200).json(product);
     console.log(product);
   } catch (error) {
