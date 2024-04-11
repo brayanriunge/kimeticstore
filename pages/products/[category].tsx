@@ -1,5 +1,5 @@
-import ProductItem from "@/components/ProductItem";
-import { fetchProductByCategory } from "@/hooks/productService";
+// import ProductItem from "@/components/ProductItem";
+// import { fetchProductByCategory } from "@/hooks/productService";
 import { productType } from "@/hooks/types";
 import { strict } from "assert";
 import { useRouter } from "next/router";
@@ -14,7 +14,7 @@ export default function categoryPage() {
     const fetchItem = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/products?catgory=${category}`
+          `http://localhost:3000/api/products?category=${category}`
         );
         if (res.ok) {
           const data = await res.json();

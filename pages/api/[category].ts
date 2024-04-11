@@ -13,8 +13,12 @@ export default async function handler(
 
   try {
     const product = await prisma.product.findMany({
-      include: {
-        category: true,
+      where: {
+        category: {
+          some: {
+            categoryName: category as string,
+          },
+        },
       },
     });
     // if (!product) {
