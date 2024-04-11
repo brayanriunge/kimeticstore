@@ -11,28 +11,28 @@ export default function categoryPage() {
   const { category } = router.query;
 
   useEffect(() => {
-    // const fetchItem = async () => {
-    //   try {
-    //     const res = await fetch(
-    //       `http://localhost:3000/api/products?catgory=${category}`
-    //     );
-    //     if (res.ok) {
-    //       const data = await res.json();
-    //       setProducts(data);
-    //       console.log(data);
-    //     } else {
-    //       throw new Error(`Http Error: ${res.status}`);
-    //     }
-    //   } catch (error) {
-    //     console.log("Failed to fetch data:", error);
-    //   }
-    // };
+    const fetchItem = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:3000/api/products?catgory=${category}`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          setProducts(data);
+          console.log(data);
+        } else {
+          throw new Error(`Http Error: ${res.status}`);
+        }
+      } catch (error) {
+        console.log("Failed to fetch data:", error);
+      }
+    };
 
-    if (category) {
-      fetchProductByCategory(category as string)
-        .then((data) => setProducts(data))
-        .then((error) => console.error("error fetching product", error));
-    }
+    // if (category) {
+    //   fetchProductByCategory(category as string)
+    //     .then((data) => setProducts(data))
+    //     .then((error) => console.error("error fetching product", error));
+    // }
   }, [category]);
 
   return (

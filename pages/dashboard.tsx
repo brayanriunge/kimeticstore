@@ -6,7 +6,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MdCloudUpload } from "react-icons/md";
 type formValues = {
   name: string;
-  category: string;
+  category: string[];
 
   description: string;
 };
@@ -67,6 +67,8 @@ export default function Dashboard() {
     }
   };
 
+  //adding category
+
   return (
     <section className="gap-16 bg-indigo-200 md:h-full  min-h-full ">
       <div className="md:flex items-center justify-between py-4 px-10">
@@ -91,21 +93,29 @@ export default function Dashboard() {
               <div className="text-red-500 text-sm">{errors.name.message}</div>
             )}
           </div>
-          <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
+          {/* <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
             <input
               type="text"
               id="category"
               placeholder="Category"
               required
               className="rounded-xl px-5 py-5 focus:outline-none border-none "
-              {...register("category")}
+              {...register("categoryName")}
             />
             {errors.category?.message && (
               <div className="text-red-500 text-sm">
                 {errors.category.message}
               </div>
             )}
-          </div>
+          </div> */}
+          <label>
+            Categories:
+            <input
+              type="checkbox"
+              {...register("category", { required: true })}
+              value="agriculture"
+            />
+          </label>
           <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
             <input
               type="text"
