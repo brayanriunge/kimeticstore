@@ -90,6 +90,9 @@ export default async function handler(
         description: description as unknown as string,
         name: name as unknown as string,
         imgUrl: uploadImage.secure_url,
+        category: {
+          create: category.map((categoryName) => ({ categoryName })),
+        },
       },
     });
     console.log(newProduct);
