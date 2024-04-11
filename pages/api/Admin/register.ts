@@ -80,7 +80,9 @@ export default async function handler(
     //extracting fields
     const { description, name, category } = fields;
     console.log(fields);
-
+    // Ensure category is an array
+    const categories = Array.isArray(category) ? category : [];
+    console.log("Categories:", categories); // Log categories to debug
     //checking if any field is missing
     if (!description || !name || !category)
       return res.status(400).json({ message: "missing required fields" });
@@ -90,12 +92,15 @@ export default async function handler(
         description: description as unknown as string,
         name: name as unknown as string,
         imgUrl: uploadImage.secure_url,
+        // category: {
+        //   create: categories.map((categoryName) => ({ categoryName })),
+        // },
         category: {
-          create: category.map((categoryName) => ({ categoryName })),
+          create: categories.map((categoryName) => ({ categoryName })),
         },
       },
     });
-    console.log(newProduct);
+    console.log("this is the product", newProduct);
     if (!newProduct) {
       return res.status(500).json({ message: "Failed to created product" });
     } else {

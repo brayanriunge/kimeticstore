@@ -39,10 +39,12 @@ export default function Dashboard() {
   const handleFormSubmission = async (data: formValues) => {
     setIsUploading(true);
     const { description, category, name } = data;
+    // Ensure category is an array
+    const categories = Array.isArray(category) ? category : [category];
     const product = {
       name,
       description,
-      category,
+      category: categories,
     };
     //creating formData to send to the server
     const formData = new FormData();
@@ -109,12 +111,15 @@ export default function Dashboard() {
             )}
           </div> */}
           <label>
-            Categories:
-            <input
-              type="checkbox"
-              {...register("category", { required: true })}
-              value="agriculture"
-            />
+            Categories:{""}
+            <label>
+              Agriculture:
+              <input
+                type="checkbox"
+                {...register("category", { required: true })}
+                value="agriculture"
+              />
+            </label>
           </label>
           <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
             <input
