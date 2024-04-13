@@ -1,26 +1,33 @@
 import { prisma } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
+import router from "next/router";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { category } = req.query;
-
   if (req.method !== "GET") {
     return res.status(405).json({ message: "method not allowed" });
   }
-
+  const category = req.query.category as string;
+  console.log("received category:", category);
   try {
+    const categoryResult = await prisma.category.findUnique({
+      where: { categoryName: req.query.category as string },
+    });
+    if (!categoryResult) {
+      return res.status(404).json({ message: "category not found" });
+    }
     const products = await prisma.product.findMany({
       where: {
         category: {
           some: {
-            categoryName: category as string,
+            id: categoryResult.id,
           },
         },
       },
     });
+
     // if (!product) {
     //   // Handle case where no products are found for the given category
     //   return res

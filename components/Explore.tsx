@@ -22,55 +22,55 @@ const explores: Array<categoryType> = [
     id: 1,
     name: "Art",
     picture: Art,
-    href: "/category?name=Art",
+    href: "/products/art",
   },
   {
     id: 2,
     name: "Cars",
     picture: Car,
-    href: "/category?name=cars",
+    href: "/products/car",
   },
   {
     id: 3,
     name: "Crop",
     picture: Crop,
-    href: "/category?name=agriculture",
+    href: "/products/agriculture",
   },
   {
     id: 4,
     name: "Gem",
     picture: Gem,
-    href: "/category?name=gem",
+    href: "/products/gem",
   },
   {
     id: 5,
     name: "Land",
     picture: Land,
-    href: "/category?name=Land",
+    href: "/products/land",
   },
   {
     id: 6,
     name: "House",
     picture: House,
-    href: "/category?name=house",
+    href: "/products/house",
   },
   {
     id: 7,
     name: "Cigars",
     picture: Cigars,
-    href: "/category?name=cigars",
+    href: "/products/cigars",
   },
   {
     id: 8,
     name: "Construction materials",
     picture: Construction,
-    href: "/category?name=construction",
+    href: "/products/construction",
   },
   {
     id: 9,
     name: "Herbs",
     picture: Herbs,
-    href: "/category?name=herbs",
+    href: "/products/herbs",
   },
 ];
 
@@ -81,7 +81,7 @@ export default function Explore() {
       <div className="md:grid md:grid-cols-4 gap-4">
         {explores.map((explore) => (
           <div className="relative mb-5 block " key={explore.id}>
-            <Link href={`/category?category=${explore.name}`}>
+            <Link href={explore.href}>
               <Image
                 src={explore.picture}
                 alt="picture"
