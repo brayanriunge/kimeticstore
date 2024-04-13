@@ -81,7 +81,7 @@ export default function Explore() {
       <div className="md:grid md:grid-cols-4 gap-4">
         {explores.map((explore) => (
           <div className="relative mb-5 block " key={explore.id}>
-            <Link href={`/category?category=${explore.href}`}>
+            <Link href={`/category?category=${explore.name}`}>
               <Image
                 src={explore.picture}
                 alt="picture"

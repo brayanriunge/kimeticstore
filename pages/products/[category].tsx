@@ -12,22 +12,25 @@ export default function categoryPage() {
 
   useEffect(() => {
     const fetchItem = async () => {
-      try {
-        const res = await fetch(
-          `http://localhost:3000/api/products?category=${category}`
-        );
-        if (res.ok) {
-          const data = await res.json();
-          setProducts(data);
-          console.log(data);
-        } else {
-          throw new Error(`Http Error: ${res.status}`);
+      if (category) {
+        try {
+          const res = await fetch(
+            `http://localhost:3000/api/products?category=${category}`
+          );
+          if (res.ok) {
+            const data = await res.json();
+            setProducts(data);
+            console.log("this is data", data);
+          } else {
+            throw new Error(`Http Error: ${res.status}`);
+          }
+        } catch (error) {
+          console.log("Failed to fetch data:", error);
         }
-      } catch (error) {
-        console.log("Failed to fetch data:", error);
       }
     };
 
+    fetchItem();
     // if (category) {
     //   fetchProductByCategory(category as string)
     //     .then((data) => setProducts(data))

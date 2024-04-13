@@ -24,6 +24,6 @@ model Product{
 model Category{
   id String @id @default(cuid())
   productId String
-  categoryName String
+  categoryName String @unique
   product Product @relation(fields: [productId], references: [id])
 }
