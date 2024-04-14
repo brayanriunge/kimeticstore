@@ -17,13 +17,16 @@ model Product{
   id  String    @id @default(cuid())
   description String
   name String
-  category Category[]
+  categoryId String
+  // category Category[]
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   imgUrl String
   createdAt DateTime @default(now())
 }
 model Category{
   id String @id @default(cuid())
-  productId String
+  // productId String
   categoryName String @unique
-  product Product @relation(fields: [productId], references: [id])
+  // product Product @relation(fields: [productId], references: [id], onDelete: Cascade )
+  product Product[]
 }
