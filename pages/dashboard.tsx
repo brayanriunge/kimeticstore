@@ -6,8 +6,8 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MdCloudUpload } from "react-icons/md";
 type formValues = {
   name: string;
-  category: string[];
-
+  // category: string[];
+  categoryName: string;
   description: string;
 };
 
@@ -38,13 +38,13 @@ export default function Dashboard() {
   //event handler for form submission
   const handleFormSubmission = async (data: formValues) => {
     setIsUploading(true);
-    const { description, category, name } = data;
+    const { description, categoryName, name } = data;
     // Ensure category is an array
-    const categories = Array.isArray(category) ? category : [category];
+    const categories = Array.isArray(categoryName) ? categoryName : [];
     const product = {
       name,
       description,
-      category: categories,
+      categoryName: categoryName,
     };
     //creating formData to send to the server
     const formData = new FormData();
@@ -56,7 +56,7 @@ export default function Dashboard() {
         method: "POST",
         body: formData,
       });
-      console.log(res);
+      console.log("to be registered:", res);
       if (res.ok) {
         router.push("/");
       } else {
@@ -116,7 +116,7 @@ export default function Dashboard() {
               Agriculture:
               <input
                 type="checkbox"
-                {...register("category", { required: true })}
+                {...register("categoryName", { required: true })}
                 value="agriculture"
               />
             </label>

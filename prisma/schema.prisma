@@ -17,9 +17,9 @@ model Product{
   id  String    @id @default(cuid())
   description String
   name String
-  categoryId String
+  // categoryId String
   // category Category[]
-  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [id], references: [id], onDelete: Cascade)
   imgUrl String
   createdAt DateTime @default(now())
 }
