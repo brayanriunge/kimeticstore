@@ -8,14 +8,15 @@ import { useEffect, useState } from "react";
 export default function categoryPage() {
   const router = useRouter();
   const [products, setProducts] = useState<productType[]>([]);
-  const { category } = router.query;
+  const { categoryName } = router.query;
+  console.log(router.query);
 
   useEffect(() => {
     const fetchItem = async () => {
-      if (category) {
+      if (categoryName) {
         try {
           const res = await fetch(
-            `http://localhost:3000/api/products?category=${category}`
+            `http://localhost:3000/api/products?category=${categoryName}`
           );
           if (res.ok) {
             const data = await res.json();
@@ -36,11 +37,11 @@ export default function categoryPage() {
     //     .then((data) => setProducts(data))
     //     .then((error) => console.error("error fetching product", error));
     // }
-  }, [category]);
+  }, [categoryName]);
 
   return (
     <div className="grid grid-cols-4 gap-6">
-      <h1>Category:{category}</h1>
+      <h1>Category:{categoryName}</h1>
       {products.map((product) => (
         <div key={product.id}>
           {/* <ProductItem {...product} /> */}

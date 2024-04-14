@@ -9,15 +9,25 @@ export default async function handler(
   if (req.method !== "GET") {
     return res.status(405).json({ message: "method not allowed" });
   }
-  const category = req.query.category?.toString();
-  if (!category || typeof category !== "string") {
-    return res.status(400).json({ message: "Invalid category parameter" });
+  const { categoryName } = req.query;
+
+  console.log("received category:", categoryName);
+  // Ensure categoryName is extracted properly
+  const categoryNameString =
+    typeof categoryName === "string"
+      ? categoryName
+      : Array.isArray(categoryName)
+      ? categoryName[0]
+      : null;
+
+  // Check if categoryNameString is null or undefined
+  if (!categoryNameString) {
+    return res.status(400).json({ message: "Invalid category name" });
   }
-  console.log("received category:", category);
   try {
-    const products = await prisma.category.findUnique({
+    const category = await prisma.category.findUnique({
       where: {
-        categoryName: category as string,
+        categoryName: categoryNameString,
       },
       include: {
         product: true,
@@ -45,8 +55,8 @@ export default async function handler(
     //     .status(404)
     //     .json({ message: "No products found for the category" });
     // }
-    res.status(200).json(products);
-    console.log("the products:", products);
+    res.status(200).json(category?.product);
+    console.log("the products:", category?.product);
   } catch (error) {
     console.log("Error fetching category products:", error);
     res.status(500).json({ message: "Internal server error" });
