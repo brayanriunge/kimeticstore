@@ -78,13 +78,13 @@ export default async function handler(
     // require("fs").renameSync(file.filepath, uploadPath);
 
     //extracting fields
-    const { description, name, categoryName } = fields;
+    const { description, name, category } = fields;
     console.log("fields", fields);
     // Ensure category is an array
     // const categories = Array.isArray(category) ? category : [];
     // console.log("Categories:", categories); // Log categories to debug
     // //checking if any field is missing
-    if (!description || !name || !categoryName)
+    if (!description || !name || !category)
       return res.status(400).json({ message: "missing required fields" });
     //creating a new product
     const newProduct = await prisma.product.create({
@@ -92,13 +92,8 @@ export default async function handler(
         description: description as unknown as string,
         name: name as unknown as string,
         imgUrl: uploadImage.secure_url,
-        // category: {
-        //   create: categories.map((categoryName) => ({ categoryName })),
-        // },
-        category: {
-          // create: categories.map((categoryName) => ({ categoryName })),
-          create: { categoryName: categoryName as unknown as string },
-        },
+
+        category: category as unknown as string,
       },
     });
     console.log("this is the product", newProduct);
