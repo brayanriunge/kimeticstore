@@ -22,6 +22,7 @@ export default async function handler(
         categoryName,
       },
     });
+    console.log(categories);
 
     if (categories.length === 0) {
       return res.status(404).json({ message: "category not found" });

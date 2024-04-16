@@ -12,21 +12,11 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-model Category{
-  id String @id @default(cuid())
-  // productId String
-  categoryName String 
-  // product Product @relation(fields: [productId], references: [id], onDelete: Cascade )
-  product Product[]
-}
 model Product{
   id  String    @id @default(cuid())
   description String
   name String
-  categoryId String
-  // category Category[]
-  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category String
   imgUrl String
   createdAt DateTime @default(now())
 }
