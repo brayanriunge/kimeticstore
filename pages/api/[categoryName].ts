@@ -9,28 +9,31 @@ export default async function handler(
   if (req.method !== "GET") {
     return res.status(405).json({ message: "method not allowed" });
   }
-  const { categoryName } = req.query;
+  const categoryName = req.query.categoryName as string;
 
-  console.log("received category:", categoryName);
+  console.log("received categoryName:", categoryName);
   // Ensure categoryName is extracted properly
-  const categoryNameString =
-    typeof categoryName === "string"
-      ? categoryName
-      : Array.isArray(categoryName)
-      ? categoryName[0]
-      : null;
 
   // Check if categoryNameString is null or undefined
-  if (!categoryNameString) {
-    return res.status(400).json({ message: "Invalid category name" });
-  }
+
   try {
-    const category = await prisma.category.findUnique({
+    const categories = await prisma.category.findMany({
       where: {
-        categoryName: categoryNameString,
+        categoryName,
       },
-      include: {
-        product: true,
+    });
+
+    if (categories.length === 0) {
+      return res.status(404).json({ message: "category not found" });
+    }
+
+    const categoryIds = categories.map((category) => category.id);
+
+    const products = await prisma.product.findMany({
+      where: {
+        categoryId: {
+          in: categoryIds,
+        },
       },
     });
     // const categoryResult = await prisma.category.findUnique({
@@ -55,8 +58,8 @@ export default async function handler(
     //     .status(404)
     //     .json({ message: "No products found for the category" });
     // }
-    res.status(200).json(category?.product);
-    console.log("the products:", category?.product);
+    res.status(200).json(products);
+    console.log("the products:", products);
   } catch (error) {
     console.log("Error fetching category products:", error);
     res.status(500).json({ message: "Internal server error" });

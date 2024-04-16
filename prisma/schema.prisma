@@ -13,6 +13,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Category{
+  id String @id @default(cuid())
+  // productId String
+  categoryName String 
+  // product Product @relation(fields: [productId], references: [id], onDelete: Cascade )
+  product Product[]
+}
 model Product{
   id  String    @id @default(cuid())
   description String
@@ -22,11 +29,4 @@ model Product{
   category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   imgUrl String
   createdAt DateTime @default(now())
-}
-model Category{
-  id String @id @default(cuid())
-  // productId String
-  categoryName String @unique
-  // product Product @relation(fields: [productId], references: [id], onDelete: Cascade )
-  product Product[]
 }
