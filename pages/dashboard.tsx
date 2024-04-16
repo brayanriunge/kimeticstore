@@ -7,7 +7,7 @@ import { MdCloudUpload } from "react-icons/md";
 type formValues = {
   name: string;
   // category: string[];
-  categoryName: string;
+  category: string;
   description: string;
 };
 
@@ -38,13 +38,13 @@ export default function Dashboard() {
   //event handler for form submission
   const handleFormSubmission = async (data: formValues) => {
     setIsUploading(true);
-    const { description, categoryName, name } = data;
+    const { description, category, name } = data;
     // Ensure category is an array
-    const categories = Array.isArray(categoryName) ? categoryName : [];
+
     const product = {
       name,
       description,
-      categoryName: categoryName,
+      category,
     };
     //creating formData to send to the server
     const formData = new FormData();
@@ -95,32 +95,22 @@ export default function Dashboard() {
               <div className="text-red-500 text-sm">{errors.name.message}</div>
             )}
           </div>
-          {/* <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
+          <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
             <input
               type="text"
               id="category"
               placeholder="Category"
               required
               className="rounded-xl px-5 py-5 focus:outline-none border-none "
-              {...register("categoryName")}
+              {...register("category")}
             />
             {errors.category?.message && (
               <div className="text-red-500 text-sm">
                 {errors.category.message}
               </div>
             )}
-          </div> */}
-          <label>
-            Categories:{""}
-            <label>
-              Agriculture:
-              <input
-                type="checkbox"
-                {...register("categoryName", { required: true })}
-                value="agriculture"
-              />
-            </label>
-          </label>
+          </div>
+
           <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
             <input
               type="text"
