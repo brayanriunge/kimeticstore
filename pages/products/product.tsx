@@ -1,5 +1,5 @@
-// import ProductItem from "@/components/ProductItem";
-// import { fetchProductByCategory } from "@/hooks/productService";
+import ProductItem from "@/components/ProductItem";
+import { fetchProductByCategory } from "@/hooks/productService";
 import { productType } from "@/hooks/types";
 import { strict } from "assert";
 import { useRouter } from "next/router";
@@ -16,7 +16,7 @@ export default function ProductList() {
     const fetchItems = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/products${
+          `http://localhost:3000/api/product${
             selectedCategory ? `?category=${selectedCategory}` : ""
           }`
         );
@@ -49,28 +49,36 @@ export default function ProductList() {
     <div className="flex justify-between gap-4 items-center">
       {/* checkboxes */}
       <div className="flex flex-col justify-between items-center gap-6">
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value=""
-              checked={!selectedCategory}
-              onChange={() => handleCategoryChange("")}
-            />
-            All
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="Agriculture"
-              checked={!selectedCategory}
-              onChange={() => handleCategoryChange("Agriculture")}
-            />
-            All
-          </label>
-        </div>
+        <label>
+          <input
+            type="radio"
+            name="category"
+            value=""
+            checked={!selectedCategory}
+            onChange={() => handleCategoryChange("")}
+          />
+          All
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="category"
+            value="agriculture"
+            checked={selectedCategory === "agriculture"}
+            onChange={() => handleCategoryChange("agriculture")}
+          />
+          Agriculture
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="category"
+            value="gem"
+            checked={selectedCategory === "gem"}
+            onChange={() => handleCategoryChange("gem")}
+          />
+          gem
+        </label>
       </div>
       {/* products */}
       <div>
@@ -78,8 +86,7 @@ export default function ProductList() {
           <h1>Products</h1>
           {products.map((product) => (
             <div key={product.id}>
-              {/* <ProductItem {...product} /> */}
-              <div>{product.imgUrl}</div>
+              <ProductItem {...product} />
             </div>
           ))}
         </div>
