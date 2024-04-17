@@ -49,19 +49,18 @@ export default function ProductList() {
 
   return (
     <Layout>
-      <div className=" mx-auto  w-5/6 mt-32 ">
-        <CategoryFilter
-          selectedCategory={selectedCategory}
-          onSelectedCategory={handleCategoryChange}
-        />
-      </div>
-      <div className="flex justify-between gap-4 items-center bg-gray-200 min-h-screen">
-        {/* checkboxes */}
+      <div className="min-h-screen">
+        <div className=" mx-auto  w-5/6 mt-32 ">
+          <CategoryFilter
+            selectedCategory={selectedCategory}
+            onSelectedCategory={handleCategoryChange}
+          />
+        </div>
 
         {/* products */}
-        <div className="w-3/4 overflow-y-auto p-5 m-5">
+        <div className="w-11/12 overflow-y-auto mx-auto">
           <h1 className="mt-4 text-lg font-sans ">Products</h1>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-4 gap-6">
             {products.map((product) => (
               <div key={product.id}>
                 <ProductItem {...product} />
