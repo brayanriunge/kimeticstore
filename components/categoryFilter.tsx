@@ -10,19 +10,27 @@ export default function CategoryFilter({
   onSelectedCategory,
 }: props) {
   const categories = ["car", "construction", "agriculture", "gem", "art"];
+  const handleCategoryChange = (category: string) => {
+    if (selectedCategory === category) {
+      onSelectedCategory("");
+    } else {
+      onSelectedCategory(category);
+    }
+  };
   return (
-    <div>
-      <h1>Product Categories</h1>
+    <div className="flex items-center justify-between gap-4 font-mono text-md text-orange-400 sticky top-0">
       {categories.map((category) => (
         <div>
-          <div>
+          <div className="gap-2">
             <label key={category}>
               <input
                 type="checkbox"
                 checked={selectedCategory === category}
                 value={category}
-                onChange={() => onSelectedCategory(category)}
+                onChange={() => handleCategoryChange(category)}
+                className="rounded-sm"
               />
+
               {category}
             </label>
           </div>

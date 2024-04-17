@@ -49,14 +49,15 @@ export default function ProductList() {
 
   return (
     <Layout>
-      <div className="flex justify-between gap-4 items-center bg-gray-200 mt-28 min-h-screen">
+      <div className=" mx-auto  w-5/6 mt-32 ">
+        <CategoryFilter
+          selectedCategory={selectedCategory}
+          onSelectedCategory={handleCategoryChange}
+        />
+      </div>
+      <div className="flex justify-between gap-4 items-center bg-gray-200 min-h-screen">
         {/* checkboxes */}
-        <div className="flex flex-col sticky top-0 items-center gap-6 p-5 m-5 w-1/4 justify-start">
-          <CategoryFilter
-            selectedCategory={selectedCategory}
-            onSelectedCategory={handleCategoryChange}
-          />
-        </div>
+
         {/* products */}
         <div className="w-3/4 overflow-y-auto p-5 m-5">
           <h1 className="mt-4 text-lg font-sans ">Products</h1>
