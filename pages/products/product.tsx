@@ -48,7 +48,7 @@ export default function ProductList() {
 
   return (
     <Layout>
-      <div className="flex justify-between gap-4 items-center bg-gray-200">
+      <div className="flex justify-between gap-4 items-center bg-gray-200 mt-28 min-h-screen">
         {/* checkboxes */}
         <div className="flex flex-col justify-between items-center gap-6">
           <label>
@@ -84,7 +84,7 @@ export default function ProductList() {
         </div>
         {/* products */}
         <div>
-          <h1>Products</h1>
+          <h1 className="mt-4 text-lg font-sans ">Products</h1>
           <div className="grid grid-cols-4 gap-6">
             {products.map((product) => (
               <div key={product.id}>

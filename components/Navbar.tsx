@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <nav>
       <div
-        className={`${flexStyles} w-full top-0 z-30 fixed py-2  bg-teal-200 shadow`}
+        className={`${flexStyles} w-full top-0 z-30 fixed  bg-teal-200 shadow`}
       >
         <div className={`${flexStyles} mx-auto w-5/6`}>
           {/**put logo here  */}
@@ -27,20 +27,21 @@ export default function Navbar() {
             height={90}
             className="rounded-full m-4"
           />
-          <div className={`${flexStyles} w-full gap-10`}>
+          <div className={`${flexStyles} w-full gap-4`}>
             {/**left side */}
 
-            <h2 className="font-bold text-red-500 text-2xl text-montserrat">
+            <h2 className="font-bold text-red-500 text-xl text-montserrat">
               KEMETIC AMEZAN {""}
             </h2>
 
             {/**right side */}
-            {isAboveMediaScreens ? (
+            {/* {isAboveMediaScreens ? (  {/* </div>
+            ) : (
               <div className={`${flexStyles} w-full text-montserrat font-sans`}>
                 <div
-                  className={`${flexStyles} text-sm text-primary-gray-500  gap-8`}
-                >
-                  <Link legacyBehavior href={"/"}>
+                  className={`${flexStyles} text-sm text-primary-gray-500  gap-4`}
+                > */}
+            {/* <Link legacyBehavior href={"/"}>
                     <a
                       className={`${
                         router.pathname === "/"
@@ -150,26 +151,33 @@ export default function Navbar() {
                     >
                       Construction Materials
                     </a>
-                  </Link>
-                  <button className="m-4 p-4 bg-orange-400 rounded-md font-bold hover:bg-orange-300 hover:text-white">
+                  </Link> */}
+            {/* <button className="m-4 p-4 bg-orange-400 rounded-md font-bold hover:bg-orange-300 hover:text-white">
                     <Link href="/dashboard">Dashboard</Link>
                   </button>
-                </div>
-                {/** left side */}
-                {/* {status === "authenticated" && data !== null && (
+                </div> */}
+            {/** left side */}
+            {/* {status === "authenticated" && data !== null && (
                 <>
                  <p>Welcome {data.user.name}</p>
                 </>
                )} */}
-              </div>
-            ) : (
-              <button
+            {/* </div>
+            ) : ( */}
+            {/* <button
                 className="rounded-full p-2 bg-secondary-gray-300"
                 onClick={() => setIsMenuToggled(!isMenuToggled)}
               >
                 <HiBars3 className="h-6 w-6 " />
+              </button> */}
+            {/* )} */}
+
+            {/**Dashboard link */}
+            <div>
+              <button className="m-4 p-4 bg-orange-400 rounded-md font-bold hover:bg-orange-300 hover:text-white">
+                <Link href="/dashboard">Dashboard</Link>
               </button>
-            )}
+            </div>
 
             {/**mobile menu modal */}
             {!isAboveMediaScreens && isMenuToggled && (
