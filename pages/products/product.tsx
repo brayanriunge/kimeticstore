@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import ProductItem from "@/components/ProductItem";
+import CategoryFilter from "@/components/categoryFilter";
 import { fetchProductByCategory } from "@/hooks/productService";
 import { productType } from "@/hooks/types";
 import { strict } from "assert";
@@ -50,42 +51,16 @@ export default function ProductList() {
     <Layout>
       <div className="flex justify-between gap-4 items-center bg-gray-200 mt-28 min-h-screen">
         {/* checkboxes */}
-        <div className="flex flex-col justify-between items-center gap-6">
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value=""
-              checked={!selectedCategory}
-              onChange={() => handleCategoryChange("")}
-            />
-            All
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="agriculture"
-              checked={selectedCategory === "agriculture"}
-              onChange={() => handleCategoryChange("agriculture")}
-            />
-            Agriculture
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="category"
-              value="gem"
-              checked={selectedCategory === "gem"}
-              onChange={() => handleCategoryChange("gem")}
-            />
-            gem
-          </label>
+        <div className="flex flex-col sticky top-0 items-center gap-6 p-5 m-5 w-1/4 justify-start">
+          <CategoryFilter
+            selectedCategory={selectedCategory}
+            onSelectedCategory={handleCategoryChange}
+          />
         </div>
         {/* products */}
-        <div>
+        <div className="w-3/4 overflow-y-auto p-5 m-5">
           <h1 className="mt-4 text-lg font-sans ">Products</h1>
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-3 gap-6">
             {products.map((product) => (
               <div key={product.id}>
                 <ProductItem {...product} />
