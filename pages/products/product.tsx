@@ -49,8 +49,8 @@ export default function ProductList() {
 
   return (
     <Layout>
-      <div className="min-h-screen">
-        <div className=" mx-auto  w-5/6 mt-32 ">
+      <div className="min-h-screen mt-28">
+        <div className=" mx-auto  w-5/6  ">
           <CategoryFilter
             selectedCategory={selectedCategory}
             onSelectedCategory={handleCategoryChange}

@@ -18,7 +18,7 @@ export default function CategoryFilter({
     }
   };
   return (
-    <div className="flex items-center justify-between gap-4 font-mono text-md text-orange-400 sticky top-0">
+    <div className="flex items-center justify-between gap-4 font-mono text-md text-orange-400 sticky p-4 top-0">
       {categories.map((category) => (
         <div>
           <div className="gap-2">
