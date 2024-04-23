@@ -20,6 +20,8 @@ export default async function handler(
     if (!item) {
       res.status(404).json({ message: "item not found" });
     }
+    console.log(item);
+    return res.status(200).json(item);
   } catch (error) {
     console.log(error);
   }

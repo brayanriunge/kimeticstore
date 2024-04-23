@@ -15,7 +15,7 @@ export default function ProductItem({
     >
       <div>
         <Link
-          href={``}
+          href={`/products/${id}`}
           className="relative block h-48 cursor-pointer overflow-hidden rounded"
         >
           <Image
