@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import { productType } from "@/hooks/types";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -25,16 +26,27 @@ export default function ProductItem() {
   }, [id]);
 
   return (
-    <div className="min-h-screen">
-      <div>
-        <Image
-          width={192}
-          height={192}
-          alt="product"
-          unoptimized={true}
-          src={items?.imgUrl as string}
-        />
+    <Layout>
+      <div className="min-h-screen body-font overflow-hidden mt-28">
+        <div className="flex w-4/5 mx-auto py-24 px-5 flex-wrap gap-10">
+          <Image
+            width={192}
+            className="h-60 object-cover object-center"
+            height={192}
+            alt="product"
+            unoptimized={true}
+            src={items?.imgUrl as string}
+          />
+          <div className="w-1/2 mt-6">
+            <div className="font-bold text-indigo-400 text-3xl p-5">
+              {items?.name}
+            </div>
+            <p className="text-xl font-mono text-gray-700 p-2">
+              {items?.description}
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
