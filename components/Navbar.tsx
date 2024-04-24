@@ -20,13 +20,16 @@ export default function Navbar() {
       >
         <div className={`${flexStyles} mx-auto w-5/6`}>
           {/**put logo here  */}
-          <Image
-            src={Logo}
-            alt="logo"
-            width={90}
-            height={90}
-            className="rounded-full m-4"
-          />
+          <Link href={"/"}>
+            <Image
+              src={Logo}
+              alt="logo"
+              width={90}
+              height={90}
+              className="rounded-full m-4"
+            />
+          </Link>
+
           <div className={`${flexStyles} w-full gap-4`}>
             {/**left side */}
 

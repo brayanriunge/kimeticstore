@@ -31,7 +31,7 @@ export default function ProductItem() {
         <div className="flex w-4/5 mx-auto py-24 px-5 flex-wrap gap-10">
           <Image
             width={192}
-            className="h-60 object-cover object-center"
+            className="h-60 object-cover object-center w-auto rounded"
             height={192}
             alt="product"
             unoptimized={true}
