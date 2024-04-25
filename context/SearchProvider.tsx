@@ -1,6 +1,5 @@
 import { productType } from "@/hooks/types";
-import { useState } from "react";
-import { createContext } from "vm";
+import { useContext, useState, createContext } from "react";
 
 type SearchProvidersProps = {
   children: React.ReactNode;
@@ -12,23 +11,20 @@ type SearchContextTypes = {
 };
 
 const SearchContext = createContext({} as SearchContextTypes);
-
-export function useSearchContext(SearchContext: import("vm").Context) {
-  return useSearchContext(SearchContext);
-}
+export const useSearchContext = () => useContext(SearchContext);
 
 export default function SearchProvider({ children }: SearchProvidersProps) {
   const [filteredItems, setFilteredItems] = useState<productType[] | null>(
     null
   );
   return (
-    <SearchContext.provider
+    <SearchContext.Provider
       value={{
         filteredItems,
         setFilteredItems,
       }}
     >
       {children}
-    </SearchContext.provider>
+    </SearchContext.Provider>
   );
 }

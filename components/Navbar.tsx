@@ -2,16 +2,37 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Logo from "@/public/Logo.png";
 import { HiOutlineX } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
+import { productType } from "@/hooks/types";
+import { useSearchContext } from "@/context/SearchProvider";
 
 export default function Navbar() {
   const router = useRouter();
   const flexStyles = "flex items-center justify-between ";
   const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<String | null>(null);
+  const { filteredItems, setFilteredItems } = useSearchContext();
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
+  const fetchItems = useCallback(() => {
+    fetch("http://localhost:3000/api/product")
+      .then((res) => res.json())
+      .then((data) => {
+        const searchResults = data.filter((item: productType) => {
+          searchValue &&
+            item &&
+            item.name.toLocaleLowerCase().includes(searchValue.toLowerCase());
+        });
+        setFilteredItems(searchResults);
+      });
+  }, [searchValue, setFilteredItems]);
 
   return (
     <nav>
@@ -36,6 +57,14 @@ export default function Navbar() {
             <h2 className="font-bold text-red-500 text-xl text-montserrat">
               KEMETIC AMEZAN {""}
             </h2>
+
+            <div>
+              <input
+                type="text"
+                placeholder="search here"
+                onChange={handleFormChange}
+              />
+            </div>
 
             {/**right side */}
             {/* {isAboveMediaScreens ? (  {/* </div>
