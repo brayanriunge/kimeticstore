@@ -7,7 +7,7 @@ import Logo from "@/public/Logo.png";
 import { HiOutlineX } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
 import { productType } from "@/hooks/types";
-import { useSearchContext } from "@/context/SearchProvider";
+import { useSearchContext } from "@/context/SearchContext";
 
 export default function Navbar() {
   const router = useRouter();
@@ -26,13 +26,24 @@ export default function Navbar() {
       .then((res) => res.json())
       .then((data) => {
         const searchResults = data.filter((item: productType) => {
-          searchValue &&
+          return (
+            searchValue &&
             item &&
-            item.name.toLocaleLowerCase().includes(searchValue.toLowerCase());
+            item.name.toLocaleLowerCase().includes(searchValue.toLowerCase())
+          );
         });
         setFilteredItems(searchResults);
       });
   }, [searchValue, setFilteredItems]);
+  useEffect(() => {
+    fetchItems();
+  }, [fetchItems, searchValue]);
+
+  useEffect(() => {
+    if (filteredItems && filteredItems.length > 0) {
+      router.push("/products/product");
+    }
+  }, [filteredItems]);
 
   return (
     <nav>
@@ -58,7 +69,7 @@ export default function Navbar() {
               KEMETIC AMEZAN {""}
             </h2>
 
-            <div>
+            <div id="search">
               <input
                 type="text"
                 placeholder="search here"

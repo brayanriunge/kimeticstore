@@ -13,3 +13,10 @@ export interface productType {
   name: string;
   category: string;
 }
+export type product = {
+  id: string;
+  imgUrl: string;
+  description: string;
+  name: string;
+  category: string;
+};
