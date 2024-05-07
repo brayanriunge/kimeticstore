@@ -22,7 +22,7 @@ export default function Navbar() {
   };
 
   const fetchItems = useCallback(() => {
-    fetch("http://localhost:3000/api/product")
+    fetch("http://localhost:3000/api/search")
       .then((res) => res.json())
       .then((data) => {
         const searchResults = data.filter((item: productType) => {
