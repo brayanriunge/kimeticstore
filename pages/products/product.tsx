@@ -2,14 +2,18 @@ import Layout from "@/components/Layout";
 import ProductItem from "@/components/ProductItem";
 import CategoryFilter from "@/components/categoryFilter";
 import { fetchProductByCategory } from "@/hooks/productService";
-import { productType } from "@/hooks/types";
+import { product, productType } from "@/hooks/types";
 import { strict } from "assert";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function ProductList() {
+interface ProductListProp {
+  filteredItems: product[];
+}
+
+export default function ProductList({ filteredItems }: ProductListProp) {
   const router = useRouter();
-  const [products, setProducts] = useState<productType[]>([]);
+  const [products, setProducts] = useState<product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -65,6 +69,16 @@ export default function ProductList() {
               <div key={product.id}>
                 <ProductItem {...product} />
               </div>
+            ))}
+            {filteredItems.map((product) => (
+              <ProductItem
+                key={product.id}
+                description={product.description}
+                name={product.name}
+                imgUrl={product.imgUrl}
+                id={product.id}
+                category={product.category}
+              />
             ))}
           </div>
         </div>

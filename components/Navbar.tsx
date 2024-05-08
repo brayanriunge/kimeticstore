@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import Logo from "@/public/Logo.png";
 import { HiOutlineX } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
-import { productType } from "@/hooks/types";
+import { product, productType } from "@/hooks/types";
 import { useSearchContext } from "@/context/SearchContext";
 
 export default function Navbar() {
@@ -14,37 +14,86 @@ export default function Navbar() {
   const flexStyles = "flex items-center justify-between ";
   const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
-  const [searchValue, setSearchValue] = useState<String | null>(null);
+  const [searchValue, setSearchValue] = useState<string>("");
   const { filteredItems, setFilteredItems } = useSearchContext();
+
+  const options = {
+    method: "GET",
+  };
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
-  const fetchItems = useCallback(() => {
-    fetch("http://localhost:3000/api/search")
-      .then((res) => res.json())
-      .then((data) => {
-        const searchResults = data.filter((item: productType) => {
-          return (
-            searchValue &&
-            item &&
-            item.name.toLocaleLowerCase().includes(searchValue.toLowerCase())
-          );
-        });
-        setFilteredItems(searchResults);
-      });
-  }, [searchValue, setFilteredItems]);
   useEffect(() => {
+    if (!searchValue) return; // No need to fetch if searchValue is empty
+
+    const fetchItems = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/search?query=${encodeURIComponent(
+            searchValue
+          )}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch");
+        }
+        const data = await response.json();
+        setFilteredItems(data);
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+
     fetchItems();
-  }, [fetchItems, searchValue]);
+  }, [searchValue, setFilteredItems]);
 
-  useEffect(() => {
-    if (filteredItems && filteredItems.length > 0) {
-      router.push("/products/product");
-    }
-  }, [filteredItems]);
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // No need to manually call fetchItems here, useEffect will take care of it
+  };
 
+  // const fetchItems = useCallback(() => {
+  //   fetch("http://localhost:3000/api/search", options)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const searchResults = data
+  //         .filter((item: product) => {
+  //           return (
+  //             searchValue && // prevent rendering when there is no input
+  //             item &&
+  //             item.name.toLowerCase().includes(searchValue.toLowerCase())
+  //           );
+  //         })
+  //         .sort((a: product, b: product) => {
+  //           if (
+  //             searchValue && // check that the value is not null
+  //             a.name.toLowerCase().indexOf(searchValue.toLowerCase()) === 0
+  //           ) {
+  //             return -1; // a comes first if it starts with the search value
+  //           } else if (
+  //             searchValue && // check that the value is not null
+  //             b.name.toLowerCase().indexOf(searchValue.toLowerCase()) === 0
+  //           ) {
+  //             return 1; // b comes first if it starts with the search value
+  //           } else {
+  //             return 0; // keep the original order
+  //           }
+  //         });
+
+  //       setFilteredItems(searchResults);
+  //     });
+  // }, [searchValue, setFilteredItems]);
+
+  // useEffect(() => {
+  //   fetchItems();
+  // }, [fetchItems, searchValue]);
+
+  // useEffect(() => {
+  //   if (filteredItems != null && filteredItems.length > 0) {
+  //     router.push("/products");
+  //   }
+  // });
   return (
     <nav>
       <div
@@ -69,13 +118,19 @@ export default function Navbar() {
               KEMETIC AMEZAN {""}
             </h2>
 
-            <div id="search">
-              <input
-                type="text"
-                placeholder="search here"
-                onChange={handleFormChange}
-              />
-            </div>
+            {/* Search */}
+            <form onSubmit={handleSearchSubmit}>
+              <div id="search">
+                <input
+                  id="search-navbar"
+                  type="text"
+                  placeholder="Search here"
+                  value={searchValue}
+                  onChange={handleFormChange}
+                />
+                <button type="submit">Search</button>
+              </div>
+            </form>
 
             {/**right side */}
             {/* {isAboveMediaScreens ? (  {/* </div>

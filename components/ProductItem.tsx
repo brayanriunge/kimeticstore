@@ -1,4 +1,4 @@
-import { productType } from "@/hooks/types";
+import { product, productType } from "@/hooks/types";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,7 +7,7 @@ export default function ProductItem({
   id,
   imgUrl,
   name,
-}: productType) {
+}: product) {
   return (
     <div
       className="flex flex-col items-start justify-between gap-4 mx-auto mt-4 bg-white rounded-md shadow-sm "

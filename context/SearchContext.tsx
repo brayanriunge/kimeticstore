@@ -1,18 +1,27 @@
 import { product, productType } from "@/hooks/types";
-import React, { useContext, useState, createContext } from "react";
+import React, {
+  useContext,
+  useState,
+  createContext,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 type SearchProvidersProps = {
   children: React.ReactNode;
 };
 
 type SearchContextTypes = {
-  filteredItems: productType[] | null;
-  setFilteredItems: React.Dispatch<React.SetStateAction<product[] | null>>;
+  filteredItems: product[] | null;
+  setFilteredItems: Dispatch<SetStateAction<product[] | null>>;
 };
 
-const SearchContext = createContext<SearchContextTypes | undefined>(undefined);
+const SearchContext = createContext<SearchContextTypes>({
+  filteredItems: null,
+  setFilteredItems: () => {},
+});
 export const useSearchContext = () => {
-  useContext(SearchContext);
+  return useContext(SearchContext);
 };
 
 export const SearchProvider: React.FC<SearchProvidersProps> = ({
