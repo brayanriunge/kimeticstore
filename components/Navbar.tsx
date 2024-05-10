@@ -89,11 +89,11 @@ export default function Navbar() {
   //   fetchItems();
   // }, [fetchItems, searchValue]);
 
-  // useEffect(() => {
-  //   if (filteredItems != null && filteredItems.length > 0) {
-  //     router.push("/products");
-  //   }
-  // });
+  useEffect(() => {
+    if (filteredItems != null && filteredItems.length > 0) {
+      router.push("/products/product");
+    }
+  });
   return (
     <nav>
       <div

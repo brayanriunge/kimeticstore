@@ -64,22 +64,23 @@ export default function ProductList({ filteredItems }: ProductListProp) {
         {/* products */}
         <div className="w-11/12 overflow-y-auto mx-auto">
           <h1 className="mt-4 text-lg font-sans ">Products</h1>
-          <div className="grid grid-cols-4 gap-6">
+          <div className="md:grid md:grid-cols-4 gap-6">
             {products.map((product) => (
               <div key={product.id}>
                 <ProductItem {...product} />
               </div>
             ))}
-            {filteredItems.map((product) => (
-              <ProductItem
-                key={product.id}
-                description={product.description}
-                name={product.name}
-                imgUrl={product.imgUrl}
-                id={product.id}
-                category={product.category}
-              />
-            ))}
+            {filteredItems &&
+              filteredItems.map((product) => (
+                <ProductItem
+                  key={product.id}
+                  description={product.description}
+                  name={product.name}
+                  imgUrl={product.imgUrl}
+                  id={product.id}
+                  category={product.category}
+                />
+              ))}
           </div>
         </div>
       </div>
