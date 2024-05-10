@@ -8,6 +8,7 @@ import { HiOutlineX } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
 import { product, productType } from "@/hooks/types";
 import { useSearchContext } from "@/context/SearchContext";
+import CategoryFilter from "./categoryFilter";
 
 export default function Navbar() {
   const router = useRouter();
@@ -133,149 +134,26 @@ export default function Navbar() {
             </form>
 
             {/**right side */}
-            {/* {isAboveMediaScreens ? (  {/* </div>
-            ) : (
-              <div className={`${flexStyles} w-full text-montserrat font-sans`}>
-                <div
-                  className={`${flexStyles} text-sm text-primary-gray-500  gap-4`}
-                > */}
-            {/* <Link legacyBehavior href={"/"}>
-                    <a
-                      className={`${
-                        router.pathname === "/"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Home
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href={"/agricultural"}>
-                    <a
-                      className={`${
-                        router.pathname === "/agricultural"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Agriculture Produce
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/art">
-                    <a
-                      className={`${
-                        router.pathname === "/art"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Art
-                    </a>
-                  </Link>
+            {isAboveMediaScreens ? (
+              <div className={`${flexStyles} w-full text-montserrat`}>
+                <div className={`${flexStyles} text-sm gap-4`}>
+                  <div></div>
 
-                  <Link legacyBehavior href="/land">
-                    <a
-                      className={`${
-                        router.pathname === "/land"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Land
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/gems">
-                    <a
-                      className={`${
-                        router.pathname === "/gems"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Gems
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/cars">
-                    <a
-                      className={`${
-                        router.pathname === "/cars"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Cars
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/herbs">
-                    <a
-                      className={`${
-                        router.pathname === "/herbs"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Herbs
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/houses">
-                    <a
-                      className={`${
-                        router.pathname === "/houses"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Houses
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/cigarettes">
-                    <a
-                      className={`${
-                        router.pathname === "/cigarettes"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Cigarettes
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/construction">
-                    <a
-                      className={`${
-                        router.pathname === "/construction"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Construction Materials
-                    </a>
-                  </Link> */}
-            {/* <button className="m-4 p-4 bg-orange-400 rounded-md font-bold hover:bg-orange-300 hover:text-white">
+                  <button className="m-4 p-4 bg-orange-400 rounded-md font-bold hover:bg-orange-300 hover:text-white">
                     <Link href="/dashboard">Dashboard</Link>
                   </button>
-                </div> */}
-            {/** left side */}
-            {/* {status === "authenticated" && data !== null && (
-                <>
-                 <p>Welcome {data.user.name}</p>
-                </>
-               )} */}
-            {/* </div>
-            ) : ( */}
-            {/* <button
+                </div>
+              </div>
+            ) : (
+              <button
                 className="rounded-full p-2 bg-secondary-gray-300"
                 onClick={() => setIsMenuToggled(!isMenuToggled)}
               >
                 <HiBars3 className="h-6 w-6 " />
-              </button> */}
-            {/* )} */}
+              </button>
+            )}
 
             {/**Dashboard link */}
-            <div>
-              <button className="m-4 p-4 bg-orange-400 rounded-md font-bold hover:bg-orange-300 hover:text-white">
-                <Link href="/dashboard">Dashboard</Link>
-              </button>
-            </div>
 
             {/**mobile menu modal */}
             {!isAboveMediaScreens && isMenuToggled && (
@@ -287,119 +165,6 @@ export default function Navbar() {
                   </button>
                 </div>
                 {/**menu items */}
-                <div className=" flex flex-col gap-6 items-center text-justify text-2xl ">
-                  <Link legacyBehavior href={"/"}>
-                    <a
-                      className={`${
-                        router.pathname === "/"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Home
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href={"/agricultural"}>
-                    <a
-                      className={`${
-                        router.pathname === "/agricultural"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Agriculture Produce
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/art">
-                    <a
-                      className={`${
-                        router.pathname === "/art"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Art
-                    </a>
-                  </Link>
-
-                  <Link legacyBehavior href="/land">
-                    <a
-                      className={`${
-                        router.pathname === "/land"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Land
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/gems">
-                    <a
-                      className={`${
-                        router.pathname === "/gems"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Gems
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/cars">
-                    <a
-                      className={`${
-                        router.pathname === "/cars"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Cars
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/herbs">
-                    <a
-                      className={`${
-                        router.pathname === "/herbs"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Herbs
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/houses">
-                    <a
-                      className={`${
-                        router.pathname === "/houses"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Houses
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/cigarettes">
-                    <a
-                      className={`${
-                        router.pathname === "/cigarettes"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Cigarettes
-                    </a>
-                  </Link>
-                  <Link legacyBehavior href="/construction">
-                    <a
-                      className={`${
-                        router.pathname === "/construction"
-                          ? "text-red-800"
-                          : "text-gray-20"
-                      } hover:text-red-600`}
-                    >
-                      Construction Materials
-                    </a>
-                  </Link>
-                </div>
               </div>
             )}
           </div>

@@ -10,6 +10,10 @@ import { useEffect, useState } from "react";
 interface ProductListProp {
   filteredItems: product[];
 }
+type props = {
+  selectedCategory: string;
+  onSelectedCategory: (category: string) => void;
+};
 
 export default function ProductList({ filteredItems }: ProductListProp) {
   const router = useRouter();
