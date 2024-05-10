@@ -57,7 +57,7 @@ export default function ProductList({ filteredItems }: ProductListProp) {
 
   return (
     <Layout>
-      <div className="min-h-screen mt-28">
+      <div className="min-h-screen md:mt-28 mt-16">
         <div className=" mx-auto  w-5/6  ">
           <CategoryFilter
             selectedCategory={selectedCategory}

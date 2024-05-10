@@ -16,14 +16,14 @@ export default function ProductItem({
       <div>
         <Link
           href={`/products/${id}`}
-          className="relative block h-48 cursor-pointer overflow-hidden rounded"
+          className="md:relative block h-48 cursor-pointer overflow-hidden rounded"
         >
           <Image
             height={192}
             width={192}
             src={imgUrl}
             alt="image"
-            className="block h-full w-full object-cover object-center"
+            className="block h-full  w-full object-cover object-center"
           />
         </Link>
       </div>

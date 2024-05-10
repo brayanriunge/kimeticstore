@@ -8,7 +8,6 @@ import { HiOutlineX } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
 import { product, productType } from "@/hooks/types";
 import { useSearchContext } from "@/context/SearchContext";
-import CategoryFilter from "./categoryFilter";
 
 export default function Navbar() {
   const router = useRouter();
@@ -108,20 +107,20 @@ export default function Navbar() {
               alt="logo"
               width={90}
               height={90}
-              className="rounded-full m-4"
+              className="rounded-full m-4 "
             />
           </Link>
 
           <div className={`${flexStyles} w-full gap-4`}>
             {/**left side */}
 
-            <h2 className="font-bold text-red-500 text-xl text-montserrat">
+            <h2 className="font-bold text-red-500 md:text-xl text-montserrat">
               KEMETIC AMEZAN {""}
             </h2>
 
             {/* Search */}
             <form onSubmit={handleSearchSubmit}>
-              <div id="search">
+              <div id="search" className={`${flexStyles} `}>
                 <input
                   id="search-navbar"
                   type="text"
@@ -129,7 +128,6 @@ export default function Navbar() {
                   value={searchValue}
                   onChange={handleFormChange}
                 />
-                <button type="submit">Search</button>
               </div>
             </form>
 
