@@ -1,75 +1,66 @@
 import Image from "next/image";
 import Link from "next/link";
 import google from "@/public/Homepic.jpeg";
-import { HiAtSymbol, HiFingerPrint, HiOutlineUser } from "react-icons/hi";
+import { HiAtSymbol, HiFingerPrint } from "react-icons/hi";
 import { FormEvent, useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { ZodError } from "zod";
-import { useForm } from "react-hook-form";
-import { registerUserSchema } from "@/utils/validate";
-import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 
-type FormValues = {
-  name: string;
-  email: string;
-  password: string;
-  cpassword: string;
-};
-
-export default function RegisterUser() {
-  const [show, setShow] = useState({ password: false, cpassword: false });
+export default function Login() {
+  const [show, setShow] = useState(false);
+  const { data: session } = useSession();
   const router = useRouter();
   const [serverErrors, setServerErrors] = useState("");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>({ resolver: zodResolver(registerUserSchema) });
+  // if (session) {
+  //   router.replace("/");
+  //   return null;
+  // }
 
-  async function onSubmit(values: FormValues) {
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    const form = new FormData(e.target as HTMLFormElement);
     try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          values,
-        }),
+      const response = await signIn("credentials", {
+        email: form.get("email") as string,
+        password: form.get("password") as string,
+        redirect: false, // Set this to true if you want to redirect after successful login
       });
-      const data = await response.json();
-      console.log(data);
-      if (response.status === 409)
-        setServerErrors("Email is already registered");
 
-      if (response.status === 500)
-        setServerErrors("Server error, try again later");
+      if (response?.status === 401) {
+        setServerErrors("Invalid Password or Email Does Not Exist");
+      }
+      if (response?.ok) {
+        toast.success("login successfully");
+      }
 
-      if (response.status === 201) {
-        router.replace("/login");
+      if (response?.error) {
+        // Handle login error
+        console.error(response.error);
+      } else {
+        router.push("/");
       }
     } catch (error) {
-      if (error instanceof ZodError) {
-        console.log("Form validate errors:", error.errors);
-      }
+      console.error(error);
     }
   }
+
   //google handler function
   async function handleGoogleSignin() {
     signIn("google", { callbackUrl: "/" });
   }
 
   return (
-    <div className="flex  bg-blue-400 gap-16 py-10  min-h-full  mb-0">
-      <div className=" bg-slate-50 m-auto my-8 h-3/4 rounded-md mx-auto p-6  max-w-md w-full">
+    <div className="flex min-h-full bg-blue-400 gap-16 py-10 mb-0 md:h-full md:pb-20">
+      <div className="  bg-slate-50 m-auto  h-3/4 rounded-md mx-auto p-6  max-w-md w-full  mt-10  mb-40">
         {/* Login form */}
         <div className=" flex flex-col text-center gap-10 h-full rounded-md">
           <div className="m-auto px-4 py-4">
             <div>
               <h1 className="font-bold text-4xl text-gray-800 font-montserrat py-4">
-                Register
+                {" "}
+                Login
               </h1>
             </div>
             {serverErrors && (
@@ -80,113 +71,39 @@ export default function RegisterUser() {
                 {serverErrors}
               </div>
             )}
-            <form
-              className="flex flex-col gap-5"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className="flex border border-gray-400  rounded-md relative">
-                <input
-                  type="text"
-                  id="name"
-                  required
-                  placeholder="NAME"
-                  className={`${
-                    errors.name?.message
-                      ? `focus:border-red-600`
-                      : `focus:border-gray-900`
-                  } w-full px-6 py-4 rounded-xl bg-slate-50 focus:outline-none border-none `}
-                  {...register("name")}
-                />
-                <span className="icon flex items-center px-4 ">
-                  <HiOutlineUser className="h-[25px] w-[25px]" />
-                </span>
-              </div>
-              {errors.name?.message && (
-                <span className="text-xs text-red-600">
-                  {errors.name.message}
-                </span>
-              )}
+            <form className="flex flex-col gap-5 " onSubmit={handleSubmit}>
               <div className="flex border border-gray-400  rounded-md relative">
                 <input
                   type="email"
-                  id="email"
-                  required
-                  placeholder="EMAIL"
-                  className={`${
-                    errors.email?.message
-                      ? `focus:border-red-600`
-                      : `focus:border-gray-900`
-                  } w-full px-6 py-4 rounded-xl bg-slate-50 focus:outline-none border-none `}
-                  {...register("email")}
+                  name="email"
+                  placeholder="Email"
+                  className="w-full px-6 py-4 rounded-xl bg-slate-50 focus:outline-none border-none "
                 />
                 <span className="icon flex items-center px-4 ">
                   <HiAtSymbol className="h-[25px] w-[25px]" />
                 </span>
               </div>
-              {errors.email?.message && (
-                <span className="text-xs text-red-600">
-                  {errors.email.message}
-                </span>
-              )}
-              <div className="flex border border-gray-400  rounded-md relative">
+              <div className="flex border border-gray-400  rounded-md relative ">
                 <input
-                  type={`${show.password ? "text" : "password"}`}
-                  id="password"
-                  required
-                  placeholder="PASSWORD"
-                  className={`${
-                    errors.password?.message
-                      ? `focus:border-red-600`
-                      : `focus:border-gray-900`
-                  } w-full px-6 py-4 rounded-xl bg-slate-50 focus:outline-none border-none `}
-                  {...register("password")}
+                  type={`${show ? "text" : "password"}`}
+                  name="password"
+                  placeholder="Password"
+                  className="w-full px-6 py-4 rounded-xl bg-slate-50 focus:outline-none border-none"
                 />
                 <span
                   className="icon flex items-center px-4  "
-                  onClick={() => setShow({ ...show, password: !show.password })}
+                  onClick={() => setShow(!show)}
                 >
                   <HiFingerPrint className="h-[25px] w-[25px]" />
                 </span>
               </div>
-              {errors.password?.message && (
-                <span className="text-xs text-red-600">
-                  {errors.password.message}
-                </span>
-              )}
-              <div className="flex border border-gray-400  rounded-md relative">
-                <input
-                  type={`${show.cpassword ? "text" : "password"}`}
-                  id="cpassword"
-                  required
-                  placeholder="CONFIRM PASSWORD"
-                  className={`${
-                    errors.password?.message
-                      ? `focus:border-red-600`
-                      : `focus:border-gray-900`
-                  } w-full px-6 py-4 rounded-xl bg-slate-50 focus:outline-none border-none `}
-                  {...register("cpassword")}
-                />
-                <span
-                  className="icon flex items-center px-4  "
-                  onClick={() =>
-                    setShow({ ...show, cpassword: !show.cpassword })
-                  }
-                >
-                  <HiFingerPrint className="h-[25px] w-[25px]" />
-                </span>
-              </div>
-              {errors.cpassword?.message && (
-                <span className="text-xs text-red-600">
-                  {errors.cpassword.message}
-                </span>
-              )}
               <div className="">
                 <button
                   type="submit"
                   className="w-full bg-gradient-to-r from-blue-500 rounded-md to-indigo-500 py-3 text-gray-50 text-lg
                             hover:bg-gradient-to-r  hover:from-gray-50 hover:to-gray-100 hover:border-blue-500 hover:text-gray-700 hover:border"
                 >
-                  Register
+                  Login
                 </button>
               </div>
               <div className="">
@@ -207,13 +124,13 @@ export default function RegisterUser() {
               </div>
             </form>
             <p>
-              Have an account?
+              Not yet Registered
               <Link
                 legacyBehavior
-                href={"/login"}
+                href={"/register"}
                 className="text-center text-gray-400"
               >
-                <a className="text-blue-700"> Sign In</a>
+                <a className="text-blue-700"> Sign Up</a>
               </Link>
             </p>
           </div>
