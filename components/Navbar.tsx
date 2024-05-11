@@ -119,23 +119,22 @@ export default function Navbar() {
             </h2>
 
             {/* Search */}
-            <form onSubmit={handleSearchSubmit}>
-              <div id="search" className={`${flexStyles} `}>
-                <input
-                  id="search-navbar"
-                  type="text"
-                  placeholder="Search here"
-                  value={searchValue}
-                  onChange={handleFormChange}
-                />
-              </div>
-            </form>
 
             {/**right side */}
             {isAboveMediaScreens ? (
               <div className={`${flexStyles} w-full text-montserrat`}>
                 <div className={`${flexStyles} text-sm gap-4`}>
-                  <div></div>
+                  <form onSubmit={handleSearchSubmit}>
+                    <div id="search">
+                      <input
+                        id="search-navbar"
+                        type="text"
+                        placeholder="Search here"
+                        value={searchValue}
+                        onChange={handleFormChange}
+                      />
+                    </div>
+                  </form>
 
                   <button className="m-4 p-4 bg-orange-400 rounded-md font-bold hover:bg-orange-300 hover:text-white">
                     <Link href="/dashboard">Dashboard</Link>
