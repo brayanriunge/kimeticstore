@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import google from "@/public/Homepic.jpeg";
+import google from "@/public/google.png";
 import { HiAtSymbol, HiFingerPrint } from "react-icons/hi";
 import { FormEvent, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 export default function Login() {
   const [show, setShow] = useState(false);
-  const { data: session } = useSession();
+
   const router = useRouter();
   const [serverErrors, setServerErrors] = useState("");
 
@@ -127,7 +127,7 @@ export default function Login() {
               Not yet Registered
               <Link
                 legacyBehavior
-                href={"/register"}
+                href={"/signup"}
                 className="text-center text-gray-400"
               >
                 <a className="text-blue-700"> Sign Up</a>

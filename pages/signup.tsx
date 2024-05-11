@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import google from "@/public/Homepic.jpeg";
+import google from "@/public/google.png";
 import { HiAtSymbol, HiFingerPrint, HiOutlineUser } from "react-icons/hi";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
@@ -30,7 +30,7 @@ export default function RegisterUser() {
 
   async function onSubmit(values: FormValues) {
     try {
-      const response = await fetch("http://localhost:3000/api/register", {
+      const response = await fetch("http://localhost:3000/api/Auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
