@@ -1,7 +1,8 @@
 import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth/next";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { prisma } from "@/utils/db";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { z } from "zod";
@@ -25,7 +26,7 @@ const loginUserSchema = z.object({
 });
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(),
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -56,7 +57,7 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     session({ token, session }) {
-      session.user.id = token.id;
+      //   session.user.id = token.id;
       return session;
     },
 
