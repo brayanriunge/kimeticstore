@@ -9,6 +9,7 @@ import { HiBars3 } from "react-icons/hi2";
 import { product, productType } from "@/hooks/types";
 import { useSearchContext } from "@/context/SearchContext";
 import { signOut, useSession } from "next-auth/react";
+import NavbarLoggedIn from "./Auth/NavbarLoggedIn";
 
 export default function Navbar() {
   const router = useRouter();
@@ -153,6 +154,10 @@ export default function Navbar() {
                     <Link href="/dashboard">Dashboard</Link>
                   </button>
                 </div>
+                <NavbarLoggedIn
+                  isLoggedIn={isLoggedIn}
+                  onSignOut={handleSignOut}
+                />
               </div>
             ) : (
               <button
