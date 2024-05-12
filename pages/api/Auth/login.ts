@@ -1,7 +1,7 @@
 import { prisma } from "@/utils/db";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 
 type Data = {
   message: string;

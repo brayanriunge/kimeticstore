@@ -22,6 +22,9 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   const handleSignOut = () => signOut();
+  // if (session?.user.user.role) {
+  //   console.log(session);
+  // }
 
   useEffect(() => {
     if (session) {
@@ -29,6 +32,7 @@ export default function Navbar() {
     } else {
       setIsLoggedIn(false);
     }
+    console.log(session);
   }, [session]);
 
   const options = {
@@ -137,7 +141,7 @@ export default function Navbar() {
             {/**right side */}
             {isAboveMediaScreens ? (
               <div className={`${flexStyles} w-full text-montserrat`}>
-                <div className={`${flexStyles} text-sm gap-4`}>
+                <div className={`${flexStyles} text-sm gap-8`}>
                   <form onSubmit={handleSearchSubmit}>
                     <div id="search">
                       <input
@@ -149,11 +153,11 @@ export default function Navbar() {
                       />
                     </div>
                   </form>
-
-                  <button className="m-4 p-4 bg-orange-400 rounded-md font-bold hover:bg-orange-300 hover:text-white">
-                    <Link href="/dashboard">Dashboard</Link>
-                  </button>
                 </div>
+
+                <p className="font-mono text-sm font-bold">
+                  {session?.user?.name}
+                </p>
                 <NavbarLoggedIn
                   isLoggedIn={isLoggedIn}
                   onSignOut={handleSignOut}

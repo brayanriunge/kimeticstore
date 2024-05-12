@@ -12,7 +12,7 @@ export default function NavbarLoggedIn({ isLoggedIn, onSignOut }: NavbarProps) {
         <>
           <button
             onClick={onSignOut}
-            className="rounded-md text-montserrat px-8 p-2 bg-primary-gray-500"
+            className="rounded-md text-montserrat px-8 p-2 bg-orange-400"
           >
             Sign out
           </button>
