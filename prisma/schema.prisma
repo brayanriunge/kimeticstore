@@ -24,7 +24,8 @@ model Product{
 }
 
 enum Role{
-  ADMIN
+  ADMIN1
+  ADMIN2
   USER
 }
 
