@@ -8,6 +8,7 @@ import { HiOutlineX } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
 import { product, productType } from "@/hooks/types";
 import { useSearchContext } from "@/context/SearchContext";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
   const router = useRouter();
@@ -16,6 +17,18 @@ export default function Navbar() {
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const { filteredItems, setFilteredItems } = useSearchContext();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const { data: session } = useSession();
+
+  const handleSignOut = () => signOut();
+
+  useEffect(() => {
+    if (session) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [session]);
 
   const options = {
     method: "GET",

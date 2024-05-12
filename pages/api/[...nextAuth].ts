@@ -6,7 +6,7 @@ import { prisma } from "@/utils/db";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { z } from "zod";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 
 const loginUserSchema = z.object({
   email: z
