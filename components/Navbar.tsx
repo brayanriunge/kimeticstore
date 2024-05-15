@@ -25,15 +25,15 @@ export default function Navbar() {
   // if (session?.user.user.role) {
   //   console.log(session);
   // }
-
-  useEffect(() => {
-    if (session) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-    console.log(session);
-  }, [session]);
+  if (session?.user.role !== "ADMIN1")
+    useEffect(() => {
+      if (session) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+      console.log(session);
+    }, [session]);
 
   const options = {
     method: "GET",
@@ -156,7 +156,7 @@ export default function Navbar() {
                 </div>
 
                 <p className="font-mono text-sm font-bold">
-                  {session?.user?.name}
+                  {session?.user?.user.name}
                 </p>
                 <NavbarLoggedIn
                   isLoggedIn={isLoggedIn}

@@ -56,15 +56,25 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    session({ token, session }) {
+    session({ user, session }) {
+      if (session && user) {
+        session.user = {
+          ...session.user,
+          id: user.id,
+          role: session.user.role,
+        };
+      }
       return session;
     },
 
-    async jwt({ token, account, user }) {
+    async jwt({ token, account, user, session }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
-      if (account) {
-        token.accessToken = account.access_token;
+      if (user) {
+        token.accessToken = account?.access_token;
         token.id = user.id;
+        if (session && session.user && session.user.role) {
+          token.role = session.user.role;
+        }
       }
       return token;
     },
