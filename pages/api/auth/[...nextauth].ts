@@ -53,59 +53,26 @@ export const authOptions: NextAuthOptions = {
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) throw new Error("Invalid password");
 
-        return user;
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          image: user.image,
+          role: user.role,
+        };
       },
     }),
   ],
 
-  // callbacks: {
-  //   // jwt({ token, user }) {
-  //   //   if(user) token.role = user.role
-  //   //   return token
-  //   // },
-  //   session({ session, token }) {
-  //     session.user.role = token.role
-  //     return session
-  //   },
-  //   async jwt({token, user}){
-  //     const
-  //   }
-
   callbacks: {
-    session({ token, session }) {
-      return session;
-    },
-
-    async jwt({ token, account, user }) {
-      // Persist the OAuth access_token and or the user id to the token right after signin
-      if (account) {
-        token.accessToken = account.access_token;
-        token.id = user.id;
-      }
+    jwt({ token, user }) {
+      if (user) token.role = user.role;
       return token;
     },
-    // session({ user, session }) {
-    //   if (session && user) {
-    //     session.user = {
-    //       ...session.user,
-    //       id: user.id,
-    //       role: session.user.role,
-    //     };
-    //   }
-    //   return session;
-    // },
-
-    // async jwt({ token, account, user, session }) {
-    //   // Persist the OAuth access_token and or the user id to the token right after signin
-    //   if (user) {
-    //     token.accessToken = account?.access_token;
-    //     token.id = user.id;
-    //     if (session && session.user && session.user.role) {
-    //       token.role = session.user.role;
-    //     }
-    //   }
-    //   return token;
-    // },
+    session({ session, token }) {
+      session.user.role = token.role;
+      return session;
+    },
   },
 
   pages: {
@@ -120,3 +87,39 @@ export const authOptions: NextAuthOptions = {
 };
 
 export default NextAuth(authOptions);
+
+// callbacks: {
+//   // jwt({ token, user }) {
+//   //   if(user) token.role = user.role
+//   //   return token
+//   // },
+//   session({ session, token }) {
+//     session.user.role = token.role
+//     return session
+//   },
+//   async jwt({token, user}){
+//     const
+//   }
+
+// session({ user, session }) {
+//   if (session && user) {
+//     session.user = {
+//       ...session.user,
+//       id: user.id,
+//       role: session.user.role,
+//     };
+//   }
+//   return session;
+// },
+
+// async jwt({ token, account, user, session }) {
+//   // Persist the OAuth access_token and or the user id to the token right after signin
+//   if (user) {
+//     token.accessToken = account?.access_token;
+//     token.id = user.id;
+//     if (session && session.user && session.user.role) {
+//       token.role = session.user.role;
+//     }
+//   }
+//   return token;
+// },

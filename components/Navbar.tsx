@@ -12,8 +12,13 @@ import { signOut, useSession } from "next-auth/react";
 import NavbarLoggedIn from "./Auth/NavbarLoggedIn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { User } from "next-auth";
 
-export default function Navbar() {
+type propUser = {
+  user: User;
+};
+
+export default function Navbar({ user }: propUser) {
   const router = useRouter();
   const flexStyles = "flex items-center justify-between ";
   const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
@@ -38,6 +43,7 @@ export default function Navbar() {
       setIsLoggedIn(false);
     }
     console.log(session);
+    console.log(session?.user.role);
   }, [session]);
 
   const options = {
@@ -160,9 +166,7 @@ export default function Navbar() {
                   </form>
                 </div>
 
-                <p className="font-mono text-sm font-bold">
-                  {session?.user?.name}
-                </p>
+                <p className="font-mono text-sm font-bold">{user.name}</p>
                 <NavbarLoggedIn
                   isLoggedIn={isLoggedIn}
                   onSignOut={handleSignOut}
