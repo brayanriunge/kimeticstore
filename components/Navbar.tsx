@@ -10,6 +10,8 @@ import { product, productType } from "@/hooks/types";
 import { useSearchContext } from "@/context/SearchContext";
 import { signOut, useSession } from "next-auth/react";
 import NavbarLoggedIn from "./Auth/NavbarLoggedIn";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export default function Navbar() {
   const router = useRouter();
@@ -21,19 +23,22 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const { data: session } = useSession();
 
+  // const session = await getServerSession(authOptions);
+  // console.log(session);
+
   const handleSignOut = () => signOut();
   // if (session?.user.user.role) {
   //   console.log(session);
   // }
-  if (session?.user.role !== "ADMIN1")
-    useEffect(() => {
-      if (session) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-      console.log(session);
-    }, [session]);
+
+  useEffect(() => {
+    if (session) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+    console.log(session);
+  }, [session]);
 
   const options = {
     method: "GET",
@@ -111,7 +116,7 @@ export default function Navbar() {
     if (filteredItems != null && filteredItems.length > 0) {
       router.push("/products/product");
     }
-  });
+  }, [filteredItems, router]);
   return (
     <nav>
       <div
@@ -156,7 +161,7 @@ export default function Navbar() {
                 </div>
 
                 <p className="font-mono text-sm font-bold">
-                  {session?.user?.user.name}
+                  {session?.user?.name}
                 </p>
                 <NavbarLoggedIn
                   isLoggedIn={isLoggedIn}
