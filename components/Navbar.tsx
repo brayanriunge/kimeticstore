@@ -13,6 +13,7 @@ import NavbarLoggedIn from "./Auth/NavbarLoggedIn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { User } from "next-auth";
+import DashboardButton from "./DashboardButton";
 
 type propUser = {
   user: User;
@@ -42,7 +43,7 @@ export default function Navbar({ user }: propUser) {
     } else {
       setIsLoggedIn(false);
     }
-    console.log(session);
+    console.log(session?.user.role);
     console.log("name of user", session?.user.name);
   }, [session]);
 
@@ -173,6 +174,8 @@ export default function Navbar({ user }: propUser) {
                     </p>
                   </>
                 )}
+
+                <DashboardButton />
 
                 <NavbarLoggedIn
                   isLoggedIn={isLoggedIn}

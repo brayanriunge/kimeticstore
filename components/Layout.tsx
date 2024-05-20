@@ -13,6 +13,7 @@ type PropUser = {
 export default function Layout({ children }: prop, { user }: PropUser) {
   return (
     <div className="min-h-screen bg-gradient-to-bl from-slate-100 via-gray-300 to-zinc-100">
+      <Navbar user={user} />
       {children}
     </div>
   );

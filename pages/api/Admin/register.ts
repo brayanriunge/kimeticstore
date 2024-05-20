@@ -3,6 +3,9 @@ import { v2 as cloudinary } from "cloudinary";
 
 import formidable from "formidable";
 import { prisma } from "@/utils/db";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
+import { getSession } from "next-auth/react";
 
 // declare module "next" {
 //   interface NextApiRequest {
@@ -54,62 +57,75 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST")
-    return res.status(405).json({ message: "The method is not allowed" });
-  try {
-    //extracting fields and files from form data
-    const { fields, files } = await getFormData(req, res);
-
-    // Extract the uploaded file from the form data
-    const myFile = files.image as formidable.File[] | undefined;
-    if (!myFile || myFile.length === 0) {
-      return res
-        .status(400)
-        .json({ message: 'No file uploaded with the name "image"' });
+  if (req.method !== "POST") {
+    // return res.status(405).json({ message: "The method is not allowed" });
+    const session = await getSession({ req });
+    if (session?.user.role !== "ADMIN1") {
+      return res.status(405).json({ message: "login first as an admin" });
     }
-    const file = myFile[0];
 
-    // uploading image to cloudinary
-    const uploadImage = await cloudinary.uploader.upload(file.filepath);
-    if (!uploadImage)
-      return res.status(500).json({ message: "failed to upload image" });
+    try {
+      //find unique user
+      const user = await prisma.user.findUnique({
+        where: { email: session.user.email as string },
+      });
 
-    // const uploadPath = "@/public/upload";
-    // require("fs").renameSync(file.filepath, uploadPath);
+      //extracting fields and files from form data
+      const { fields, files } = await getFormData(req, res);
 
-    //extracting fields
-    const { description, name, category } = fields;
-    console.log("fields", fields);
-    // Ensure category is an array
-    // const categories = Array.isArray(category) ? category : [];
-    // console.log("Categories:", categories); // Log categories to debug
-    // //checking if any field is missing
-    if (!description || !name || !category)
-      return res.status(400).json({ message: "missing required fields" });
-    //creating a new product
-    const newProduct = await prisma.product.create({
-      data: {
-        description: description as unknown as string,
-        name: name as unknown as string,
-        imgUrl: uploadImage.secure_url,
+      // Extract the uploaded file from the form data
+      const myFile = files.image as formidable.File[] | undefined;
+      if (!myFile || myFile.length === 0) {
+        return res
+          .status(400)
+          .json({ message: 'No file uploaded with the name "image"' });
+      }
+      const file = myFile[0];
 
-        category: category as unknown as string,
-      },
-    });
-    console.log("this is the product", newProduct);
-    if (!newProduct) {
-      return res.status(500).json({ message: "Failed to created product" });
-    } else {
-      return res.status(201).json({ message: "Product created successfully" });
+      // uploading image to cloudinary
+      const uploadImage = await cloudinary.uploader.upload(file.filepath);
+      if (!uploadImage)
+        return res.status(500).json({ message: "failed to upload image" });
+
+      // const uploadPath = "@/public/upload";
+      // require("fs").renameSync(file.filepath, uploadPath);
+
+      //extracting fields
+      const { description, name, category } = fields;
+      console.log("fields", fields);
+      // Ensure category is an array
+      // const categories = Array.isArray(category) ? category : [];
+      // console.log("Categories:", categories); // Log categories to debug
+      // //checking if any field is missing
+      if (!description || !name || !category)
+        return res.status(400).json({ message: "missing required fields" });
+      //creating a new product
+      const newProduct = await prisma.product.create({
+        data: {
+          description: description as unknown as string,
+          name: name as unknown as string,
+          imgUrl: uploadImage.secure_url,
+          category: category as unknown as string,
+          userId: user?.id as string,
+        },
+      });
+      console.log("this is the product", newProduct);
+      if (!newProduct) {
+        return res.status(500).json({ message: "Failed to created product" });
+      } else {
+        return res
+          .status(201)
+          .json({ message: "Product created successfully" });
+      }
+    } catch (error) {
+      console.log(error);
+      // Handle specific Prisma validation errors
+      if (error === "P2025") {
+        return res
+          .status(500)
+          .json({ message: "Invalid data for creating a product" });
+      }
+      return res.status(500).json({ message: "Internal server error" });
     }
-  } catch (error) {
-    console.log(error);
-    // Handle specific Prisma validation errors
-    if (error === "P2025") {
-      return res
-        .status(500)
-        .json({ message: "Invalid data for creating a product" });
-    }
-    return res.status(500).json({ message: "Internal server error" });
   }
 }
