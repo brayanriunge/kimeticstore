@@ -13,7 +13,7 @@ declare module "next-auth" {
     user: {
       id: string;
       role: Role;
-    } & DefaultSession;
+    } & DefaultSession["user"];
   }
 
   interface User extends DefaultUser {

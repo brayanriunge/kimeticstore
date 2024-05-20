@@ -43,7 +43,7 @@ export default function Navbar({ user }: propUser) {
       setIsLoggedIn(false);
     }
     console.log(session);
-    console.log(session?.user.role);
+    console.log("name of user", session?.user.name);
   }, [session]);
 
   const options = {
@@ -165,8 +165,15 @@ export default function Navbar({ user }: propUser) {
                     </div>
                   </form>
                 </div>
+                <div></div>
+                {session?.user && (
+                  <>
+                    <p className="font-mono text-sm font-bold">
+                      {session.user.name}
+                    </p>
+                  </>
+                )}
 
-                <p className="font-mono text-sm font-bold">{user.name}</p>
                 <NavbarLoggedIn
                   isLoggedIn={isLoggedIn}
                   onSignOut={handleSignOut}
