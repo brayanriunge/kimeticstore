@@ -10,13 +10,13 @@ export default function ProductItem({
 }: product) {
   return (
     <div
-      className="flex flex-col items-start justify-between gap-4 mx-auto mt-4 bg-white rounded-md shadow-sm "
+      className="flex flex-col items-start justify-between gap-4 mx-auto mt-4 w-5/6 bg-white rounded-md shadow-sm "
       key={id}
     >
       <div>
         <Link
           href={`/products/${id}`}
-          className="md:relative block h-48 cursor-pointer overflow-hidden rounded"
+          className="md:relative block  cursor-pointer overflow-hidden rounded"
         >
           <Image
             height={192}
@@ -33,7 +33,7 @@ export default function ProductItem({
       </div>
       <div className="flex items-center justify-between gap-2 m-4">
         <div className="text-sm font-semibold">Description:</div>
-        <div className="text-md font-bold">{description}</div>
+        <div className="text-md font-bold">{description.slice(0, 10)}...</div>
       </div>
     </div>
   );
