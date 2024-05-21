@@ -20,7 +20,7 @@ export default function TopDeal() {
     <>
       {isAboveMediaScreens && (
         <>
-          <section className="mt-36 p-5 m-5">
+          <section className="mt-20 p-5 m-5">
             <div className="mb-2 text-xl font-light">Top Deals :</div>
             <Swiper
               modules={[Navigation, Pagination, A11y, Scrollbar]}

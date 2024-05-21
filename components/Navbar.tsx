@@ -137,14 +137,14 @@ export default function Navbar({ user }: propUser) {
               alt="logo"
               width={90}
               height={90}
-              className="rounded-full m-4 "
+              className="rounded-full mx-auto"
             />
           </Link>
 
-          <div className={`${flexStyles} w-full gap-4`}>
+          <div className={`${flexStyles} w-full gap-2`}>
             {/**left side */}
 
-            <h2 className="font-bold text-red-500 md:text-xl text-montserrat">
+            <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
               KEMETIC AMEZAN {""}
             </h2>
 
@@ -152,8 +152,8 @@ export default function Navbar({ user }: propUser) {
 
             {/**right side */}
             {isAboveMediaScreens ? (
-              <div className={`${flexStyles} w-full text-montserrat`}>
-                <div className={`${flexStyles} text-sm gap-8`}>
+              <div className={`${flexStyles} w-full text-montserrat gap-4`}>
+                <div className={`${flexStyles} text-sm `}>
                   <form onSubmit={handleSearchSubmit}>
                     <div id="search">
                       <input
@@ -202,6 +202,17 @@ export default function Navbar({ user }: propUser) {
                     <HiOutlineX className="h-6 w-6  " />
                   </button>
                 </div>
+                {session?.user && (
+                  <div className="mx-auto">
+                    <p className="font-mono text-sm font-bold m-2 p-2">
+                      {session.user.name}
+                    </p>
+                    <p className="font-mono text-sm font-bold m-2 p-2">
+                      {session.user.email}
+                    </p>
+                  </div>
+                )}
+
                 {/**menu items */}
               </div>
             )}

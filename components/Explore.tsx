@@ -101,7 +101,7 @@ export default function Explore() {
           </div>
         </section>
       ) : (
-        <section className="p-5 mt-28">
+        <section className="p-5 mt-20">
           <div className="mb-2 text-xl font-bold">Explore Categories :</div>
           <div className="grid grid-cols-2 gap-4">
             {explores.map((explore) => (

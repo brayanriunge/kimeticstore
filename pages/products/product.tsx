@@ -63,7 +63,7 @@ export default function ProductList({ filteredItems }: ProductListProp) {
 
       {isAboveMediaScreens ? (
         <>
-          <div className="min-h-screen mt-28 ">
+          <div className="min-h-screen mt-20 ">
             <div className=" mx-auto  w-5/6  ">
               <CategoryFilter
                 selectedCategory={selectedCategory}
@@ -101,7 +101,7 @@ export default function ProductList({ filteredItems }: ProductListProp) {
         </>
       ) : (
         <>
-          <div className=" mx-auto  w-5/6  mt-28 ">
+          <div className=" mx-auto  w-5/6  mt-16  ">
             <CategoryFilter
               selectedCategory={selectedCategory}
               onSelectedCategory={handleCategoryChange}
