@@ -12,76 +12,84 @@ import Art from "@/public/art.jpeg";
 import Car from "@/public/car.jpeg";
 import Gem from "@/public/gem.jpeg";
 import House from "@/public/house.jpeg";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 export default function TopDeal() {
+  const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
   return (
-    <section className="mt-36 p-5 m-5">
-      <div className="mb-2 text-xl font-light">Top Deals :</div>
-      <Swiper
-        modules={[Navigation, Pagination, A11y, Scrollbar]}
-        navigation
-        pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-        spaceBetween={40}
-        slidesPerView={4}
-        className="md:h-40"
-      >
-        <SwiperSlide>
-          <Image
-            content="fill"
-            alt="land"
-            src={Land}
-            width={230}
-            height={230}
-            className="cursor-pointer"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            alt="crop"
-            src={Crop}
-            width={230}
-            height={230}
-            className="cursor-pointer"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            alt="art"
-            src={Art}
-            width={230}
-            height={230}
-            className="cursor-pointer"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            alt="car"
-            src={Car}
-            width={230}
-            height={230}
-            className="cursor-pointer"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            alt="house"
-            src={House}
-            width={230}
-            height={230}
-            className="cursor-pointer"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image
-            alt="gem"
-            src={Gem}
-            width={230}
-            height={230}
-            className="cursor-pointer"
-          />
-        </SwiperSlide>
-      </Swiper>
-    </section>
+    <>
+      {isAboveMediaScreens && (
+        <>
+          <section className="mt-36 p-5 m-5">
+            <div className="mb-2 text-xl font-light">Top Deals :</div>
+            <Swiper
+              modules={[Navigation, Pagination, A11y, Scrollbar]}
+              navigation
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
+              spaceBetween={40}
+              slidesPerView={4}
+              className="md:h-40"
+            >
+              <SwiperSlide>
+                <Image
+                  content="fill"
+                  alt="land"
+                  src={Land}
+                  width={230}
+                  height={230}
+                  className="cursor-pointer"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Image
+                  alt="crop"
+                  src={Crop}
+                  width={230}
+                  height={230}
+                  className="cursor-pointer"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Image
+                  alt="art"
+                  src={Art}
+                  width={230}
+                  height={230}
+                  className="cursor-pointer"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Image
+                  alt="car"
+                  src={Car}
+                  width={230}
+                  height={230}
+                  className="cursor-pointer"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Image
+                  alt="house"
+                  src={House}
+                  width={230}
+                  height={230}
+                  className="cursor-pointer"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Image
+                  alt="gem"
+                  src={Gem}
+                  width={230}
+                  height={230}
+                  className="cursor-pointer"
+                />
+              </SwiperSlide>
+            </Swiper>
+          </section>
+        </>
+      )}
+    </>
   );
 }

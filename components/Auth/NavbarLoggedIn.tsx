@@ -9,7 +9,7 @@ interface NavbarProps {
 export default function NavbarLoggedIn({ isLoggedIn, onSignOut }: NavbarProps) {
   const { data: session, status } = useSession();
 
-  const userRole = session?.user?.role ? session.user.role : null;
+  const userRole = session?.user?.role || null;
 
   if (status === "loading") {
     return <p>Loading...</p>;
@@ -17,7 +17,7 @@ export default function NavbarLoggedIn({ isLoggedIn, onSignOut }: NavbarProps) {
 
   return (
     <>
-      {isLoggedIn && userRole === "ADMIN1" ? (
+      {isLoggedIn ? (
         <>
           <button
             onClick={onSignOut}
@@ -25,10 +25,11 @@ export default function NavbarLoggedIn({ isLoggedIn, onSignOut }: NavbarProps) {
           >
             Sign out
           </button>
-
-          <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
-            <Link href={"/dashboard"}>Dashboard</Link>
-          </button>
+          {userRole === "ADMIN1" && (
+            <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
+              <Link href={"/dashboard"}>Dashboard</Link>
+            </button>
+          )}
         </>
       ) : (
         <Link href={"/signup"}>
