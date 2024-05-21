@@ -10,6 +10,7 @@ import Herbs from "@/public/herbs.jpg";
 import Cigars from "@/public/cigars.jpg";
 import Construction from "@/public/construction.jpg";
 import Link from "next/link";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 type props = {
   id: number;
@@ -75,26 +76,52 @@ const explores: Array<categoryType> = [
 ];
 
 export default function Explore() {
+  const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
   return (
-    <section className="p-5">
-      <div className="mb-2 text-xl font-bold">Explore Categories :</div>
-      <div className="md:grid md:grid-cols-4 gap-4">
-        {explores.map((explore) => (
-          <div className="relative mb-5 block " key={explore.id}>
-            <Link href={explore.href}>
-              <Image
-                src={explore.picture}
-                alt="picture"
-                height={192}
-                width={192}
-                className="mb-2 h-48 w-48 flex items-center cursor-pointer overflow-hidden rounded-full"
-              />
-            </Link>
+    <>
+      {isAboveMediaScreens ? (
+        <section className="p-5">
+          <div className="mb-2 text-xl font-bold">Explore Categories :</div>
+          <div className="md:grid md:grid-cols-4 gap-4">
+            {explores.map((explore) => (
+              <div className="relative mb-5 block " key={explore.id}>
+                <Link href={explore.href}>
+                  <Image
+                    src={explore.picture}
+                    alt="picture"
+                    height={192}
+                    width={192}
+                    className="mb-2 h-48 w-48 flex items-center cursor-pointer overflow-hidden rounded-full"
+                  />
+                </Link>
 
-            <div className=" font-mono">{explore.name}</div>
+                <div className=" font-mono">{explore.name}</div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </section>
+        </section>
+      ) : (
+        <section className="p-5 mt-28">
+          <div className="mb-2 text-xl font-bold">Explore Categories :</div>
+          <div className="grid grid-cols-2 gap-4">
+            {explores.map((explore) => (
+              <div className="relative mb-5 block " key={explore.id}>
+                <Link href={explore.href}>
+                  <Image
+                    src={explore.picture}
+                    alt="picture"
+                    height={192}
+                    width={192}
+                    className="mb-2 h-48 w-48 flex items-center cursor-pointer overflow-hidden rounded-full"
+                  />
+                </Link>
+
+                <div className=" font-mono">{explore.name}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </>
   );
 }
