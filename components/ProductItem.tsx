@@ -10,7 +10,7 @@ export default function ProductItem({
 }: product) {
   return (
     <div
-      className="flex flex-col items-start justify-between gap-4 mx-auto mt-4 w-5/6 bg-white rounded-md shadow-sm "
+      className="flex flex-col items-start justify-between gap-4 mx-auto mt-4 w-5/6 bg-white rounded-md shadow-sm hover:shadow-2xl "
       key={id}
     >
       <div>
