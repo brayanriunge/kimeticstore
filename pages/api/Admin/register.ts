@@ -57,7 +57,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST") {
+  if (req.method === "POST") {
     // return res.status(405).json({ message: "The method is not allowed" });
     const session = await getSession({ req });
     if (session?.user.role !== "ADMIN1") {

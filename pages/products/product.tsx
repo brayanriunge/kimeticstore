@@ -67,7 +67,13 @@ export default function ProductList({ filteredItems }: ProductListProp) {
 
         {/* products */}
         <div className="w-11/12 overflow-y-auto mx-auto">
-          <h1 className="mt-4 text-lg font-sans ">Products</h1>
+          {products.map((product) => (
+            <div>
+              <h1 className="mt-4 text-lg font-sans ">
+                Products: {product.category}
+              </h1>
+            </div>
+          ))}
           <div className="md:grid md:grid-cols-4 gap-6">
             {products.map((product) => (
               <div key={product.id}>
