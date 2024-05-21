@@ -1,6 +1,7 @@
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MdCloudUpload } from "react-icons/md";
@@ -16,6 +17,14 @@ export default function Dashboard() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.user.role !== "ADMIN1") {
+      router.push("/");
+    }
+  });
 
   const {
     register,

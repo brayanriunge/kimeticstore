@@ -175,7 +175,7 @@ export default function Navbar({ user }: propUser) {
                   </>
                 )}
 
-                <DashboardButton />
+                {/* <DashboardButton /> */}
 
                 <NavbarLoggedIn
                   isLoggedIn={isLoggedIn}

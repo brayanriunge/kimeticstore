@@ -7,15 +7,27 @@ interface NavbarProps {
 }
 
 export default function NavbarLoggedIn({ isLoggedIn, onSignOut }: NavbarProps) {
+  const { data: session, status } = useSession();
+
+  const userRole = session?.user?.role ? session.user.role : null;
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
-      {isLoggedIn ? (
+      {isLoggedIn && userRole === "ADMIN1" ? (
         <>
           <button
             onClick={onSignOut}
             className="rounded-md text-montserrat px-8 p-2 bg-orange-400"
           >
             Sign out
+          </button>
+
+          <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
+            <Link href={"/dashboard"}>Dashboard</Link>
           </button>
         </>
       ) : (
