@@ -14,6 +14,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { User } from "next-auth";
 import DashboardButton from "./DashboardButton";
+import { useCart } from "@/context/CartContext";
+import { FaShoppingCart } from "react-icons/fa";
 
 type propUser = {
   user: User;
@@ -28,6 +30,7 @@ export default function Navbar({ user }: propUser) {
   const { filteredItems, setFilteredItems } = useSearchContext();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const { data: session } = useSession();
+  const { cartQuantity } = useCart();
 
   // const session = await getServerSession(authOptions);
   // console.log(session);
@@ -55,75 +58,75 @@ export default function Navbar({ user }: propUser) {
     setSearchValue(e.target.value);
   };
 
-  useEffect(() => {
-    if (!searchValue) return; // No need to fetch if searchValue is empty
+  // useEffect(() => {
+  //   if (!searchValue) return; // No need to fetch if searchValue is empty
 
-    const fetchItems = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3000/api/search?query=${encodeURIComponent(
-            searchValue
-          )}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch");
-        }
-        const data = await response.json();
-        setFilteredItems(data);
-      } catch (error) {
-        console.error("Error fetching items:", error);
-      }
-    };
+  //   const fetchItems = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `http://localhost:3000/api/search?query=${encodeURIComponent(
+  //           searchValue
+  //         )}`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch");
+  //       }
+  //       const data = await response.json();
+  //       setFilteredItems(data);
+  //     } catch (error) {
+  //       console.error("Error fetching items:", error);
+  //     }
+  //   };
 
-    fetchItems();
-  }, [searchValue, setFilteredItems]);
+  //   fetchItems();
+  // }, [searchValue, setFilteredItems]);
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // No need to manually call fetchItems here, useEffect will take care of it
   };
 
-  // const fetchItems = useCallback(() => {
-  //   fetch("http://localhost:3000/api/search", options)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       const searchResults = data
-  //         .filter((item: product) => {
-  //           return (
-  //             searchValue && // prevent rendering when there is no input
-  //             item &&
-  //             item.name.toLowerCase().includes(searchValue.toLowerCase())
-  //           );
-  //         })
-  //         .sort((a: product, b: product) => {
-  //           if (
-  //             searchValue && // check that the value is not null
-  //             a.name.toLowerCase().indexOf(searchValue.toLowerCase()) === 0
-  //           ) {
-  //             return -1; // a comes first if it starts with the search value
-  //           } else if (
-  //             searchValue && // check that the value is not null
-  //             b.name.toLowerCase().indexOf(searchValue.toLowerCase()) === 0
-  //           ) {
-  //             return 1; // b comes first if it starts with the search value
-  //           } else {
-  //             return 0; // keep the original order
-  //           }
-  //         });
+  const fetchItems = useCallback(() => {
+    fetch("http://localhost:3000/api/search", options)
+      .then((res) => res.json())
+      .then((data) => {
+        const searchResults = data
+          .filter((item: product) => {
+            return (
+              searchValue && // prevent rendering when there is no input
+              item &&
+              item.name.toLowerCase().includes(searchValue.toLowerCase())
+            );
+          })
+          .sort((a: product, b: product) => {
+            if (
+              searchValue && // check that the value is not null
+              a.name.toLowerCase().indexOf(searchValue.toLowerCase()) === 0
+            ) {
+              return -1; // a comes first if it starts with the search value
+            } else if (
+              searchValue && // check that the value is not null
+              b.name.toLowerCase().indexOf(searchValue.toLowerCase()) === 0
+            ) {
+              return 1; // b comes first if it starts with the search value
+            } else {
+              return 0; // keep the original order
+            }
+          });
 
-  //       setFilteredItems(searchResults);
-  //     });
-  // }, [searchValue, setFilteredItems]);
+        setFilteredItems(searchResults);
+      });
+  }, [searchValue, setFilteredItems]);
 
-  // useEffect(() => {
-  //   fetchItems();
-  // }, [fetchItems, searchValue]);
+  useEffect(() => {
+    fetchItems();
+  }, [fetchItems, searchValue]);
 
   useEffect(() => {
     if (filteredItems != null && filteredItems.length > 0) {
       router.push("/products/product");
     }
-  }, [filteredItems, router]);
+  }, [filteredItems]);
   return (
     <nav>
       <div
@@ -166,7 +169,13 @@ export default function Navbar({ user }: propUser) {
                     </div>
                   </form>
                 </div>
-                <div></div>
+                <div>
+                  <Link href={"/cart"}>
+                    Cart
+                    <FaShoppingCart />
+                    {cartQuantity > 0 && <span>{cartQuantity}</span>}
+                  </Link>
+                </div>
                 {session?.user && (
                   <>
                     <p className="font-mono text-sm font-bold">
@@ -210,6 +219,10 @@ export default function Navbar({ user }: propUser) {
                     <p className="font-mono text-sm font-bold m-2 p-2">
                       {session.user.email}
                     </p>
+                    <NavbarLoggedIn
+                      isLoggedIn={isLoggedIn}
+                      onSignOut={handleSignOut}
+                    />
                   </div>
                 )}
 
