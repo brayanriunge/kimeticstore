@@ -1,8 +1,10 @@
 import Layout from "@/components/Layout";
+import { useCart } from "@/context/CartContext";
 import { productType } from "@/hooks/types";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function ProductItem() {
   const router = useRouter();
@@ -24,6 +26,9 @@ export default function ProductItem() {
     };
     fetchItem();
   }, [id]);
+  const { getItemQuantity, addToCart } = useCart();
+  console.log("useCart context: ", { getItemQuantity, addToCart });
+  const quantity = items ? getItemQuantity(items?.id as string) : 0;
 
   return (
     <Layout>
@@ -44,6 +49,16 @@ export default function ProductItem() {
             <p className="text-xl font-mono text-gray-700 p-2">
               {items?.description}
             </p>
+          </div>
+          <div className="mx-auto mb-4 ">
+            {quantity !== undefined && quantity > 0 && (
+              <button
+                className="flex flex-row-2 items-center justify-between gap-2 text-lg font-bold mx-auto px-8 p-2 bg-orange-400 hover:bg-orange-600 hover:shadow-xl rounded-lg"
+                onClick={() => addToCart(items?.id as string)}
+              >
+                Add to cart <FaShoppingCart />
+              </button>
+            )}
           </div>
         </div>
       </div>

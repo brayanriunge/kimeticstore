@@ -70,22 +70,14 @@ export default function ProductList({ filteredItems }: ProductListProp) {
                 onSelectedCategory={handleCategoryChange}
               />
             </div>
-            <div className="w-11/12 overflow-y-auto mx-auto">
-              {products.map((product) => (
-                <div>
-                  <h1 className="mt-4 text-lg font-sans ">
-                    Products: {product.category}
-                  </h1>
-                </div>
-              ))}
-            </div>
+
             <div className="md:grid md:grid-cols-4 gap-6 p-5">
               {products.map((product) => (
                 <div key={product.id}>
                   <ProductItem {...product} />
                 </div>
               ))}
-              {filteredItems &&
+              {/* {filteredItems &&
                 filteredItems.map((product) => (
                   <ProductItem
                     key={product.id}
@@ -95,7 +87,7 @@ export default function ProductList({ filteredItems }: ProductListProp) {
                     id={product.id}
                     category={product.category}
                   />
-                ))}
+                ))} */}
             </div>
           </div>
         </>
@@ -122,17 +114,17 @@ export default function ProductList({ filteredItems }: ProductListProp) {
                 <ProductItem {...product} />
               </div>
             ))}
-            {filteredItems &&
-              filteredItems.map((product) => (
-                <ProductItem
-                  key={product.id}
-                  description={product.description}
-                  name={product.name}
-                  imgUrl={product.imgUrl}
-                  id={product.id}
-                  category={product.category}
-                />
-              ))}
+            {/* {filteredItems &&
+                filteredItems.map((product) => (
+                  <ProductItem
+                    key={product.id}
+                    description={product.description}
+                    name={product.name}
+                    imgUrl={product.imgUrl}
+                    id={product.id}
+                    category={product.category}
+                  />
+                ))} */}
           </div>
         </>
       )}

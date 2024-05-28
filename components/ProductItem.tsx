@@ -1,6 +1,9 @@
+import { useCart } from "@/context/CartContext";
 import { product, productType } from "@/hooks/types";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function ProductItem({
   description,
@@ -8,6 +11,9 @@ export default function ProductItem({
   imgUrl,
   name,
 }: product) {
+  const { getItemQuantity, addToCart } = useCart();
+  const [item, setItem] = useState("");
+
   return (
     <div
       className="flex flex-col items-start justify-between gap-4 mx-auto mt-4 w-5/6 bg-white rounded-md shadow-sm hover:shadow-2xl "
