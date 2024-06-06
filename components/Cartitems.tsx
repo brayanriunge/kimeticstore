@@ -29,14 +29,15 @@ export default function CartItem({ id, quantity }: cartItemProp) {
   return (
     <section>
       {item && (
-        <section className="  flex flex-row-5 items-center justify-between mt-20">
-          <div className="mx-auto p-5 w-5/6 flex flex-row-5 items-center justify-between gap-5  shadow-xl bg-white rounded-lg">
+        <section className="  flex flex-row-3 items-center justify-between mt-20">
+          <div className="mx-auto p-5 w-5/6 flex flex-row-3 items-center justify-between gap-4  shadow-xl bg-white rounded-lg mt-2">
             <div className="rounded-md mt-6">
               <Image
+                className="mx-auto h-16 w-16"
                 src={item.imgUrl}
                 alt={item?.name as string}
-                height={60}
-                width={60}
+                height={100}
+                width={100}
               />
             </div>
 
