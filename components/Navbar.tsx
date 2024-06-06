@@ -21,7 +21,7 @@ type propUser = {
   user: User;
 };
 
-export default function Navbar({ user }: propUser) {
+export default function Navbar() {
   const router = useRouter();
   const flexStyles = "flex items-center justify-between ";
   const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");

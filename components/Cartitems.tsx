@@ -15,7 +15,7 @@ export default function CartItem({ id, quantity }: cartItemProp) {
   const [item, setItem] = useState<productType | null>(null);
 
   const fetchItem = async () => {
-    const productId = await fetch(`http://localhost:3000/api/client/${id}`);
+    const productId = await fetch(`http://localhost:3000/api/${id}`);
     console.log("Response");
     const res = await productId.json();
     setItem(res);
@@ -29,11 +29,11 @@ export default function CartItem({ id, quantity }: cartItemProp) {
   return (
     <section>
       {item && (
-        <section className="  flex flex-row-5 items-center justify-between mt-24">
-          <div className="mx-auto p-5 w-5/6 flex flex-row-5 items-center justify-between gap-5 mt-6 shadow-xl bg-white rounded-lg">
+        <section className="  flex flex-row-5 items-center justify-between mt-20">
+          <div className="mx-auto p-5 w-5/6 flex flex-row-5 items-center justify-between gap-5  shadow-xl bg-white rounded-lg">
             <div className="rounded-md mt-6">
               <Image
-                src={item?.imgUrl as string}
+                src={item.imgUrl}
                 alt={item?.name as string}
                 height={60}
                 width={60}

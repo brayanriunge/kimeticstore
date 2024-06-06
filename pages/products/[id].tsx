@@ -32,7 +32,7 @@ export default function ProductItem() {
 
   return (
     <Layout>
-      <div className="min-h-screen body-font overflow-hidden mt-28">
+      <div className="min-h-screen body-font overflow-hidden mt-20">
         <div className="flex w-4/5 mx-auto py-24 px-5 flex-wrap gap-10">
           <Image
             width={192}
@@ -49,16 +49,14 @@ export default function ProductItem() {
             <p className="text-xl font-mono text-gray-700 p-2">
               {items?.description}
             </p>
-          </div>
-          <div className="mx-auto mb-4 ">
-            {quantity !== undefined && quantity > 0 && (
+            <div className="mt-4">
               <button
                 className="flex flex-row-2 items-center justify-between gap-2 text-lg font-bold mx-auto px-8 p-2 bg-orange-400 hover:bg-orange-600 hover:shadow-xl rounded-lg"
                 onClick={() => addToCart(items?.id as string)}
               >
                 Add to cart <FaShoppingCart />
               </button>
-            )}
+            </div>
           </div>
         </div>
       </div>
