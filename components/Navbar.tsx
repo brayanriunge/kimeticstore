@@ -87,7 +87,12 @@ export default function Navbar() {
   };
 
   const fetchItems = useCallback(() => {
-    fetch("http://localhost:3000/api/search", options)
+    if (!searchValue) {
+      setFilteredItems([]); // Clear filtered items if searchValue is empty
+      return;
+    }
+
+    fetch("http://localhost:3000/api/searchitem", options)
       .then((res) => res.json())
       .then((data) => {
         const searchResults = data
@@ -115,6 +120,7 @@ export default function Navbar() {
           });
 
         setFilteredItems(searchResults);
+        console.log(searchResults);
       });
   }, [searchValue, setFilteredItems]);
 
@@ -123,7 +129,7 @@ export default function Navbar() {
   }, [fetchItems, searchValue]);
 
   useEffect(() => {
-    if (filteredItems != null && filteredItems.length > 0) {
+    if (filteredItems && filteredItems.length > 0) {
       router.push("/products/product");
     }
   }, [filteredItems]);
@@ -156,7 +162,7 @@ export default function Navbar() {
             {/**right side */}
             {isAboveMediaScreens ? (
               <div className={`${flexStyles} w-full text-montserrat gap-4`}>
-                <div className={`${flexStyles} text-sm `}>
+                <div className={`${flexStyles} text-sm gap-4`}>
                   <form onSubmit={handleSearchSubmit}>
                     <div id="search">
                       <input
@@ -168,14 +174,15 @@ export default function Navbar() {
                       />
                     </div>
                   </form>
+                  <div>
+                    <Link href={"/cart"} className={`${flexStyles} gap-2 `}>
+                      Cart
+                      <FaShoppingCart />
+                      {cartQuantity > 0 && <span>{cartQuantity}</span>}
+                    </Link>
+                  </div>
                 </div>
-                <div>
-                  <Link href={"/cart"}>
-                    Cart
-                    <FaShoppingCart />
-                    {cartQuantity > 0 && <span>{cartQuantity}</span>}
-                  </Link>
-                </div>
+
                 {session?.user && (
                   <>
                     <p className="font-mono text-sm font-bold">
