@@ -154,7 +154,10 @@ export default function Navbar() {
             {/**left side */}
 
             <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
-              KEMETIC AMEZAN {""}
+              KEMETIC
+            </h2>
+            <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
+              AMEZAN
             </h2>
 
             {/* Search */}

@@ -25,7 +25,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li className="mb-4">
-                  <a href="#" className="hover:underline">
+                  <a href="/products/product" className="hover:underline">
                     Products
                   </a>
                 </li>
@@ -132,7 +132,7 @@ export default function Footer() {
         </div>
         <div className="rounded-b-lg bg-gray-200 px-4 py-6 md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-500 sm:text-center">
-            © 2023 <Link href="/">Iconic™</Link>. All Rights Reserved.
+            © 2024 <Link href="/">Iconic™</Link>. All Rights Reserved.
           </span>
           <div className="mt-4 flex space-x-6 text-lg sm:justify-center md:mt-0">
             <a href="#" className="text-gray-500 hover:text-blue-600">
