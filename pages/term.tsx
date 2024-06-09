@@ -1,4 +1,4 @@
-import Tabs from "@/components/About";
+import Tabs from "@/components/Terms";
 import Layout from "@/components/Layout";
 
 export default function about() {
