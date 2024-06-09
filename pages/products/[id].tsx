@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import TopDeal from "@/components/TopDeals";
 import { useCart } from "@/context/CartContext";
 import { productType } from "@/hooks/types";
 import Image from "next/image";
@@ -32,7 +33,7 @@ export default function ProductItem() {
 
   return (
     <Layout>
-      <div className="min-h-screen body-font overflow-hidden mt-20">
+      <div className="min-h-screen body-font overflow-hidden mt-20 bg-custom-radial">
         <div className="flex w-4/5 mx-auto py-24 px-5 flex-wrap gap-10">
           <Image
             width={192}
@@ -59,6 +60,7 @@ export default function ProductItem() {
             </div>
           </div>
         </div>
+        <TopDeal />
       </div>
     </Layout>
   );
