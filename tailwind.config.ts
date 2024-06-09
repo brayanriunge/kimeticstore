@@ -14,6 +14,24 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "icon-arrow-down":
+          "url('https://raw.githubusercontent.com/MizAndhre/FAQ-accordion-card/2ff2a02d093554f14d0390a409e825669313a16e/images/icon-arrow-down.svg')",
+      },
+      colors: {
+        textBlue: "hsl(238, 29%, 16%)",
+        textRed: "hsl(14, 88%, 65%)",
+        textVeryDarkBlue: "hsl(237, 12%, 33%)",
+        textDarkBlue: "hsl(240, 6%, 50%)",
+        gradientViolet: "hsl(273, 75%, 66%)",
+        gradientBlue: "hsl(240, 73%, 65%)",
+        dividerGray: "hsl(240, 5%, 91%)",
+      },
+      fontFamily: {
+        "kumbh-sans": ["Kumbh Sans", "sans-serif"],
+      },
+      spacing: {
+        "22": "5.5rem",
+        "28": "7rem",
       },
     },
   },
