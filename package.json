@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.0.0",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@hookform/resolvers": "^3.3.4",
     "@next-auth/prisma-adapter": "^1.0.7",
@@ -22,6 +23,7 @@
     "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
+    "react-fontawesome-svg-icon": "^1.1.2",
     "react-hook-form": "^7.51.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.0.1",
