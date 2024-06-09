@@ -25,6 +25,11 @@ const config: Config = {
         gradientViolet: "hsl(273, 75%, 66%)",
         gradientBlue: "hsl(240, 73%, 65%)",
         dividerGray: "hsl(240, 5%, 91%)",
+        primaryclr: "#6c00f9",
+        white: "#fff",
+        "text-clr": "#464646",
+        "tabs-list-bg-clr": "#dfc8fd",
+        "btn-hvr": "#4e03b0",
       },
       fontFamily: {
         "kumbh-sans": ["Kumbh Sans", "sans-serif"],
