@@ -27,7 +27,7 @@ const config: Config = {
         dividerGray: "hsl(240, 5%, 91%)",
         primaryclr: "#6c00f9",
         white: "#fff",
-        "text-clr": "#464646",
+        textclr: "#464646",
         "tabs-list-bg-clr": "#dfc8fd",
         "btn-hvr": "#4e03b0",
       },
