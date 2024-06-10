@@ -153,20 +153,19 @@ export default function Navbar() {
           <div className={`${flexStyles} w-full gap-2`}>
             {/**left side */}
 
-            <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
-              KEMETIC
-            </h2>
-            <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
-              AMEZAN
-            </h2>
-
             {/* Search */}
 
             {/**right side */}
             {isAboveMediaScreens ? (
               <div className={`${flexStyles} w-full text-montserrat gap-4`}>
                 <div className={`${flexStyles} text-sm gap-4`}>
-                  <form onSubmit={handleSearchSubmit}>
+                  <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
+                    KEMETIC
+                  </h2>
+                  <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
+                    AMEZAN
+                  </h2>
+                  {/* <form onSubmit={handleSearchSubmit}>
                     <div id="search">
                       <input
                         id="search-navbar"
@@ -176,14 +175,14 @@ export default function Navbar() {
                         onChange={handleFormChange}
                       />
                     </div>
-                  </form>
-                  <div>
-                    <Link href={"/cart"} className={`${flexStyles} gap-2 `}>
-                      Cart
-                      <FaShoppingCart />
-                      {cartQuantity > 0 && <span>{cartQuantity}</span>}
-                    </Link>
-                  </div>
+                  </form> */}
+                </div>
+                <div>
+                  <Link href={"/cart"} className={`${flexStyles} gap-2 `}>
+                    Cart
+                    <FaShoppingCart />
+                    {cartQuantity > 0 && <span>{cartQuantity}</span>}
+                  </Link>
                 </div>
 
                 {session?.user && (

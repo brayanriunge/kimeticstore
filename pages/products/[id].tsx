@@ -34,7 +34,7 @@ export default function ProductItem() {
   return (
     <Layout>
       <div className="min-h-screen body-font overflow-hidden mt-20 bg-custom-radial">
-        <div className="flex w-4/5 mx-auto py-24 px-5 flex-wrap gap-10">
+        <div className="flex w-4/5 mx-auto py-24 px-5 flex-wrap gap-10 mb-2">
           <Image
             width={192}
             className="h-60 object-cover object-center w-auto rounded"
