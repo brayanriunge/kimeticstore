@@ -136,7 +136,7 @@ export default function Navbar() {
   return (
     <nav>
       <div
-        className={`${flexStyles} w-full top-0 z-30 fixed  bg-gradient-radial`}
+        className={`${flexStyles} w-full top-0 z-30 fixed bg-custom-gradient`}
       >
         <div className={`${flexStyles} mx-auto w-5/6`}>
           {/**put logo here  */}

@@ -7,9 +7,11 @@
         "cpassword",
         "hookform",
         "KEMETIC",
+        "primaryclr",
         "Signin",
         "signup",
         "Swiper",
+        "textclr",
         "unoptimized"
     ]
 }
