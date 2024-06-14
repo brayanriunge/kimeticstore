@@ -159,12 +159,15 @@ export default function Navbar() {
             {isAboveMediaScreens ? (
               <div className={`${flexStyles} w-full text-montserrat gap-4`}>
                 <div className={`${flexStyles} text-sm gap-4`}>
-                  <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
-                    KEMETIC
-                  </h2>
-                  <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
-                    AMEZAN
-                  </h2>
+                  <Link href={"/"}>
+                    <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
+                      KEMETIC
+                    </h2>
+                    <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
+                      AMEZAN
+                    </h2>
+                  </Link>
+
                   {/* <form onSubmit={handleSearchSubmit}>
                     <div id="search">
                       <input
@@ -178,7 +181,15 @@ export default function Navbar() {
                   </form> */}
                 </div>
                 <div>
-                  <Link href={"/cart"} className={`${flexStyles} gap-2 `}>
+                  <Link href={"/products/product"}>
+                    <h1 className="hover:text-orange-400">Products</h1>
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    href={"/cart"}
+                    className={`${flexStyles} gap-2 hover:text-orange-400 `}
+                  >
                     Cart
                     <FaShoppingCart />
                     {cartQuantity > 0 && <span>{cartQuantity}</span>}
