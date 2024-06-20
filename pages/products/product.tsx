@@ -5,6 +5,7 @@ import { fetchProductByCategory } from "@/hooks/productService";
 import { product, productType } from "@/hooks/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { strict } from "assert";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -60,6 +61,11 @@ export default function ProductList({ filteredItems }: ProductListProp) {
   return (
     <Layout>
       {/* products */}
+      <Head>
+        <title>Products</title>
+        <meta property="og:title" content="My page title" key="title" />
+        <link rel="icon" href="/LOGO.png" />
+      </Head>
 
       {isAboveMediaScreens ? (
         <>

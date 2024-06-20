@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -48,30 +49,39 @@ const Tabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-primary-clr  p-5 mt-20">
-      <div className="bg-white rounded-md shadow-lg overflow-hidden w-full max-w-5xl ">
-        <div className="w-5/6 mx-auto p-5">
-          <div className="text-center mb-4">
-            <h2 className="text-textclr">Terms & Conditions</h2>
-          </div>
-          <div className="overflow-y-auto ">
-            <div>
-              <h3 className="text-primary-clr mb-2">
-                {tabData[activeTab].title}
-              </h3>
-              <p className="text-text-clr mb-4">{tabData[activeTab].content}</p>
+    <>
+      <Head>
+        <title>Terms</title>
+        <meta property="og:title" content="My page title" key="title" />
+        <link rel="icon" href="/LOGO.png" />
+      </Head>
+      <div className="flex items-center justify-center min-h-screen bg-primary-clr  p-5 mt-20">
+        <div className="bg-white rounded-md shadow-lg overflow-hidden w-full max-w-5xl ">
+          <div className="w-5/6 mx-auto p-5">
+            <div className="text-center mb-4">
+              <h2 className="text-textclr">Terms & Conditions</h2>
             </div>
-          </div>
-          <div className=" mt-4">
-            <Link href={"/"}>
-              <button className="bg-orange-400 border-primary-clr  border-2 rounded-full px-6 py-2 transition-colors duration-300 hover:bg-btn-hvr hover:border-btn-hvr">
-                I Agree to the terms and conditions
-              </button>
-            </Link>
+            <div className="overflow-y-auto ">
+              <div>
+                <h3 className="text-primary-clr mb-2">
+                  {tabData[activeTab].title}
+                </h3>
+                <p className="text-text-clr mb-4">
+                  {tabData[activeTab].content}
+                </p>
+              </div>
+            </div>
+            <div className=" mt-4">
+              <Link href={"/"}>
+                <button className="bg-orange-400 border-primary-clr  border-2 rounded-full px-6 py-2 transition-colors duration-300 hover:bg-btn-hvr hover:border-btn-hvr">
+                  I Agree to the terms and conditions
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

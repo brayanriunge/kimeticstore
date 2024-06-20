@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { useSession } from "next-auth/react";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -83,6 +84,11 @@ export default function Dashboard() {
 
   return (
     <Layout>
+      <Head>
+        <title>Dashboard</title>
+        <meta property="og:title" content="My page title" key="title" />
+        <link rel="icon" href="/LOGO.png" />
+      </Head>
       <section className="gap-16 bg-indigo-100 min-h-screen ">
         <div className="  overflow-hidden w-full mt-16 ">
           <div className="w-5/6 mx-auto mt-10 shadow-lg rounded-md bg-white">
@@ -91,10 +97,10 @@ export default function Dashboard() {
             </div>
             <form
               action=""
-              className="flex items-center justify-between gap-16 w-5/6 md:h-5/6 mx-auto p-5 m-5 "
+              className="flex items-center justify-between gap-16 w-5/6 md:h-5/6 mx-auto p-5 m-5 mb-4"
               onSubmit={handleSubmit(handleFormSubmission)}
             >
-              <div className="md:flex flex-col  mx-auto  items-center justify-between p-5 m-5 gap-8">
+              <div className="md:flex flex-col  mx-auto  items-center justify-between p-5 m-5 gap-8 ">
                 <div className=" md:flex border-2 rounded-xl border-orange-300 items-center basis-3/5">
                   <input
                     type="name"
