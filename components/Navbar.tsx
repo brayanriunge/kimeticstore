@@ -158,15 +158,34 @@ export default function Navbar() {
             {/**right side */}
             {isAboveMediaScreens ? (
               <div className={`${flexStyles} w-full text-montserrat gap-4`}>
-                <div className={`${flexStyles} text-sm gap-4`}>
+                <div className={`${flexStyles} text-sm gap-6 m-2 p-2`}>
                   <Link href={"/"}>
                     <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
                       KEMETIC
                     </h2>
+                  </Link>
+                  <Link href={"/"}>
                     <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
                       AMEZAN
                     </h2>
                   </Link>
+
+                  <div>
+                    <Link href={"/products/product"}>
+                      <h1 className="hover:text-orange-400">Products</h1>
+                    </Link>
+                  </div>
+
+                  <div>
+                    <Link
+                      href={"/cart"}
+                      className={`${flexStyles} gap-2 hover:text-orange-400 `}
+                    >
+                      Cart
+                      <FaShoppingCart />
+                      {cartQuantity > 0 && <span>{cartQuantity}</span>}
+                    </Link>
+                  </div>
 
                   {/* <form onSubmit={handleSearchSubmit}>
                     <div id="search">
@@ -179,21 +198,6 @@ export default function Navbar() {
                       />
                     </div>
                   </form> */}
-                </div>
-                <div>
-                  <Link href={"/products/product"}>
-                    <h1 className="hover:text-orange-400">Products</h1>
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href={"/cart"}
-                    className={`${flexStyles} gap-2 hover:text-orange-400 `}
-                  >
-                    Cart
-                    <FaShoppingCart />
-                    {cartQuantity > 0 && <span>{cartQuantity}</span>}
-                  </Link>
                 </div>
 
                 {session?.user && (

@@ -9,7 +9,17 @@ export default function CategoryFilter({
   selectedCategory,
   onSelectedCategory,
 }: props) {
-  const categories = ["car", "construction", "agriculture", "gem", "art"];
+  const categories = [
+    "Cars",
+    "Agriculture",
+    "Gem",
+    "Art",
+    "Coffee",
+    "Tea",
+    "Electronics",
+    "Armoured Cars",
+    "Herbs",
+  ];
   const handleCategoryChange = (category: string) => {
     if (selectedCategory === category) {
       onSelectedCategory("");

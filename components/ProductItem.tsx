@@ -33,11 +33,12 @@ export default function ProductItem({
           />
         </Link>
       </div>
-      <div className="flex items-center justify-between gap-2 m-4 tracking-widest">
-        <div className="text-sm font-semibold">Name:</div>
+
+      <div className="flex items-center justify-between gap-2 m-2 tracking-widest">
+        <div className="text-sm font-semibold ">Name:</div>
         <div className="text-md font-bold">{name}</div>
       </div>
-      <div className="flex items-center justify-between gap-2 m-4">
+      <div className="flex items-center justify-between gap-2 m-2 ">
         <div className="text-sm font-semibold">Description:</div>
         <div className="text-md font-bold">{description.slice(0, 10)}...</div>
       </div>

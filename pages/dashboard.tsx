@@ -83,9 +83,9 @@ export default function Dashboard() {
 
   return (
     <Layout>
-      <section className="gap-16 bg-indigo-200 min-h-screen ">
-        <div className="rounded-md shadow-lg overflow-hidden w-full mt-16 ">
-          <div className="w-5/6 mx-auto mt-10">
+      <section className="gap-16 bg-indigo-100 min-h-screen ">
+        <div className="  overflow-hidden w-full mt-16 ">
+          <div className="w-5/6 mx-auto mt-10 shadow-lg rounded-md bg-white">
             <div className="md:flex items-center justify-between py-4 px-10">
               <h1 className="font-bold text-xl ">Add Product</h1>
             </div>
