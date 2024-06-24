@@ -148,17 +148,17 @@ export default function Navbar() {
                 alt="logo"
                 width={90}
                 height={90}
-                className="rounded-full mx-auto"
+                className="rounded-full h-20 w-32"
               />
             </Link>
-            <div className={`${flexStyles} gap-2`}>
+            <div className={`${flexStyles} text-xl gap-2`}>
               <Link href={"/"}>
-                <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
+                <h2 className="font-bold text-red-500 text-montserrat">
                   KEMETIC
                 </h2>
               </Link>
               <Link href={"/"}>
-                <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
+                <h2 className="font-bold text-red-500  text-montserrat">
                   AMEZAN
                 </h2>
               </Link>
@@ -168,7 +168,7 @@ export default function Navbar() {
             {/**right side */}
             {isAboveMediaScreens ? (
               <div className={`${flexStyles} w-full text-montserrat gap-4`}>
-                <div className={`${flexStyles} w-11/12 text-sm gap-2 m-2 p-2`}>
+                <div className={`${flexStyles}  text-sm gap-10 m-2 p-2`}>
                   <div>
                     <Link href={"/products/product"}>
                       <h1 className="hover:text-orange-400">Products</h1>
