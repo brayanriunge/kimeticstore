@@ -97,17 +97,17 @@ export default function Dashboard() {
             </div>
             <form
               action=""
-              className="flex items-center justify-between gap-16 w-5/6 md:h-5/6 mx-auto p-5 m-5 mb-4"
+              className="md:flex items-center justify-between gap-16 w-5/6 h-5/6 mx-auto  mb-4"
               onSubmit={handleSubmit(handleFormSubmission)}
             >
               <div className="md:flex flex-col  mx-auto  items-center justify-between p-5 m-5 gap-8 ">
-                <div className=" md:flex border-2 rounded-xl border-orange-300 items-center basis-3/5">
+                <div className=" md:flex border-2 mb-2  rounded-xl border-orange-300 items-center basis-3/5">
                   <input
                     type="name"
                     id="name"
                     placeholder="Name"
                     required
-                    className="rounded-xl px-5 py-5 focus:outline-none border-none "
+                    className="rounded-xl px-5 py-5 focus:outline-none border-none  "
                     {...register("name")}
                   />
                   {errors.name?.message && (
@@ -116,7 +116,7 @@ export default function Dashboard() {
                     </div>
                   )}
                 </div>
-                <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
+                <div className=" md:flex border-2 mb-2  rounded-xl border-orange-300 gap-4 items-center ">
                   <input
                     type="text"
                     id="category"
@@ -132,7 +132,7 @@ export default function Dashboard() {
                   )}
                 </div>
 
-                <div className=" md:flex border-2 rounded-xl border-orange-300 items-center ">
+                <div className=" md:flex border-2 mb-2  rounded-xl border-orange-300 items-center ">
                   <input
                     type="text"
                     id="description"
@@ -148,7 +148,7 @@ export default function Dashboard() {
                   )}
                 </div>
               </div>
-              <div className=" md:flex flex-col justify-between gap-4 pt-6 mt-5 mx-auto">
+              <div className=" md:flex md:flex-col  justify-between gap-4 pt-6 mt-5 mx-auto">
                 <label htmlFor="dropzone-file">
                   {selectedImage ? (
                     <Image
@@ -178,20 +178,22 @@ export default function Dashboard() {
                     </div>
                   )}
                 </label>
-                <button
-                  className="rounded-md px-4 py-4 bg-yellow-500"
-                  type="submit"
-                  disabled={isUploading}
-                >
-                  {isUploading ? (
-                    <>
-                      Uploading
-                      <AiOutlineLoading3Quarters />
-                    </>
-                  ) : (
-                    <>Upload</>
-                  )}
-                </button>
+                <div className="flex items-center justify-between mx-auto ">
+                  <button
+                    className="rounded-md px-4 mb-2 py-4 flex items-center  bg-yellow-500"
+                    type="submit"
+                    disabled={isUploading}
+                  >
+                    {isUploading ? (
+                      <>
+                        Uploading
+                        <AiOutlineLoading3Quarters />
+                      </>
+                    ) : (
+                      <>Upload</>
+                    )}
+                  </button>
+                </div>
               </div>
             </form>
           </div>

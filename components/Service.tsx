@@ -60,7 +60,7 @@ export default function Service() {
           <h1 className="text-2xl font-semibold mb-2 ">Services:</h1>
           <div className=" md:grid  md:grid-cols-4 gap-4 items-center">
             {services.map((service) => (
-              <div className="flex flex-col items-start hover:border-l-pink-200 hover:border-4 justify-between gap-4 mx-auto mt-4  bg-white rounded-md shadow-sm hover:shadow-2xl">
+              <div className="flex flex-col items-center hover:border-l-pink-200 hover:border-4 justify-between gap-4 mx-auto mt-4  bg-white rounded-md shadow-sm hover:shadow-2xl">
                 <div>
                   <div className="md:relative block  cursor-pointer overflow-hidden rounded">
                     <Image

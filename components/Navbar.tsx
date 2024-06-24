@@ -139,44 +139,43 @@ export default function Navbar() {
         className={`${flexStyles} w-full top-0 z-30 fixed bg-custom-gradient`}
       >
         <div className={`${flexStyles} mx-auto w-5/6`}>
-          {/**put logo here  */}
-          <Link href={"/"}>
-            <Image
-              src={Logo}
-              alt="logo"
-              width={90}
-              height={90}
-              className="rounded-full mx-auto"
-            />
-          </Link>
-
-          <div className={`${flexStyles} w-full gap-2`}>
+          <div className={`${flexStyles} w-full gap-6`}>
             {/**left side */}
-
+            {/**put logo here  */}
+            <Link href={"/"}>
+              <Image
+                src={Logo}
+                alt="logo"
+                width={90}
+                height={90}
+                className="rounded-full mx-auto"
+              />
+            </Link>
+            <div className={`${flexStyles} gap-2`}>
+              <Link href={"/"}>
+                <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
+                  KEMETIC
+                </h2>
+              </Link>
+              <Link href={"/"}>
+                <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
+                  AMEZAN
+                </h2>
+              </Link>
+            </div>
             {/* Search */}
 
             {/**right side */}
             {isAboveMediaScreens ? (
               <div className={`${flexStyles} w-full text-montserrat gap-4`}>
-                <div className={`${flexStyles} text-sm gap-6 m-2 p-2`}>
-                  <Link href={"/"}>
-                    <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
-                      KEMETIC
-                    </h2>
-                  </Link>
-                  <Link href={"/"}>
-                    <h2 className="font-bold text-red-500 md:text-lg text-montserrat">
-                      AMEZAN
-                    </h2>
-                  </Link>
-
+                <div className={`${flexStyles} w-11/12 text-sm gap-2 m-2 p-2`}>
                   <div>
                     <Link href={"/products/product"}>
                       <h1 className="hover:text-orange-400">Products</h1>
                     </Link>
                   </div>
 
-                  <div>
+                  <div className="flex gap-2 items-center">
                     <Link
                       href={"/cart"}
                       className={`${flexStyles} gap-2 hover:text-orange-400 `}
@@ -216,12 +215,14 @@ export default function Navbar() {
                 />
               </div>
             ) : (
-              <button
-                className="rounded-full p-2 bg-secondary-gray-300"
-                onClick={() => setIsMenuToggled(!isMenuToggled)}
-              >
-                <HiBars3 className="h-6 w-6 " />
-              </button>
+              <div className="flex justify-end p-4">
+                <button
+                  className="rounded-full p-2 bg-secondary-gray-300 "
+                  onClick={() => setIsMenuToggled(!isMenuToggled)}
+                >
+                  <HiBars3 className="h-6 w-6 " />
+                </button>
+              </div>
             )}
 
             {/**Dashboard link */}
@@ -236,7 +237,7 @@ export default function Navbar() {
                   </button>
                 </div>
                 {session?.user && (
-                  <div className="mx-auto">
+                  <div className="mx-auto flex flex-col gap-4">
                     <p className="font-mono text-sm font-bold m-2 p-2">
                       {session.user.name}
                     </p>

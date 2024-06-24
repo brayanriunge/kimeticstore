@@ -84,7 +84,10 @@ export default function Explore() {
           <div className="mb-2 text-xl font-bold">Explore Categories :</div>
           <div className="md:grid md:grid-cols-4 gap-4">
             {explores.map((explore) => (
-              <div className="relative mb-5 block " key={explore.id}>
+              <div
+                className="relative mb-5 flex items-center flex-col gap-2 "
+                key={explore.id}
+              >
                 <Link href={explore.href}>
                   <Image
                     src={explore.picture}
@@ -105,7 +108,10 @@ export default function Explore() {
           <div className="mb-2 text-xl font-bold">Explore Categories :</div>
           <div className="grid grid-cols-2 gap-4">
             {explores.map((explore) => (
-              <div className="relative mb-5 block " key={explore.id}>
+              <div
+                className="relative mb-5 flex items-center flex-col gap-2 "
+                key={explore.id}
+              >
                 <Link href={explore.href}>
                   <Image
                     src={explore.picture}
