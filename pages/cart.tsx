@@ -14,7 +14,7 @@ export default function Cart() {
         <link rel="icon" href="/LOGO.png" />
       </Head>
       <Layout>
-        <div>
+        <div className="w-5/6 mx-auto mb-4s">
           {cartItem.map((item) => (
             <CartItem key={item.id} {...item} />
           ))}
