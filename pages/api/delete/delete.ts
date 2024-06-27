@@ -15,7 +15,7 @@ export default async function handler(
     const session = await getServerSession(req, res, authOptions);
 
     if (session?.user.role !== "ADMIN1")
-      res
+      return res
         .status(405)
         .json({ message: "User not allowed to make this request" });
 
@@ -24,7 +24,7 @@ export default async function handler(
         email: session?.user.email as string,
       },
     });
-    if (!user) res.status(404).json({ message: "user not found" });
+    if (!user) return res.status(404).json({ message: "user not found" });
 
     const { id } = req.query;
 
@@ -33,7 +33,19 @@ export default async function handler(
         id: id as string,
       },
     });
-    if (!product) res.status(404).json({ message: " Product not found" });
+    if (!product)
+      return res.status(404).json({ message: " Product not found" });
+
+    if (product?.userId !== user?.id)
+      return res
+        .status(405)
+        .json({ message: "User is unauthorized to make the delete request" });
+
+    await prisma.product.delete({
+      where: {
+        id: id as string,
+      },
+    });
   } catch (error) {
     res
       .status(500)
