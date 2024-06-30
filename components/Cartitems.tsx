@@ -1,5 +1,6 @@
 import { useCart } from "@/context/CartContext";
 import { productType } from "@/hooks/types";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -13,6 +14,20 @@ export type cartItemProp = {
 export default function CartItem({ id, quantity }: cartItemProp) {
   const { addToCart, removeFromCart, decreaseCartItem } = useCart();
   const [item, setItem] = useState<productType | null>(null);
+  const { data: session } = useSession();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
+
+  useEffect(() => {
+    if (session) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [session]);
+
+  const handleDelete = async () => {
+    await fetch(`http://localhost:3000/api/delete/${id}`);
+  };
 
   const fetchItem = async () => {
     const productId = await fetch(`http://localhost:3000/api/${id}`);
