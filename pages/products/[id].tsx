@@ -1,7 +1,9 @@
 import Layout from "@/components/Layout";
 import TopDeal from "@/components/TopDeals";
+import Delete from "@/components/delete";
 import { useCart } from "@/context/CartContext";
 import { productType } from "@/hooks/types";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -9,9 +11,25 @@ import { useEffect, useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 
 export default function ProductItem() {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const router = useRouter();
   const [items, setItems] = useState<productType | null>(null);
   const { id } = router.query;
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [session]);
+
+  const handleDelete = async () => {
+    await fetch(`http://localhost:3000/api/delete/${id}`);
+  };
+
   useEffect(() => {
     const fetchItem = async () => {
       try {
@@ -57,13 +75,14 @@ export default function ProductItem() {
               <p className="text-xl font-mono text-gray-700 p-2">
                 {items?.description}
               </p>
-              <div className="mt-4">
+              <div className="mt-4 flex flex-row justify-between items-center">
                 <button
                   className="flex flex-row-2 items-center justify-between gap-2 text-lg font-bold mx-auto px-8 p-2 bg-orange-400 hover:bg-orange-600 hover:shadow-xl rounded-lg"
                   onClick={() => addToCart(items?.id as string)}
                 >
                   Add to cart <FaShoppingCart />
                 </button>
+                <Delete isLoggedIn={isLoggedIn} deleteItem={handleDelete} />
               </div>
             </div>
           </div>

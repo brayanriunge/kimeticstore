@@ -25,10 +25,6 @@ export default function CartItem({ id, quantity }: cartItemProp) {
     }
   }, [session]);
 
-  const handleDelete = async () => {
-    await fetch(`http://localhost:3000/api/delete/${id}`);
-  };
-
   const fetchItem = async () => {
     const productId = await fetch(`http://localhost:3000/api/${id}`);
     console.log("Response");

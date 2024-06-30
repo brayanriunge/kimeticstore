@@ -17,10 +17,6 @@ import DashboardButton from "./DashboardButton";
 import { useCart } from "@/context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
 
-type propUser = {
-  user: User;
-};
-
 export default function Navbar() {
   const router = useRouter();
   const flexStyles = "flex items-center justify-between ";
