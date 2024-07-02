@@ -2,11 +2,20 @@ import { useSession } from "next-auth/react";
 
 interface deleteProps {
   isLoggedIn: boolean;
-  deleteItem: () => void;
 }
 
-export default function Delete({ isLoggedIn, deleteItem }: deleteProps) {
+export default function Delete({ isLoggedIn }: deleteProps) {
   const { data: session, status } = useSession();
+
+  const handleDelete = async (id: string) => {
+    try {
+      await fetch(`http://localhost:3000/api/delete/${id}`, {
+        method: "DELETE",
+      });
+    } catch (error) {
+      console.log("error during deleting");
+    }
+  };
 
   const userRole = session?.user.role || null;
 
@@ -20,8 +29,8 @@ export default function Delete({ isLoggedIn, deleteItem }: deleteProps) {
         <>
           {userRole === "ADMIN1" && (
             <button
-              onClick={() => deleteItem}
-              className=" rounded-md px-8 p-2 bg-orange-400 "
+              onClick={() => handleDelete}
+              className=" rounded-md px-8 p-2 bg-orange-400 text-lg font-bold mx-auto"
             >
               {" "}
               Delete

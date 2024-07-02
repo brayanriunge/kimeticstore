@@ -41,11 +41,12 @@ export default async function handler(
         .status(405)
         .json({ message: "User is unauthorized to make the delete request" });
 
-    await prisma.product.delete({
+    const response = await prisma.product.delete({
       where: {
         id: id as string,
       },
     });
+    console.log(response);
   } catch (error) {
     res
       .status(500)

@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import TopDeal from "@/components/TopDeals";
-import Delete from "@/components/delete";
+import Delete from "@/components/[id]";
 import { useCart } from "@/context/CartContext";
 import { productType } from "@/hooks/types";
 import { useSession } from "next-auth/react";
@@ -25,10 +25,6 @@ export default function ProductItem() {
       setIsLoggedIn(false);
     }
   }, [session]);
-
-  const handleDelete = async () => {
-    await fetch(`http://localhost:3000/api/delete/${id}`);
-  };
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -82,7 +78,7 @@ export default function ProductItem() {
                 >
                   Add to cart <FaShoppingCart />
                 </button>
-                <Delete isLoggedIn={isLoggedIn} deleteItem={handleDelete} />
+                <Delete isLoggedIn={isLoggedIn} />
               </div>
             </div>
           </div>
