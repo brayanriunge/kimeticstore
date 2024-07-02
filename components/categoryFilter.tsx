@@ -11,7 +11,6 @@ export default function CategoryFilter({
 }: props) {
   const categories = [
     "Cars",
-    "Agriculture",
     "Gem",
     "Art",
     "Coffee",
