@@ -18,6 +18,7 @@ export default function CategoryFilter({
     "Electronics",
     "Armoured Cars",
     "Crops",
+    "Mineral",
   ];
   const handleCategoryChange = (category: string) => {
     if (selectedCategory === category) {
