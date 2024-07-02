@@ -133,8 +133,7 @@ export default function Dashboard() {
                 </div>
 
                 <div className=" md:flex border-2 mb-2  rounded-xl border-orange-300 items-center ">
-                  <input
-                    type="text"
+                  <textarea
                     id="description"
                     placeholder="Description"
                     required

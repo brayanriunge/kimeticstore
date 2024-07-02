@@ -18,7 +18,7 @@ export default function CategoryFilter({
     "Tea",
     "Electronics",
     "Armoured Cars",
-    "Herbs",
+    "Crops",
   ];
   const handleCategoryChange = (category: string) => {
     if (selectedCategory === category) {
