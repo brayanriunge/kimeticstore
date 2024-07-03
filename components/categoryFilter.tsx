@@ -20,6 +20,7 @@ export default function CategoryFilter({
     "Crops",
     "Mineral",
     "Oil",
+    "Meat",
   ];
   const handleCategoryChange = (category: string) => {
     if (selectedCategory === category) {

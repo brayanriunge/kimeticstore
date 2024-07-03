@@ -16,7 +16,7 @@ export default function ProductItem({
 
   return (
     <div
-      className="flex flex-col items-start justify-between gap-4 mx-auto mt-4 w-5/6 bg-white rounded-md shadow-sm hover:shadow-2xl "
+      className="flex flex-col items-start justify-between gap-4 mx-auto mt-4 w-5/6  bg-white rounded-md shadow-sm hover:shadow-2xl "
       key={id}
     >
       <div>
@@ -34,13 +34,13 @@ export default function ProductItem({
         </Link>
       </div>
 
-      <div className="flex items-center justify-between gap-2 m-2 tracking-widest">
-        <div className="text-sm font-semibold ">Name:</div>
-        <div className="text-md font-bold">{name}</div>
+      <div className="flex items-center justify-between gap-2 mx-auto tracking-widest">
+        <h1 className="text-sm font-semibold ">Name:</h1>
+        <p className="text-md font-bold">{name}</p>
       </div>
-      <div className="flex items-center justify-between gap-2 m-2 ">
-        <div className="text-sm font-semibold">Description:</div>
-        <div className="text-md font-bold">{description.slice(0, 10)}...</div>
+      <div className="flex items-center justify-between gap-2 mx-auto ">
+        <h1 className="text-sm font-semibold">Description:</h1>
+        <p className="text-md font-bold">{description.slice(0, 10)}...</p>
       </div>
     </div>
   );
