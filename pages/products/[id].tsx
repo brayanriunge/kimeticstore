@@ -49,7 +49,7 @@ export default function ProductItem() {
   return (
     <>
       <Head>
-        <title>Terms</title>
+        <title> {items?.name}</title>
         <meta property="og:title" content="My page title" key="title" />
         <link rel="icon" href="/LOGO.png" />
       </Head>
