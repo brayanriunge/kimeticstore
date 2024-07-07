@@ -20,19 +20,24 @@ export default function ProductItem({
       key={id}
     >
       <div className="flex flex-col h-full max-w-sm rounded overflow-hidden shadow-lg ">
-        <Image
-          src={imgUrl}
-          alt="Card Image"
-          width={288} // Adjust the width based on your image
-          height={192} // Adjust the height based on your image
-          className="w-full h-auto"
-        />
-        <div className="flex-grow px-6 py-4">
-          <div className="font-bold text-xl mb-2">{name}</div>
-          <p className="text-gray-700 text-base">
-            {description.slice(0, 20)}...
-          </p>
-        </div>
+        <Link
+          href={`/products/${id}`}
+          className="md:relative block  cursor-pointer overflow-hidden rounded"
+        >
+          <Image
+            src={imgUrl}
+            alt="Card Image"
+            width={288} // Adjust the width based on your image
+            height={192} // Adjust the height based on your image
+            className="w-full h-auto"
+          />
+          <div className="flex-grow px-6 py-4">
+            <div className="font-bold text-xl mb-2">{name}</div>
+            <p className="text-gray-700 text-base">
+              {description.slice(0, 20)}...
+            </p>
+          </div>
+        </Link>
         <div className="px-6 pt-4 pb-2">
           <a
             href="#"
@@ -42,29 +47,6 @@ export default function ProductItem({
           </a>
         </div>
       </div>
-      {/* <div>
-        <Link
-          href={`/products/${id}`}
-          className="md:relative block  cursor-pointer overflow-hidden rounded"
-        >
-          <Image
-            height={192}
-            width={192}
-            src={imgUrl}
-            alt="image"
-            className="block h-full  w-full object-cover object-center"
-          />
-        </Link>
-      </div>
-
-      <div className="flex items-center justify-between gap-2 mx-auto tracking-widest">
-        <h1 className="text-sm font-semibold ">Name:</h1>
-        <p className="text-md font-bold">{name}</p>
-      </div>
-      <div className="flex items-center justify-between gap-2 mx-auto ">
-        <h1 className="text-sm font-semibold">Description:</h1>
-        <p className="text-md font-bold">{description.slice(0, 10)}...</p>
-      </div> */}
     </div>
   );
 }
