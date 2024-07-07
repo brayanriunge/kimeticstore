@@ -55,15 +55,49 @@ export default function ProductItem() {
       </Head>
       <Layout>
         <div className="min-h-screen body-font overflow-hidden mt-16 bg-custom-radial">
-          <div className="flex w-4/5 mx-auto py-24 px-5 flex-wrap gap-10 mb-2 ">
-            <Image
-              width={192}
-              className="h-60 object-cover object-center w-auto rounded"
-              height={192}
-              alt="product"
-              unoptimized={true}
-              src={items?.imgUrl as string}
-            />
+          <div className="md:flex w-4/5 mx-auto py-24 px-5 gap-10 mb-2">
+            <div className="w-1/2 flex justify-center items-center">
+              <Image
+                width={1000}
+                className="object-cover object-center w-full rounded"
+                height={1000}
+                alt="product"
+                unoptimized={true}
+                src={items?.imgUrl as string}
+              />
+            </div>
+            <div className="w-1/2 flex flex-col justify-between">
+              <div className="font-bold text-indigo-400 text-3xl p-5">
+                {items?.name}
+              </div>
+              <p className="text-xl font-mono text-gray-700 p-2 flex-grow">
+                {items?.description}
+              </p>
+              <div className="mt-4 flex justify-between items-center">
+                <button
+                  className="flex items-center gap-2 text-lg font-bold px-8 py-2 bg-orange-400 hover:bg-orange-600 hover:shadow-xl rounded-lg"
+                  onClick={() => addToCart(items?.id as string)}
+                >
+                  Add to cart <FaShoppingCart />
+                </button>
+              </div>
+            </div>
+          </div>
+          <TopDeal />
+        </div>
+        {/* <div className="min-h-screen body-font overflow-hidden mt-16 bg-custom-radial">
+          <div className="flex w-5/6 mx-auto py-24 px-5 flex-wrap gap-10 mb-2 ">
+            <div className="w-1/2">
+              <Image
+                width={1000}
+                className="h-auto object-cover object-center w-full rounded"
+                height={1000}
+                alt="product"
+                unoptimized={true}
+                src={items?.imgUrl as string}
+              />
+            </div>
+
             <div className="w-1/2 mt-6">
               <div className="font-bold text-indigo-400 text-3xl p-5">
                 {items?.name}
@@ -83,7 +117,7 @@ export default function ProductItem() {
             </div>
           </div>
           <TopDeal />
-        </div>
+        </div> */}
       </Layout>
     </>
   );
