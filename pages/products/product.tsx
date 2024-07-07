@@ -105,15 +105,7 @@ export default function ProductList({ filteredItems }: ProductListProp) {
               onSelectedCategory={handleCategoryChange}
             />
           </div>
-          <div className="w-11/12 overflow-y-auto mx-auto">
-            {products.map((product) => (
-              <div>
-                <h1 className="mt-4 text-lg font-sans ">
-                  Products: {product.category}
-                </h1>
-              </div>
-            ))}
-          </div>
+
           <div className="grid grid-cols-2 gap-6 p-2">
             {products.map((product) => (
               <div key={product.id}>

@@ -55,7 +55,7 @@ export default function ProductItem() {
       </Head>
       <Layout>
         <div className="min-h-screen body-font overflow-hidden mt-16 bg-custom-radial">
-          <div className="md:flex w-4/5 mx-auto py-24 px-5 gap-10 mb-2">
+          <div className="md:flex w-4/5 mx-auto py-24 px-5 gap-10 md:mb-2 mb-4">
             <div className="w-1/2 flex justify-center items-center">
               <Image
                 width={1000}
