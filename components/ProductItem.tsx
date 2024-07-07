@@ -38,13 +38,13 @@ export default function ProductItem({
             </p>
           </div>
         </Link>
-        <div className="px-6 pt-4 pb-2">
-          <a
-            href="#"
-            className="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+        <div className=" flex flex-row justify-between items-center px-6 pt-4 pb-2">
+          <button
+            className="flex flex-row-2 items-center justify-between gap-2  mx-auto  p-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 hover:shadow-xl "
+            onClick={() => addToCart(id as string)}
           >
-            Go somewhere
-          </a>
+            Add to cart <FaShoppingCart />
+          </button>
         </div>
       </div>
     </div>

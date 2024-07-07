@@ -43,7 +43,7 @@ export default function ProductItem() {
     fetchItem();
   }, [id]);
   const { getItemQuantity, addToCart } = useCart();
-  console.log("useCart context: ", { getItemQuantity, addToCart });
+
   const quantity = items ? getItemQuantity(items?.id as string) : 0;
 
   return (
