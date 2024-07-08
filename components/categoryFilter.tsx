@@ -16,7 +16,7 @@ export default function CategoryFilter({
     "Coffee",
     "Tea",
     "Electronics",
-    "Armoured Cars",
+    "Armored Cars",
     "Crops",
     "Mineral",
     "Oil",
