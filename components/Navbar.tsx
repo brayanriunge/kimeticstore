@@ -232,6 +232,24 @@ export default function Navbar() {
                     <HiOutlineX className="h-6 w-6  " />
                   </button>
                 </div>
+                <div className="mx-auto flex flex-col gap-4">
+                  <div>
+                    <Link href={"/products/product"}>
+                      <h1 className="hover:text-orange-400">Products</h1>
+                    </Link>
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <Link
+                      href={"/cart"}
+                      className={`${flexStyles} gap-2 hover:text-orange-400 `}
+                    >
+                      Cart
+                      <FaShoppingCart />
+                      {cartQuantity > 0 && <span>{cartQuantity}</span>}
+                    </Link>
+                  </div>
+                </div>
+
                 {session?.user && (
                   <div className="mx-auto flex flex-col gap-4">
                     <p className="font-mono text-sm font-bold m-2 p-2">
