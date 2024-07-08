@@ -59,7 +59,7 @@ export default function Login() {
         <meta property="og:title" content="My page title" key="title" />
         <link rel="icon" href="/LOGO.png" />
       </Head>
-      <div className="flex min-h-full bg-blue-400 gap-16 py-10 mb-0 md:h-full md:pb-20">
+      <div className="flex min-h-full bg-custom-gradient gap-16 py-10 mb-0 md:h-full md:pb-20">
         <div className="  bg-slate-50 m-auto  h-3/4 rounded-md mx-auto p-6  max-w-md w-full  mt-10  mb-40">
           {/* Login form */}
           <div className=" flex flex-col text-center gap-10 h-full rounded-md">

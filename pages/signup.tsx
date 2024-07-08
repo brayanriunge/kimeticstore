@@ -69,7 +69,7 @@ export default function RegisterUser() {
         <meta property="og:title" content="My page title" key="title" />
         <link rel="icon" href="/LOGO.png" />
       </Head>
-      <div className="flex  bg-blue-400 gap-16 py-10  min-h-full  mb-0">
+      <div className="flex  bg-custom-gradient gap-16 py-10  min-h-full  mb-0">
         <div className=" bg-slate-50 m-auto my-8 h-3/4 rounded-md mx-auto p-6  max-w-md w-full">
           {/* Login form */}
           <div className=" flex flex-col text-center gap-10 h-full rounded-md">

@@ -3,7 +3,6 @@ import Layout from "@/components/Layout";
 import { useCart } from "@/context/CartContext";
 import Head from "next/head";
 import Link from "next/link";
-import { use } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function Cart() {
