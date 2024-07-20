@@ -83,17 +83,6 @@ export default function ProductList({ filteredItems }: ProductListProp) {
                   <ProductItem {...product} />
                 </div>
               ))}
-              {/* {filteredItems &&
-                filteredItems.map((product) => (
-                  <ProductItem
-                    key={product.id}
-                    description={product.description}
-                    name={product.name}
-                    imgUrl={product.imgUrl}
-                    id={product.id}
-                    category={product.category}
-                  />
-                ))} */}
             </div>
           </div>
         </>
@@ -112,17 +101,6 @@ export default function ProductList({ filteredItems }: ProductListProp) {
                 <ProductItem {...product} />
               </div>
             ))}
-            {/* {filteredItems &&
-                filteredItems.map((product) => (
-                  <ProductItem
-                    key={product.id}
-                    description={product.description}
-                    name={product.name}
-                    imgUrl={product.imgUrl}
-                    id={product.id}
-                    category={product.category}
-                  />
-                ))} */}
           </div>
         </>
       )}

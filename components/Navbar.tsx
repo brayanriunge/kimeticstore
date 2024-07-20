@@ -182,18 +182,6 @@ export default function Navbar() {
                       {cartQuantity > 0 && <span>{cartQuantity}</span>}
                     </Link>
                   </div>
-
-                  {/* <form onSubmit={handleSearchSubmit}>
-                    <div id="search">
-                      <input
-                        id="search-navbar"
-                        type="text"
-                        placeholder="Search here"
-                        value={searchValue}
-                        onChange={handleFormChange}
-                      />
-                    </div>
-                  </form> */}
                 </div>
 
                 {session?.user && (
@@ -233,7 +221,12 @@ export default function Navbar() {
                     <HiOutlineX className="h-6 w-6  " />
                   </button>
                 </div>
-                <div className="mx-auto flex flex-col gap-4">
+                <div className="mx-auto flex flex-col font-mono text-lg items-center font-bold justify-between gap-4">
+                  <div>
+                    <Link href={"/"}>
+                      <h1 className="hover:text-orange-400">Home</h1>
+                    </Link>
+                  </div>
                   <div>
                     <Link href={"/products/product"}>
                       <h1 className="hover:text-orange-400">Products</h1>
@@ -252,7 +245,7 @@ export default function Navbar() {
                 </div>
 
                 {session?.user && (
-                  <div className="mx-auto flex flex-col gap-4">
+                  <div className="mx-auto flex items-center justify-between flex-col gap-4">
                     <p className="font-mono text-sm font-bold m-2 p-2">
                       {session.user.name}
                     </p>
