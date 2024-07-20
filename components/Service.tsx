@@ -32,23 +32,19 @@ export default function Service() {
       name: "Private Jet Flights",
       src: jet,
     },
+
     {
       id: 4,
-      name: "Land Survey",
-      src: land,
-    },
-    {
-      id: 5,
       name: "Academic Consultation",
       src: consult,
     },
     {
-      id: 6,
+      id: 5,
       name: "International Investment Advisory",
       src: school,
     },
     {
-      id: 7,
+      id: 6,
       name: "Partnership",
       src: partner,
     },
