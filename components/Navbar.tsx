@@ -162,6 +162,11 @@ export default function Navbar() {
               <div className={`${flexStyles} w-full text-montserrat gap-4`}>
                 <div className={`${flexStyles}  text-sm gap-10 m-2 p-2`}>
                   <div>
+                    <Link href={"/"}>
+                      <h1 className="hover:text-orange-400">Home</h1>
+                    </Link>
+                  </div>
+                  <div>
                     <Link href={"/products/product"}>
                       <h1 className="hover:text-orange-400">Products</h1>
                     </Link>
