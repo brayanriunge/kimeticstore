@@ -5,7 +5,7 @@ import { HiAtSymbol, HiFingerPrint } from "react-icons/hi";
 import { FormEvent, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Head from "next/head";
 
 export default function Login() {
@@ -34,6 +34,7 @@ export default function Login() {
       }
       if (response?.ok) {
         toast.success("login successfully");
+        <Toaster />;
       }
 
       if (response?.error) {

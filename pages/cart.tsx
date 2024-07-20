@@ -1,12 +1,26 @@
 import CartItem from "@/components/Cartitems";
 import Layout from "@/components/Layout";
 import { useCart } from "@/context/CartContext";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function Cart() {
   const { cartItem, cartQuantity } = useCart();
+  const router = useRouter();
+
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (!session) {
+      toast.error("You must login fist");
+      router.push("/login");
+    }
+  }, []);
 
   return (
     <>
