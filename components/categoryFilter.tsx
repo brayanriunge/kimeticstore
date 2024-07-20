@@ -30,10 +30,10 @@ export default function CategoryFilter({
     }
   };
   return (
-    <div className="md:flex items-center justify-between gap-4 font-mono text-md text-orange-400 sticky p-4 top-0">
+    <div className="md:flex items-center justify-between gap-4  text-md font-serif sticky p-4 top-0">
       {categories.map((category) => (
         <div>
-          <div className="gap-2">
+          <div className=" flex gap-2">
             <label key={category}>
               <input
                 type="checkbox"

@@ -62,7 +62,10 @@ export default function Service() {
             {services.map((service) => (
               <div className="flex flex-col items-center hover:border-l-pink-200 hover:border-4 justify-between gap-4 mx-auto mt-4  bg-white rounded-md shadow-sm hover:shadow-2xl">
                 <div>
-                  <div className="md:relative block  cursor-pointer overflow-hidden rounded">
+                  <div
+                    className="md:relative block  cursor-pointer overflow-hidden rounded"
+                    key={service.id}
+                  >
                     <Image
                       height={100}
                       width={100}

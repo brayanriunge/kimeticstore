@@ -65,7 +65,7 @@ export default function RegisterUser() {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Register</title>
         <meta property="og:title" content="My page title" key="title" />
         <link rel="icon" href="/LOGO.png" />
       </Head>

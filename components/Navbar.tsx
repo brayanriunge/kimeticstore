@@ -149,14 +149,10 @@ export default function Navbar() {
             </Link>
             <div className={`${flexStyles} text-xl gap-2`}>
               <Link href={"/"}>
-                <h2 className="font-bold text-red-500 text-montserrat">
-                  KEMETIC
-                </h2>
+                <h2 className="font-bold text-montserrat">KEMETIC</h2>
               </Link>
               <Link href={"/"}>
-                <h2 className="font-bold text-red-500  text-montserrat">
-                  AMEZAN
-                </h2>
+                <h2 className="font-bold   text-montserrat">AMEZAN</h2>
               </Link>
             </div>
             {/* Search */}
