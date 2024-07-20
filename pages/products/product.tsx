@@ -88,14 +88,14 @@ export default function ProductList({ filteredItems }: ProductListProp) {
         </>
       ) : (
         <>
-          <div className=" mx-auto  w-5/6  mt-16  ">
+          <div className=" mx-auto  w-5/6 mt-20   ">
             <CategoryFilter
               selectedCategory={selectedCategory}
               onSelectedCategory={handleCategoryChange}
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-6 p-2">
+          <div className="grid grid-cols-2 gap-6 p-2 ">
             {products.map((product) => (
               <div key={product.id}>
                 <ProductItem {...product} />
