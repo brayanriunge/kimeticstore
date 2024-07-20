@@ -78,6 +78,13 @@ export default function Service() {
                 <div className="rounded-md text-montserrat px-8 p-2  ">
                   {service.name}
                 </div>
+                <div className="rounded-md text-montserrat px-8 p-2">
+                  <Link href={"/service"}>
+                    <button className="x-auto  p-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 hover:shadow-xl">
+                      View this service
+                    </button>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
