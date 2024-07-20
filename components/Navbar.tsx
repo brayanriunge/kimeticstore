@@ -172,6 +172,12 @@ export default function Navbar() {
                     </Link>
                   </div>
 
+                  <div>
+                    <Link href={"/service"}>
+                      <h1 className="hover:text-orange-400">Services</h1>
+                    </Link>
+                  </div>
+
                   <div className="flex gap-2 items-center">
                     <Link
                       href={"/cart"}
@@ -230,6 +236,11 @@ export default function Navbar() {
                   <div>
                     <Link href={"/products/product"}>
                       <h1 className="hover:text-orange-400">Products</h1>
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href={"/service"}>
+                      <h1 className="hover:text-orange-400">Services</h1>
                     </Link>
                   </div>
                   <div className="flex gap-2 items-center">
