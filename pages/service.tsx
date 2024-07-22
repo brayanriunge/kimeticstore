@@ -9,6 +9,9 @@ import heli from "@/public/heli.webp";
 import mustang from "@/public/mustang.jpg";
 import globalPlane from "@/public/global-express.jpg";
 import Xls from "@/public/xls.jpg";
+import dev from "@/public/dev.png";
+import ai from "@/public/ai.jpg";
+import iot from "@/public/iot.jpg";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 type securityProps = {
@@ -19,6 +22,13 @@ type securityProps = {
 };
 
 type jetProps = {
+  id: number;
+  src: StaticImageData;
+  content: string;
+  title: string;
+};
+
+type softwareProps = {
   id: number;
   src: StaticImageData;
   content: string;
@@ -83,6 +93,31 @@ export default function Service() {
         " Safeguard against threats with counter surveillance tactics. Identify risks and protect your privacy and assets.Contact us for expert assistance",
     },
   ];
+
+  const softwares: Array<softwareProps> = [
+    {
+      id: 1,
+      title: "Software product and application development",
+      src: dev,
+      content:
+        "Expedite product development to meet the most pressing customer needs and deliver innovative new features more frequently.",
+    },
+    {
+      id: 2,
+      title: "Data engineering and AI/ML",
+      src: ai,
+      content:
+        "Aggregate and enrich data securely to help reduce time to insights and enable next-gen AI/ML experiences.",
+    },
+    {
+      id: 3,
+      title: "Connected device engineering",
+      src: iot,
+      content:
+        "We are ready to  design, develop, and commercialize smart connected devices, including hardware and firmware, to drive innovation and build seamless experiences.",
+    },
+  ];
+
   const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
 
   return (
