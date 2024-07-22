@@ -284,6 +284,38 @@ export default function Service() {
                 </div>
               </div>
             ))}
+
+            {softwares.map((software) => (
+              <div
+                className="flex flex-col items-start justify-between gap-4 mx-auto mt-4 w-5/6  bg-white rounded-md shadow-sm hover:shadow-2xl "
+                key={software.id}
+              >
+                <div className="flex flex-col h-full max-w-sm rounded overflow-hidden shadow-lg ">
+                  <div className="md:relative block  cursor-pointer overflow-hidden rounded">
+                    <Image
+                      src={software.src}
+                      alt="Card Image"
+                      width={288} // Adjust the width based on your image
+                      height={192} // Adjust the height based on your image
+                      className="w-full h-auto"
+                    />
+                    <div className="flex-grow px-6 py-4">
+                      <div className="font-bold text-xl mb-2">
+                        {software.title}
+                      </div>
+                      <p className="text-gray-700 text-base">
+                        {software.content}
+                      </p>
+                    </div>
+                  </div>
+                  <div className=" flex flex-row justify-between items-center px-6 pt-4 pb-2">
+                    <button className="flex flex-row-2 items-center justify-between gap-2  mx-auto  p-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 hover:shadow-xl ">
+                      Hire now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </>
