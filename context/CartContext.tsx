@@ -46,8 +46,6 @@ export default function CartProvider({ children }: AddProp) {
     setCartQuantity(cartItem.reduce((total, item) => total + item.quantity, 0));
   }, [cartItem]);
 
-  console.log("CartProvider - cartQuantity:", cartQuantity);
-
   //function to add items to a cart and also its quantity
   function addToCart(id: string) {
     setCartItem((defaultValue) => {
