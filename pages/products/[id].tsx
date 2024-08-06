@@ -29,7 +29,7 @@ export default function ProductItem() {
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/${id}`);
+        const response = await fetch(`/api/${id}`);
         if (!response.ok) {
           throw new Error(" Failed to fetch product");
         }

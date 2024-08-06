@@ -26,7 +26,7 @@ export default function CartItem({ id, quantity }: cartItemProp) {
   }, [session]);
 
   const fetchItem = async () => {
-    const productId = await fetch(`http://localhost:3000/api/${id}`);
+    const productId = await fetch(`/api/${id}`);
     console.log("Response");
     const res = await productId.json();
     setItem(res);

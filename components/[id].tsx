@@ -9,7 +9,7 @@ export default function Delete({ isLoggedIn }: deleteProps) {
 
   const handleDelete = async (id: string) => {
     try {
-      await fetch(`http://localhost:3000/api/delete/${id}`, {
+      await fetch(`/api/delete/${id}`, {
         method: "DELETE",
       });
     } catch (error) {

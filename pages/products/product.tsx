@@ -29,7 +29,7 @@ export default function ProductList({ filteredItems }: ProductListProp) {
     const fetchItems = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/product${
+          `/api/product${
             selectedCategory ? `?category=${selectedCategory}` : ""
           }`
         );
