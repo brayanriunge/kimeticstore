@@ -56,7 +56,7 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Login Page</title>
         <meta property="og:title" content="My page title" key="title" />
         <link rel="icon" href="/LOGO.png" />
       </Head>
