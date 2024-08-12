@@ -147,7 +147,7 @@ export default function Navbar() {
                 className="rounded-full h-20 w-32"
               />
             </Link>
-            <div className={`${flexStyles} text-xl gap-2`}>
+            <div className={`${flexStyles} xl:text-xl gap-2`}>
               <Link href={"/"}>
                 <h2 className="font-bold text-montserrat">KEMETIC</h2>
               </Link>
