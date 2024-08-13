@@ -198,7 +198,7 @@ export default function RegisterUser() {
                     Register
                   </button>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <button
                     type="button"
                     onClick={handleGoogleSignin}
@@ -213,7 +213,7 @@ export default function RegisterUser() {
                       className="rounded-full"
                     />
                   </button>
-                </div>
+                </div> */}
               </form>
               <p>
                 Have an account?

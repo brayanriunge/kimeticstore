@@ -114,7 +114,7 @@ export default function Login() {
                     Login
                   </button>
                 </div>
-                <div className="">
+                {/* <div className="">
                   <button
                     type="button"
                     onClick={handleGoogleSignin}
@@ -129,7 +129,7 @@ export default function Login() {
                       className="rounded-full"
                     />
                   </button>
-                </div>
+                </div> */}
               </form>
               <p>
                 Not yet Registered
