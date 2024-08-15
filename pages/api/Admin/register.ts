@@ -61,7 +61,7 @@ export default async function handler(
     // return res.status(405).json({ message: "The method is not allowed" });
     const session = await getSession({ req });
     if (session?.user.role !== "USER") {
-      return res.status(405).json({ message: "login first as an admin" });
+      return res.status(405).json({ message: "login first as an admin user" });
     }
 
     try {
