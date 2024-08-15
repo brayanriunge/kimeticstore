@@ -23,7 +23,7 @@ export default function Dashboard() {
   const { data: session } = useSession();
 
   useEffect(() => {
-    if (session?.user.role !== "ADMIN1") {
+    if (session?.user.role !== "USER") {
       router.push("/");
     }
   });

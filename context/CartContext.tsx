@@ -30,7 +30,7 @@ const CartContext = createContext({} as CartContextType);
 //custom hook to access CartContext
 export function useCart() {
   const context = useContext(CartContext);
-  console.log("context for cart:", context);
+
   return context;
 }
 
@@ -38,7 +38,7 @@ export default function CartProvider({ children }: AddProp) {
   const [cartItem, setCartItem] = useLocalStorageState<CartItem[]>("cart", {
     defaultValue: [],
   });
-  console.log("CartProvider - cartItems:", cartItem);
+
   const [cartQuantity, setCartQuantity] = useState<number>(0);
 
   // Effect to recalculate cart quantity when cart items change
