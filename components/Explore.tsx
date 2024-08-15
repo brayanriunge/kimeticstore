@@ -6,7 +6,7 @@ import Art from "@/public/art.jpeg";
 import Car from "@/public/car.jpeg";
 import Gem from "@/public/gem.jpeg";
 import House from "@/public/house.jpeg";
-import Herbs from "@/public/herbs.jpg";
+import Armoured from "@/public/Armoured-Vehicles.jpeg";
 import Cigars from "@/public/cigars.jpg";
 import Construction from "@/public/construction.jpg";
 import Link from "next/link";
@@ -43,34 +43,17 @@ const explores: Array<categoryType> = [
     picture: Gem,
     href: "/products/product",
   },
+
   {
     id: 5,
-    name: "Land",
-    picture: Land,
-    href: "/products/product",
-  },
-  {
-    id: 6,
-    name: "House",
+    name: "Real Estate",
     picture: House,
     href: "/products/product",
   },
   {
-    id: 7,
-    name: "Cigars",
-    picture: Cigars,
-    href: "/products/product",
-  },
-  {
-    id: 8,
-    name: "Construction materials",
-    picture: Construction,
-    href: "/products/product",
-  },
-  {
-    id: 9,
-    name: "Herbs",
-    picture: Herbs,
+    id: 6,
+    name: "Armoured Cars",
+    picture: Armoured,
     href: "/products/product",
   },
 ];
