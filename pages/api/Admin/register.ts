@@ -92,7 +92,7 @@ export default async function handler(
 
       //extracting fields
       const { description, name, category } = fields;
-      console.log("fields", fields);
+
       // Ensure category is an array
       // const categories = Array.isArray(category) ? category : [];
       // console.log("Categories:", categories); // Log categories to debug
