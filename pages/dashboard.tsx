@@ -63,7 +63,7 @@ export default function Dashboard() {
     if (selectedFile) formData.append("image", selectedFile);
     console.log("before fetch");
     try {
-      const res = await fetch("http://localhost:3000/api/Admin/register", {
+      const res = await fetch("/api/Admin/register", {
         method: "POST",
         body: formData,
       });
