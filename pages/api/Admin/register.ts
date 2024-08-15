@@ -60,7 +60,7 @@ export default async function handler(
   if (req.method === "POST") {
     // return res.status(405).json({ message: "The method is not allowed" });
     const session = await getSession({ req });
-    if (session?.user.role !== "USER") {
+    if (session?.user.role !== "ADMIN1") {
       return res.status(405).json({ message: "login first as an admin user" });
     }
 
