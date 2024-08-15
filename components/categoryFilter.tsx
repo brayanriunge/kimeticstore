@@ -23,6 +23,7 @@ export default function CategoryFilter({
     "Mineral",
     "Oil",
     "Meat",
+    "Real Estate",
   ];
 
   const handleCategoryChange = (category: string) => {
