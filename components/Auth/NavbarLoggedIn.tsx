@@ -26,9 +26,14 @@ export default function NavbarLoggedIn({ isLoggedIn, onSignOut }: NavbarProps) {
             Sign out
           </button>
           {userRole === "ADMIN1" && (
-            <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
-              <Link href={"/dashboard"}>Dashboard</Link>
-            </button>
+            <>
+              <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
+                <Link href={"/dashboard"}>Dashboard</Link>
+              </button>
+              <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
+                <Link href={"/admin"}>Chats</Link>
+              </button>
+            </>
           )}
         </>
       ) : (
