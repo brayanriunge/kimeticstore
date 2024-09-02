@@ -40,10 +40,13 @@ const AdminDashboard = ({
 
   const handleSelectUser = async (userId: string) => {
     setSelectedUserId(userId);
-    const res = await fetch(`/api/messages?userId=${userId}`);
+    const res = await fetch(`/api/messages?userId=${userId}`, {
+      method: "GET",
+    });
     if (res.ok) {
       const userMessages: Message[] = await res.json();
       setMessages(userMessages);
+      console.log(userMessages);
     }
   };
 
