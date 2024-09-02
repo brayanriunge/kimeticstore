@@ -43,7 +43,7 @@ export default async function handler(
     });
 
     return res.json(messages);
+  } else {
+    res.status(405).end();
   }
-
-  res.status(405).end();
 }

@@ -81,7 +81,7 @@ export default async function handler(
     try {
       const session = await getServerSession(req, res, authOptions);
       console.log("this is session", session);
-      if (!session || session.user.role !== "ADMIN" || !session.user.id) {
+      if (!session || session.user.role !== "ADMIN1" || !session.user.id) {
         return res
           .status(401)
           .json({ error: "Unauthorized or User ID missing" });
