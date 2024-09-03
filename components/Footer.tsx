@@ -35,6 +35,11 @@ export default function Footer() {
                   </a>
                 </li>
                 <li className="mb-4">
+                  <a href="/chat" className="hover:underline">
+                    Chat with us
+                  </a>
+                </li>
+                <li className="mb-4">
                   <a href="#" className="hover:underline">
                     Help Center
                   </a>
