@@ -208,9 +208,6 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
           Send
         </button>
       </div>
-      <button>
-        <Link href="/admin">Dashboard</Link>
-      </button>
     </div>
   );
 };

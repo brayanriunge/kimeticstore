@@ -1,4 +1,3 @@
-import AdminDashboard from "@/components/Admin";
 import Layout from "@/components/Layout";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
@@ -198,7 +197,6 @@ export default function Dashboard() {
             </form>
           </div>
         </div>
-        <AdminDashboard users={[]} initialMessages={[]} />
       </section>
     </Layout>
   );
