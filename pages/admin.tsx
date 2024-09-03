@@ -46,7 +46,6 @@ const AdminDashboard = ({
     if (res.ok) {
       const userMessages: Message[] = await res.json();
       setMessages(userMessages);
-      console.log(userMessages);
     }
   };
 
