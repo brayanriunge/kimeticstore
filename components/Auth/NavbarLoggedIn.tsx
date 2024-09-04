@@ -40,7 +40,7 @@ export default function NavbarLoggedIn({ isLoggedIn, onSignOut }: NavbarProps) {
         <Link href={"/signup"}>
           <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
             {" "}
-            Sign up
+            Sign up i
           </button>
         </Link>
       )}
