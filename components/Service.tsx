@@ -35,7 +35,7 @@ export default function Service() {
 
     {
       id: 4,
-      name: "Academic Consultation",
+      name: "Engineering Consultation",
       src: consult,
     },
     {
