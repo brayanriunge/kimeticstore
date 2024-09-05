@@ -2,6 +2,7 @@ import { useCart } from "@/context/CartContext";
 import { productType } from "@/hooks/types";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { HiOutlineMinus, HiOutlinePlus } from "react-icons/hi";
@@ -41,7 +42,7 @@ export default function CartItem({ id, quantity }: cartItemProp) {
     <section>
       {item && (
         <section className="  flex flex-row-3 items-center justify-between mt-20">
-          <div className="mx-auto p-5 w-11/12 flex flex-row-3 items-center justify-between gap-4  shadow-xl bg-white rounded-lg mt-2">
+          <div className="mx-auto p-5 w-11/12 flex flex-row-4 items-center justify-between gap-4  shadow-xl bg-white rounded-lg mt-2">
             <div className="rounded-md ">
               <Image
                 className="mx-auto h-16 w-16"
@@ -77,6 +78,11 @@ export default function CartItem({ id, quantity }: cartItemProp) {
                 className="text-red-600 hover:underline"
               >
                 Remove
+              </button>
+            </div>
+            <div className="font-large ">
+              <button className="hover:underline hover:text-orange-600">
+                <Link href={"/chat"}> Make Order</Link>
               </button>
             </div>
           </div>
