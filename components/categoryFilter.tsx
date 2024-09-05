@@ -14,14 +14,14 @@ export default function CategoryFilter({
   const categories = [
     "Cars",
     "Gem",
-
+    "Private Jet",
     "Coffee",
     "Tea",
     "Electronics",
     "Armored Cars",
     "Crops",
     "Mineral",
-
+    "Gold Jewelry",
     "Meat",
     "Real Estate",
   ];
