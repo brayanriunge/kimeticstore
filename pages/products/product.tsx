@@ -67,7 +67,7 @@ export default function ProductList({ filteredItems }: ProductListProp) {
         <link rel="icon" href="/LOGO.png" />
       </Head>
 
-      {isAboveMediaScreens ? (
+      {/* {isAboveMediaScreens ? (
         <>
           <div className="min-h-screen mt-16 ">
             <div className=" mx-auto  w-5/6  ">
@@ -103,7 +103,14 @@ export default function ProductList({ filteredItems }: ProductListProp) {
             ))}
           </div>
         </>
-      )}
+      )} */}
+      <div className="container mx-auto px-4">
+        <div className="flex flex-wrap -mx-4">
+          {products.map((product) => (
+            <ProductItem key={product.id} {...product} />
+          ))}
+        </div>
+      </div>
     </Layout>
   );
 }
