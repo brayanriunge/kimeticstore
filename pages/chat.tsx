@@ -108,10 +108,11 @@
 
 import { prisma } from "@/utils/db";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type Message = {
   id: string;
@@ -132,6 +133,13 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
   const { data: session } = useSession();
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(initialMessages);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session?.user.role !== "USER") {
+      router.push("/login");
+    }
+  }, []);
 
   const sendMessage = async () => {
     if (message.trim() === "") return;
@@ -211,7 +219,6 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
     </div>
   );
 };
-
 export async function getServerSideProps({ req, res }: { req: any; res: any }) {
   const session = await getServerSession(req, res, authOptions);
 
