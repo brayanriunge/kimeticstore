@@ -38,7 +38,6 @@ export default function ProductList({ filteredItems }: ProductListProp) {
         }
         const data = await response.json();
         setProducts(data);
-        console.log("this is the data", data);
       } catch (error) {
         setError("error fetching products");
         console.log(error);
@@ -104,7 +103,14 @@ export default function ProductList({ filteredItems }: ProductListProp) {
           </div>
         </>
       )} */}
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 min-h-screen mt-16">
+        <div className="w-full sm:w-5/6 mx-auto mb-6">
+          <CategoryFilter
+            selectedCategory={selectedCategory}
+            onSelectedCategory={handleCategoryChange}
+          />
+        </div>
+
         <div className="flex flex-wrap -mx-4">
           {products.map((product) => (
             <ProductItem key={product.id} {...product} />

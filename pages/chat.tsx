@@ -113,6 +113,7 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 type Message = {
   id: string;
@@ -135,88 +136,95 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
   const [messages, setMessages] = useState(initialMessages);
   const router = useRouter();
 
-  useEffect(() => {
-    if (session?.user.role !== "USER") {
-      router.push("/login");
-    }
-  }, []);
-
   const sendMessage = async () => {
     if (message.trim() === "") return;
+    useEffect(() => {
+      if (session?.user) {
+        const fetchMessages = async () => {
+          const res = await fetch("/api/messages", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content: message }),
+          });
 
-    const res = await fetch("/api/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: message }),
-    });
-
-    if (res.ok) {
-      const newMessage = await res.json();
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
-      setMessage("");
-    }
+          if (res.ok) {
+            const newMessage = await res.json();
+            setMessages((prevMessages) => [...prevMessages, newMessage]);
+            setMessage("");
+          }
+        };
+        fetchMessages();
+      }
+    }, [session]);
   };
 
   return (
-    <div className="flex flex-col h-screen">
-      <div className="flex-1 overflow-y-scroll p-4 space-y-4 bg-gray-50">
-        {/* {messages.map((msg) => (
-          <div key={msg.id} className="flex flex-col space-y-2">
-            <div className="self-start max-w-xs p-3 bg-blue-500 text-white rounded-lg">
-              <p>{msg.content}</p>
-            </div>
-            {msg.Reply.map((reply) => (
-              <div
-                key={reply.id}
-                className="self-end max-w-xs p-3 bg-green-500 text-white rounded-lg"
-              >
-                <p>{reply.content}</p>
-              </div>
-            ))}
-          </div>
-        ))} */}
-        {messages.map((msg) => (
-          <div key={msg.id} className="flex flex-col space-y-2">
-            <div className="self-start max-w-xs p-3 bg-blue-500 text-white rounded-lg">
-              <p>{msg.content}</p>
-              <p className="text-xs text-gray-200 text-right">
-                {new Date(msg.createdAt).toLocaleTimeString()}
-              </p>
-            </div>
-            {Array.isArray(msg.Reply) && msg.Reply.length > 0 && (
-              <div className="self-end max-w-xs">
-                {msg.Reply.map((reply) => (
-                  <div
-                    key={reply.id}
-                    className="p-3 bg-green-500 text-white rounded-lg mt-2"
-                  >
-                    <p>{reply.content}</p>
-                    <p className="text-xs text-gray-200 text-right">
-                      {new Date(msg.createdAt).toLocaleTimeString()}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
+    <>
+      <Head>
+        <title>Live chat</title>
+        <meta property="og:title" content="My page title" key="title" />
+        <link rel="icon" href="/LOGO.png" />
+      </Head>
+      <div className="flex flex-col h-screen">
+        <div className="flex-1 overflow-y-scroll p-4 space-y-4 bg-gray-50">
+          {/* {messages.map((msg) => (
+      <div key={msg.id} className="flex flex-col space-y-2">
+        <div className="self-start max-w-xs p-3 bg-blue-500 text-white rounded-lg">
+          <p>{msg.content}</p>
+        </div>
+        {msg.Reply.map((reply) => (
+          <div
+            key={reply.id}
+            className="self-end max-w-xs p-3 bg-green-500 text-white rounded-lg"
+          >
+            <p>{reply.content}</p>
           </div>
         ))}
       </div>
-      <div className="p-4 bg-white flex">
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type your message"
-          className="flex-1 border border-gray-300 p-2 rounded-lg focus:outline-none"
-        />
-        <button
-          onClick={sendMessage}
-          className="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg"
-        >
-          Send
-        </button>
+    ))} */}
+          {messages.map((msg) => (
+            <div key={msg.id} className="flex flex-col space-y-2">
+              <div className="self-start max-w-xs p-3 bg-blue-500 text-white rounded-lg">
+                <p>{msg.content}</p>
+                <p className="text-xs text-gray-200 text-right">
+                  {new Date(msg.createdAt).toLocaleTimeString()}
+                </p>
+              </div>
+              {Array.isArray(msg.Reply) && msg.Reply.length > 0 && (
+                <div className="self-end max-w-xs">
+                  {msg.Reply.map((reply) => (
+                    <div
+                      key={reply.id}
+                      className="p-3 bg-green-500 text-white rounded-lg mt-2"
+                    >
+                      <p>{reply.content}</p>
+                      <p className="text-xs text-gray-200 text-right">
+                        {new Date(msg.createdAt).toLocaleTimeString()}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="p-4 bg-white flex">
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Type your message"
+            className="flex-1 border border-gray-300 p-2 rounded-lg focus:outline-none"
+          />
+          <button
+            onClick={sendMessage}
+            className="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg"
+          >
+            Send
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export async function getServerSideProps({ req, res }: { req: any; res: any }) {
