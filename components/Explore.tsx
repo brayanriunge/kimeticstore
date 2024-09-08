@@ -20,12 +20,6 @@ type props = {
 
 const explores: Array<categoryType> = [
   {
-    id: 1,
-    name: "Art",
-    picture: Art,
-    href: "/products/product",
-  },
-  {
     id: 2,
     name: "Cars",
     picture: Car,
