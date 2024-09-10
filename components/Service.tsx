@@ -22,16 +22,6 @@ export default function Service() {
       name: "Software Development",
       src: code,
     },
-    {
-      id: 2,
-      name: "Private Security",
-      src: guard,
-    },
-    {
-      id: 3,
-      name: "Private Jet Flights",
-      src: jet,
-    },
 
     {
       id: 4,
