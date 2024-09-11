@@ -135,6 +135,11 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(initialMessages);
   const router = useRouter();
+  useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    }
+  }, [session]);
 
   const sendMessage = async () => {
     if (message.trim() === "") return;

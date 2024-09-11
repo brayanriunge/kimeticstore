@@ -1,15 +1,15 @@
-// import Image from "next/image";
-// import Link from "next/link";
-// import google from "@/public/google.png";
-// import { HiAtSymbol, HiFingerPrint, HiOutlineUser } from "react-icons/hi";
-// import { FormEvent, useState } from "react";
-// import { signIn } from "next-auth/react";
-// import { useRouter } from "next/router";
-// import { ZodError } from "zod";
-// import { useForm } from "react-hook-form";
-// import { registerUserSchema } from "@/utils/validate";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import google from "@/public/google.png";
+import { HiAtSymbol, HiFingerPrint, HiOutlineUser } from "react-icons/hi";
+import { FormEvent, useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import { ZodError } from "zod";
+import { useForm } from "react-hook-form";
+import { registerUserSchema } from "@/utils/validate";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Head from "next/head";
 
 // type FormValues = {
 //   name: string;
@@ -233,14 +233,12 @@
 //   );
 // }
 
-import Image from "next/image";
-import Link from "next/link";
-import { HiAtSymbol, HiFingerPrint } from "react-icons/hi";
-import { FormEvent, useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
-import toast, { Toaster } from "react-hot-toast";
-import Head from "next/head";
+type FormValues = {
+  name: string;
+  email: string;
+  password: string;
+  cpassword: string;
+};
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -248,39 +246,38 @@ export default function Register() {
   const [serverErrors, setServerErrors] = useState("");
   const router = useRouter();
 
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    const form = new FormData(e.target as HTMLFormElement);
-    const email = form.get("email") as string;
-    const password = form.get("password") as string;
-    const confirmPassword = form.get("confirmPassword") as string;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({ resolver: zodResolver(registerUserSchema) });
 
-    if (password !== confirmPassword) {
-      setServerErrors("Passwords do not match");
-      return;
-    }
-
+  async function onSubmit(values: FormValues) {
     try {
-      // Implement your registration logic here
-      // For example, you might send a request to your server
-      // const response = await fetch('/api/register', {
-      //   method: 'POST',
-      //   body: JSON.stringify({ email, password }),
-      // });
+      const response = await fetch("/api/Auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          values,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (response.status === 409)
+        setServerErrors("Email is already registered");
 
-      // if (response.ok) {
-      //   toast.success("Registration successful");
-      //   router.push("/login");
-      // } else {
-      //   setServerErrors("Registration failed");
-      // }
+      if (response.status === 500)
+        setServerErrors("Server error, try again later");
 
-      // Placeholder for successful registration
-      toast.success("Registration successful");
-      router.push("/login");
+      if (response.status === 201) {
+        router.replace("/login");
+      }
     } catch (error) {
-      console.error(error);
-      setServerErrors("An error occurred during registration");
+      if (error instanceof ZodError) {
+        console.log("Form validate errors:", error.errors);
+      }
     }
   }
 
@@ -303,7 +300,7 @@ export default function Register() {
             </div>
           )}
 
-          <form className="space-y-3" onSubmit={handleSubmit}>
+          <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
             <div className="relative">
               <input
                 type="email"
