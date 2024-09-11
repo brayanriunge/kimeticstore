@@ -138,24 +138,23 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
 
   const sendMessage = async () => {
     if (message.trim() === "") return;
-    useEffect(() => {
-      if (session?.user) {
-        const fetchMessages = async () => {
-          const res = await fetch("/api/messages", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ content: message }),
-          });
 
-          if (res.ok) {
-            const newMessage = await res.json();
-            setMessages((prevMessages) => [...prevMessages, newMessage]);
-            setMessage("");
-          }
-        };
-        fetchMessages();
-      }
-    }, [session]);
+    if (session?.user) {
+      const fetchMessages = async () => {
+        const res = await fetch("/api/messages", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content: message }),
+        });
+
+        if (res.ok) {
+          const newMessage = await res.json();
+          setMessages((prevMessages) => [...prevMessages, newMessage]);
+          setMessage("");
+        }
+      };
+      fetchMessages();
+    }
   };
 
   return (

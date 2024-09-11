@@ -16,6 +16,7 @@ import { User } from "next-auth";
 import DashboardButton from "./DashboardButton";
 import { useCart } from "@/context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
+import { AiTwotoneMessage } from "react-icons/ai";
 
 export default function Navbar() {
   const router = useRouter();
@@ -189,7 +190,7 @@ export default function Navbar() {
                     </Link>
                   </div>
                 </div>
-
+                <AiTwotoneMessage />
                 {session?.user && (
                   <>
                     <p className="font-mono text-sm font-bold">
