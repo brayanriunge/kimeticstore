@@ -107,7 +107,7 @@
 // export default Chat;
 
 import { prisma } from "@/utils/db";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
@@ -135,11 +135,16 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(initialMessages);
   const router = useRouter();
+
   useEffect(() => {
-    if (!session) {
-      router.push("/login");
-    }
-  }, [session]);
+    const checkSession = async () => {
+      const session = await getSession();
+      if (!session) {
+        router.push("/login");
+      }
+    };
+    checkSession();
+  }, [router]);
 
   const sendMessage = async () => {
     if (message.trim() === "") return;
@@ -233,7 +238,15 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
 };
 export async function getServerSideProps({ req, res }: { req: any; res: any }) {
   const session = await getServerSession(req, res, authOptions);
+  // const router = useSession()
+  // if (!session) {
 
+  //   return {
+  //     props: {
+  //       initialMessages: [],
+  //     },
+  //   };
+  // }
   const messages = await prisma.message.findMany({
     where: { userId: session?.user.id },
     include: {
