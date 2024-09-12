@@ -16,7 +16,8 @@ import { User } from "next-auth";
 import DashboardButton from "./DashboardButton";
 import { useCart } from "@/context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
-import { AiTwotoneMessage } from "react-icons/ai";
+import { AiFillMessage, AiTwotoneMessage } from "react-icons/ai";
+import { RiMessage2Fill } from "react-icons/ri";
 
 export default function Navbar() {
   const router = useRouter();
@@ -189,8 +190,11 @@ export default function Navbar() {
                       {cartQuantity > 0 && <span>{cartQuantity}</span>}
                     </Link>
                   </div>
+                  <Link href={"/chats"}>
+                    <AiTwotoneMessage color="orange" size={32} />
+                  </Link>
                 </div>
-                <AiTwotoneMessage />
+
                 {session?.user && (
                   <>
                     <p className="font-mono text-sm font-bold">
@@ -204,6 +208,7 @@ export default function Navbar() {
                 <NavbarLoggedIn
                   isLoggedIn={isLoggedIn}
                   onSignOut={handleSignOut}
+                  hasNewMessage={false}
                 />
               </div>
             ) : (
@@ -256,6 +261,10 @@ export default function Navbar() {
                   </div>
                 </div>
 
+                <button>
+                  <RiMessage2Fill className="bg-orange-400  px-8 p-2" />
+                </button>
+
                 {session?.user && (
                   <div className="mx-auto flex items-center justify-between flex-col gap-4">
                     <p className="font-mono text-sm font-bold m-2 p-2">
@@ -267,6 +276,7 @@ export default function Navbar() {
                     <NavbarLoggedIn
                       isLoggedIn={isLoggedIn}
                       onSignOut={handleSignOut}
+                      hasNewMessage={false}
                     />
                   </div>
                 )}

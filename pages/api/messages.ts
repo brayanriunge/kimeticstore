@@ -85,10 +85,6 @@ export default async function handler(
   const session = await getServerSession(req, res, authOptions);
   const { method } = req;
 
-  if (session?.user.role !== "USER") {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-
   switch (method) {
     case "GET":
       try {
@@ -99,7 +95,7 @@ export default async function handler(
         }
 
         const messages = await prisma.message.findMany({
-          where: { userId },
+          where: { userId: String(userId) },
           include: {
             user: true,
             Reply: {
@@ -119,6 +115,9 @@ export default async function handler(
 
     case "POST":
       try {
+        if (session?.user.role !== "USER") {
+          return res.status(401).json({ message: "Unauthorized" });
+        }
         const { content } = req.body;
         const user = await prisma.user.findUnique({
           where: { email: session.user.email as string },

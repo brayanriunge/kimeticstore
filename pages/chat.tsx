@@ -115,7 +115,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-type Message = {
+export type Message = {
   id: string;
   content: string;
   Reply: {
@@ -134,6 +134,7 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
   const { data: session } = useSession();
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(initialMessages);
+  const [hasNewMessage, setHasNewMessage] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -145,6 +146,22 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
     };
     checkSession();
   }, [router]);
+
+  useEffect(() => {
+    const fetchNewMessages = async () => {
+      const res = await fetch("/api/messages", { method: "GET" });
+      if (res.ok) {
+        const updatedMessages = await res.json();
+        if (updatedMessages.length > messages.length) {
+          setHasNewMessage(true); // Set new message notification
+        }
+        setMessages(updatedMessages);
+      }
+    };
+
+    const intervalId = setInterval(fetchNewMessages, 5000); // Poll every 5 seconds
+    return () => clearInterval(intervalId); // Cleanup interval on unmount
+  }, [messages]);
 
   const sendMessage = async () => {
     if (message.trim() === "") return;
