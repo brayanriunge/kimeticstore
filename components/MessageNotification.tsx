@@ -1,4 +1,4 @@
-import { AiFillMessage } from "react-icons/ai";
+import { AiFillMessage, AiTwotoneMessage } from "react-icons/ai";
 
 type MessageNotificationProps = {
   hasNewMessage: boolean;
@@ -7,12 +7,17 @@ type MessageNotificationProps = {
 const MessageNotification: React.FC<MessageNotificationProps> = ({
   hasNewMessage,
 }) => {
-  if (!hasNewMessage) return null;
+  if (!hasNewMessage) {
+    return <AiTwotoneMessage color="orange" size={32} />;
+  }
   console.log("MessageNotification props:", { hasNewMessage }); // Debug log
 
   return (
-    <div className="absolute top-4 right-4">
-      <AiFillMessage size={32} color="red" />
+    <div className="relative">
+      <AiTwotoneMessage color="orange" size={32} />; //{" "}
+      {hasNewMessage && (
+        <span className="absolute top-0 right-0 block h-2 w-2 bg-red-600 rounded-full"></span>
+      )}
     </div>
   );
 };

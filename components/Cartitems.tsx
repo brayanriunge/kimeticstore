@@ -41,11 +41,13 @@ export default function CartItem({ id, quantity }: cartItemProp) {
   return (
     <section>
       {item && (
-        <section className="  flex flex-row-3 items-center justify-between mt-20">
-          <div className="mx-auto p-5 w-11/12 flex flex-row-4 items-center justify-between gap-4  shadow-xl bg-white rounded-lg mt-2">
-            <div className="rounded-md ">
+        <section className="mt-10 flex flex-col items-center justify-between md:flex-row md:mt-20">
+          {/* Main container with padding and shadow */}
+          <div className="mx-auto p-4 w-full max-w-md md:max-w-5xl flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl bg-white rounded-lg mt-2">
+            {/* Image section */}
+            <div className="rounded-md mb-4 md:mb-0">
               <Image
-                className="mx-auto h-16 w-16"
+                className="mx-auto h-24 w-24 md:h-16 md:w-16"
                 src={item.imgUrl}
                 alt={item?.name as string}
                 height={100}
@@ -53,36 +55,39 @@ export default function CartItem({ id, quantity }: cartItemProp) {
               />
             </div>
 
-            <div className=" inline-flex border-4 border-gray-700 ">
+            {/* Quantity control section */}
+            <div className="inline-flex items-center border-2 border-gray-700 rounded-md">
               <button
-                className=" px-5 py-2.5 font-medium "
+                className="px-3 py-2 font-medium hover:bg-gray-200"
                 onClick={() => addToCart(item.id)}
               >
                 <HiOutlinePlus />
               </button>
-              <div className="px-5 py-2.5 font-medium font-gray-900">
+              <div className="px-4 py-2 font-medium text-gray-900">
                 {quantity}
               </div>
-
               <button
-                className="px-5 py-2.5 font-medium "
+                className="px-3 py-2 font-medium hover:bg-gray-200"
                 onClick={() => decreaseCartItem(item.id)}
               >
                 <HiOutlineMinus />
               </button>
             </div>
 
-            <div className="text-md">
+            {/* Remove item section */}
+            <div className="mt-4 md:mt-0 text-md">
               <button
-                onClick={() => removeFromCart(id)}
+                onClick={() => removeFromCart(item.id)}
                 className="text-red-600 hover:underline"
               >
                 Remove
               </button>
             </div>
-            <div className="font-large ">
+
+            {/* Make order section */}
+            <div className="mt-4 md:mt-0 font-large text-center md:text-left">
               <button className="hover:underline hover:text-orange-600">
-                <Link href={"/chat"}> Make Order</Link>
+                <Link href="/chat">Make Order</Link>
               </button>
             </div>
           </div>

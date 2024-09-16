@@ -18,8 +18,13 @@ import { useCart } from "@/context/CartContext";
 import { FaShoppingCart } from "react-icons/fa";
 import { AiFillMessage, AiTwotoneMessage } from "react-icons/ai";
 import { RiMessage2Fill } from "react-icons/ri";
+import MessageNotification from "./MessageNotification";
 
-export default function Navbar() {
+export default function Navbar({
+  hasNewMessages,
+}: {
+  hasNewMessages: boolean;
+}) {
   const router = useRouter();
   const flexStyles = "flex items-center justify-between ";
   const isAboveMediaScreens = useMediaQuery("(min-width: 1060px)");
@@ -146,7 +151,7 @@ export default function Navbar() {
                 alt="logo"
                 width={90}
                 height={90}
-                className="rounded-full h-20 w-32"
+                className="rounded-full  sm:w-20 sm:h-20 md:h-20 md:w-32"
               />
             </Link>
             <div className={`${flexStyles} xl:text-xl gap-2`}>
@@ -190,8 +195,9 @@ export default function Navbar() {
                       {cartQuantity > 0 && <span>{cartQuantity}</span>}
                     </Link>
                   </div>
-                  <Link href={"/chats"}>
-                    <AiTwotoneMessage color="orange" size={32} />
+                  <Link href={"/chat"}>
+                    {/*  */}
+                    <MessageNotification hasNewMessage={hasNewMessages} />
                   </Link>
                 </div>
 
@@ -226,62 +232,138 @@ export default function Navbar() {
 
             {/**mobile menu modal */}
             {!isAboveMediaScreens && isMenuToggled && (
-              <div className=" bg-teal-200 fixed right-0 bottom-0 h-full w-[300px] z-40 p-5 text-montserrat drop-shadow-xl">
-                {/**close icon */}
-                <div className="p-4 flex justify-end ">
+              // <div className=" bg-teal-200 fixed right-0 bottom-0 h-full w-[300px] z-40 p-5 text-montserrat drop-shadow-xl">
+              //   {/**close icon */}
+              //   <div className="p-4 flex justify-end ">
+              //     <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+              //       <HiOutlineX className="h-6 w-6  " />
+              //     </button>
+              //   </div>
+              //   <div className="mx-auto flex flex-col font-mono text-lg items-center font-bold justify-between gap-4">
+              //     <div>
+              //       <Link href={"/"}>
+              //         <h1 className="hover:text-orange-400">Home</h1>
+              //       </Link>
+              //     </div>
+              //     <div>
+              //       <Link href={"/products/product"}>
+              //         <h1 className="hover:text-orange-400">Products</h1>
+              //       </Link>
+              //     </div>
+              //     <div>
+              //       <Link href={"/service"}>
+              //         <h1 className="hover:text-orange-400">Services</h1>
+              //       </Link>
+              //     </div>
+              //     <div className="flex gap-2 items-center">
+              //       <Link
+              //         href={"/cart"}
+              //         className={`${flexStyles} gap-2 hover:text-orange-400 `}
+              //       >
+              //         Cart
+              //         <FaShoppingCart />
+              //         {cartQuantity > 0 && <span>{cartQuantity}</span>}
+              //       </Link>
+              //     </div>
+              //     <Link href={"/chat"}>
+              //       {/*  */}
+              //       <MessageNotification hasNewMessage={hasNewMessages} />
+              //     </Link>
+              //   </div>
+
+              //   {session?.user && (
+              //     <div className="mx-auto flex items-center justify-between flex-col gap-4">
+              //       <p className="font-mono text-sm font-bold m-2 p-2">
+              //         {session.user.name}
+              //       </p>
+              //       <p className="font-mono text-sm font-bold m-2 p-2">
+              //         {session.user.email}
+              //       </p>
+              //       <NavbarLoggedIn
+              //         isLoggedIn={isLoggedIn}
+              //         onSignOut={handleSignOut}
+              //         hasNewMessage={false}
+              //       />
+              //     </div>
+              //   )}
+
+              //   {/**menu items */}
+              // </div>
+
+              <div className="bg-white fixed right-0 bottom-0 h-full w-[300px] z-40 p-5 drop-shadow-lg transition-transform duration-300 ease-in-out transform translate-x-0">
+                {/* Close icon */}
+                <div className="p-4 flex justify-end">
                   <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                    <HiOutlineX className="h-6 w-6  " />
+                    <HiOutlineX className="h-6 w-6 text-gray-800 hover:text-red-500 transition duration-200" />
                   </button>
                 </div>
-                <div className="mx-auto flex flex-col font-mono text-lg items-center font-bold justify-between gap-4">
-                  <div>
-                    <Link href={"/"}>
-                      <h1 className="hover:text-orange-400">Home</h1>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link href={"/products/product"}>
-                      <h1 className="hover:text-orange-400">Products</h1>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link href={"/service"}>
-                      <h1 className="hover:text-orange-400">Services</h1>
-                    </Link>
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <Link
-                      href={"/cart"}
-                      className={`${flexStyles} gap-2 hover:text-orange-400 `}
-                    >
-                      Cart
-                      <FaShoppingCart />
-                      {cartQuantity > 0 && <span>{cartQuantity}</span>}
-                    </Link>
-                  </div>
+
+                {/* Menu Items */}
+                <div className="flex flex-col items-center font-mono text-lg font-bold gap-6 mt-4">
+                  {/* Home */}
+                  <Link
+                    href="/"
+                    className="text-gray-800 hover:text-orange-400 transition duration-200"
+                  >
+                    Home
+                  </Link>
+
+                  {/* Products */}
+                  <Link
+                    href="/products/product"
+                    className="text-gray-800 hover:text-orange-400 transition duration-200"
+                  >
+                    Products
+                  </Link>
+
+                  {/* Services */}
+                  <Link
+                    href="/service"
+                    className="text-gray-800 hover:text-orange-400 transition duration-200"
+                  >
+                    Services
+                  </Link>
+
+                  {/* Cart */}
+                  <Link
+                    href="/cart"
+                    className="text-gray-800 hover:text-orange-400 transition duration-200 flex items-center gap-2"
+                  >
+                    Cart
+                    <FaShoppingCart className="h-5 w-5" />
+                    {cartQuantity > 0 && (
+                      <span className="bg-orange-400 text-white text-sm px-2 py-0.5 rounded-full">
+                        {cartQuantity}
+                      </span>
+                    )}
+                  </Link>
+
+                  {/* Chat / Notification */}
+                  <Link
+                    href="/chat"
+                    className="text-gray-800 hover:text-orange-400 transition duration-200"
+                  >
+                    <MessageNotification hasNewMessage={hasNewMessages} />
+                  </Link>
                 </div>
 
-                <button>
-                  <RiMessage2Fill className="bg-orange-400  px-8 p-2" />
-                </button>
-
+                {/* User Info and Logout */}
                 {session?.user && (
-                  <div className="mx-auto flex items-center justify-between flex-col gap-4">
-                    <p className="font-mono text-sm font-bold m-2 p-2">
+                  <div className="mt-10 flex flex-col items-center text-center text-gray-800">
+                    <p className="font-mono text-md font-bold">
                       {session.user.name}
                     </p>
-                    <p className="font-mono text-sm font-bold m-2 p-2">
-                      {session.user.email}
-                    </p>
-                    <NavbarLoggedIn
-                      isLoggedIn={isLoggedIn}
-                      onSignOut={handleSignOut}
-                      hasNewMessage={false}
-                    />
+                    <p className="font-mono text-sm">{session.user.email}</p>
+
+                    <div className="mt-4 gap-4">
+                      <NavbarLoggedIn
+                        isLoggedIn={isLoggedIn}
+                        onSignOut={handleSignOut}
+                        hasNewMessage={false}
+                      />
+                    </div>
                   </div>
                 )}
-
-                {/**menu items */}
               </div>
             )}
           </div>

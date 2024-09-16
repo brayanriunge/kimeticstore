@@ -38,7 +38,7 @@ export default function NavbarLoggedIn({
               <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
                 <Link href={"/admin"}>Chats</Link>
               </button>
-              <MessageNotification hasNewMessage={localHasNewMessage} />
+              {/* <MessageNotification hasNewMessage={localHasNewMessage} /> */}
             </>
           )}
           {userRole === "ADMIN2" && (
