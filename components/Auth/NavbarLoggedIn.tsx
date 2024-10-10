@@ -35,20 +35,26 @@ export default function NavbarLoggedIn({
           </button>
           {userRole === "ADMIN1" && (
             <>
-              <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
-                <Link href={"/admin"}>Chats</Link>
-              </button>
-              {/* <MessageNotification hasNewMessage={localHasNewMessage} /> */}
+              <div className="flex flex-col-2 gap-2">
+                <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
+                  <Link href={"/dashboard"}>Dashboard</Link>
+                </button>
+                <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
+                  <Link href={"/admin"}>Chats</Link>
+                </button>
+              </div>
             </>
           )}
           {userRole === "ADMIN2" && (
             <>
-              <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
-                <Link href={"/dashboard"}>Dashboard</Link>
-              </button>
-              <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
-                <Link href={"/admin"}>Chats</Link>
-              </button>
+              <div className="flex flex-col-2">
+                <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
+                  <Link href={"/dashboard"}>Dashboard</Link>
+                </button>
+                <button className="rounded-md text-montserrat px-8 p-2 bg-orange-400">
+                  <Link href={"/admin"}>Chats</Link>
+                </button>
+              </div>
             </>
           )}
         </>

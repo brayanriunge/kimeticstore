@@ -142,18 +142,19 @@ export default function Navbar({
         className={`${flexStyles} w-full top-0 z-30 fixed bg-custom-gradient`}
       >
         <div className={`${flexStyles} mx-auto w-5/6`}>
+          <Link href={"/"}>
+            <Image
+              src={Logo}
+              alt="logo"
+              width={90}
+              height={90}
+              className="rounded-full  sm:w-20 sm:h-20 md:h-14 md:w-16"
+            />
+          </Link>
           <div className={`${flexStyles} w-full gap-6`}>
             {/**left side */}
             {/**put logo here  */}
-            <Link href={"/"}>
-              <Image
-                src={Logo}
-                alt="logo"
-                width={90}
-                height={90}
-                className="rounded-full  sm:w-20 sm:h-20 md:h-20 md:w-32"
-              />
-            </Link>
+
             <div className={`${flexStyles} xl:text-xl gap-2`}>
               <Link href={"/"}>
                 <h2 className="font-bold text-montserrat">KEMETIC</h2>
