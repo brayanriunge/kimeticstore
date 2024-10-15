@@ -104,12 +104,12 @@ export default function ProductList({ filteredItems }: ProductListProp) {
         </>
       )} */}
       <div className="container mx-auto px-4 min-h-screen mt-16">
-        <div className="w-full sm:w-5/6 mx-auto mb-6">
+        {/* <div className="w-full sm:w-5/6 mx-auto mb-6">
           <CategoryFilter
             selectedCategory={selectedCategory}
             onSelectedCategory={handleCategoryChange}
           />
-        </div>
+        </div> */}
 
         <div className="flex flex-wrap -mx-4">
           {products.map((product) => (
