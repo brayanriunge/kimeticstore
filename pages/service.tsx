@@ -1,18 +1,13 @@
 import Image, { StaticImageData } from "next/image";
-import body from "@/public/security.jpg";
-import travel from "@/public/Travel.jpg";
-import investigator from "@/public/private-investigator.jpg";
-import counter from "@/public/CounterSurveillance.jpg";
+
 import Layout from "@/components/Layout";
 import Head from "next/head";
-import heli from "@/public/heli.webp";
-import mustang from "@/public/mustang.jpg";
-import globalPlane from "@/public/global-express.jpg";
-import Xls from "@/public/xls.jpg";
+
 import dev from "@/public/dev.png";
 import ai from "@/public/ai.jpg";
 import iot from "@/public/iot.jpg";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import Link from "next/link";
 
 type securityProps = {
   id: number;
@@ -98,7 +93,7 @@ export default function Service() {
                   </div>
                   <div className=" flex flex-row justify-between items-center px-6 pt-4 pb-2">
                     <button className="flex flex-row-2 items-center justify-between gap-2  mx-auto  p-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 hover:shadow-xl ">
-                      Hire now
+                      <Link href="/chat">Hire now</Link>
                     </button>
                   </div>
                 </div>
@@ -132,7 +127,7 @@ export default function Service() {
                   </div>
                   <div className=" flex flex-row justify-between items-center px-6 pt-4 pb-2">
                     <button className="flex flex-row-2 items-center justify-between gap-2  mx-auto  p-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 hover:shadow-xl ">
-                      Hire now
+                      <Link href="/chat">Hire now</Link>
                     </button>
                   </div>
                 </div>
