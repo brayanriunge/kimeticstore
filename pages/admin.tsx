@@ -32,11 +32,11 @@ const AdminDashboard = ({
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [replies, setReplies] = useState<Record<string, string>>({});
 
-  useEffect(() => {
-    if (session?.user.role !== "ADMIN2") {
-      router.push("/");
-    }
-  }, [session, router]);
+  // useEffect(() => {
+  //   if (session?.user.role !== "ADMIN2") {
+  //     router.push("/");
+  //   }
+  // }, [session, router]);
 
   const handleSelectUser = async (userId: string) => {
     setSelectedUserId(userId);
