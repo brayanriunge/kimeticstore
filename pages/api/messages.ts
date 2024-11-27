@@ -115,7 +115,7 @@ export default async function handler(
 
     case "POST":
       try {
-        if (session?.user.role !== "USER") {
+        if (session?.user.role !== "USER" && session?.user.role !== "ADMIN2") {
           return res.status(401).json({ message: "Unauthorized" });
         }
         const { content } = req.body;
