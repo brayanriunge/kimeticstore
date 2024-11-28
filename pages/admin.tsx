@@ -130,7 +130,9 @@ const AdminDashboard = ({
                           key={reply.id}
                           className="self-end max-w-xs p-3 bg-green-500 text-white rounded-lg"
                         >
-                          <p>Admin: {reply.content}</p>
+                          <p>
+                            Admin {reply.user.name}: {reply.content}
+                          </p>
                         </div>
                       ))}
                     </div>
