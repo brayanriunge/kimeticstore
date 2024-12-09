@@ -26,22 +26,22 @@ const AdminDashboard = ({
   users: User[];
   initialMessages: Message[];
 }) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [replies, setReplies] = useState<Record<string, string>>({});
 
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
-    if (session.user.role !== "ADMIN2" && session.user.role !== "ADMIN1") {
-      router.push("/");
+    if (status === "authenticated") {
+      if (session?.user.role !== "ADMIN2" && session?.user.role !== "ADMIN1") {
+        router.replace("/"); // Redirect unauthorized users
+      }
     }
-  }, [session, router]);
+  }, [session, status, router]);
 
-  if (isLoading) {
-    return <div>Loading...</div>; // Or a spinner
+  if (status === "loading") {
+    return null; // Prevent rendering until session is loaded
   }
 
   const handleSelectUser = async (userId: string) => {
