@@ -32,11 +32,21 @@ const AdminDashboard = ({
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [replies, setReplies] = useState<Record<string, string>>({});
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    if (session?.user.role !== "ADMIN2" || session.user.role !== "ADMIN1") {
-      router.push("/");
+    if (session) {
+      if (session.user.role !== "ADMIN2" && session.user.role !== "ADMIN1") {
+        router.push("/");
+      } else {
+        setIsLoading(false); // Allow rendering when the user is an admin
+      }
     }
   }, [session, router]);
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Or a spinner
+  }
 
   const handleSelectUser = async (userId: string) => {
     setSelectedUserId(userId);
