@@ -26,23 +26,17 @@ const AdminDashboard = ({
   users: User[];
   initialMessages: Message[];
 }) => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [replies, setReplies] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    if (status === "authenticated") {
-      if (session?.user.role !== "ADMIN2" && session?.user.role !== "ADMIN1") {
-        router.replace("/"); // Redirect unauthorized users
-      }
+    if (session?.user.role !== "ADMIN2" && session.user.role !== "ADMIN1") {
+      router.push("/");
     }
-  }, [session, status, router]);
-
-  if (status === "loading") {
-    return null; // Prevent rendering until session is loaded
-  }
+  }, [session, router]);
 
   const handleSelectUser = async (userId: string) => {
     setSelectedUserId(userId);
