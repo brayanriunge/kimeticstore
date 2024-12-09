@@ -12,7 +12,7 @@ export default function Home() {
       <Head>
         <title>Home</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.png" />
+        <link rel="icon" href="/LOGOjpeg" />
       </Head>
       <Navbar />
       <TopDeal />

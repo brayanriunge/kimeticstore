@@ -196,7 +196,7 @@ export default function Login() {
       <Head>
         <title>Login</title>
         <meta property="og:title" content="Login page" key="title" />
-        <link rel="icon" href="/LOGO.png" />
+        <link rel="icon" href="/LOGO.jpeg" />
       </Head>
       <div className="min-h-screen flex bg-custom-gradient items-center justify-center bg-gray-100">
         <div className="w-full max-w-xs md:max-w-sm p-4 bg-white rounded-md shadow-lg">

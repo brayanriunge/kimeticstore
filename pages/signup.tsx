@@ -67,7 +67,7 @@ export default function RegisterUser() {
       <Head>
         <title>Register Page</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.png" />
+        <link rel="icon" href="/LOGO.jpeg" />
       </Head>
       <div className="flex  bg-custom-gradient gap-16 py-10  min-h-full  mb-0">
         <div className=" bg-slate-50 m-auto my-8 h-3/4 rounded-md mx-auto p-6  max-w-md w-full">

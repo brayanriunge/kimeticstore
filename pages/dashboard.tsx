@@ -87,7 +87,7 @@ export default function Dashboard() {
       <Head>
         <title>Dashboard</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.png" />
+        <link rel="icon" href="/LOGO.jpeg" />
       </Head>
       <section className="gap-16 bg-indigo-100 min-h-screen ">
         <div className="  overflow-hidden w-full mt-16 remove-scrollbar ">
