@@ -35,12 +35,8 @@ const AdminDashboard = ({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (session) {
-      if (session.user.role !== "ADMIN2" && session.user.role !== "ADMIN1") {
-        router.push("/");
-      } else {
-        setIsLoading(false); // Allow rendering when the user is an admin
-      }
+    if (session.user.role !== "ADMIN2" && session.user.role !== "ADMIN1") {
+      router.push("/");
     }
   }, [session, router]);
 
