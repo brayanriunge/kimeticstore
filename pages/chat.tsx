@@ -151,21 +151,32 @@ export async function getServerSideProps({ req, res }: { req: any; res: any }) {
     orderBy: { createdAt: "asc" },
   });
 
-  const serializedMessages = messages.map((message) => ({
-    ...message,
-    createdAt: message.createdAt.toISOString(),
+  const serializedMessages = messages.map(
+    (message: { createdAt: { toISOString: () => any }; Reply: any[] }) => ({
+      ...message,
+      createdAt: message.createdAt.toISOString(),
 
-    Reply: message.Reply.map((reply) => ({
-      ...reply,
-      createdAt: reply.createdAt.toISOString(),
-      updatedAt: reply.updatedAt.toISOString(),
-      user: {
-        ...reply.user,
-        createdAt: reply.user.createdAt.toISOString(),
-        updatedAt: reply.user.updatedAt.toISOString(),
-      },
-    })),
-  }));
+      Reply: message.Reply.map(
+        (reply: {
+          createdAt: { toISOString: () => any };
+          updatedAt: { toISOString: () => any };
+          user: {
+            createdAt: { toISOString: () => any };
+            updatedAt: { toISOString: () => any };
+          };
+        }) => ({
+          ...reply,
+          createdAt: reply.createdAt.toISOString(),
+          updatedAt: reply.updatedAt.toISOString(),
+          user: {
+            ...reply.user,
+            createdAt: reply.user.createdAt.toISOString(),
+            updatedAt: reply.user.updatedAt.toISOString(),
+          },
+        })
+      ),
+    })
+  );
 
   return {
     props: { initialMessages: serializedMessages },

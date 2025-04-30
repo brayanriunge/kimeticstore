@@ -14,7 +14,7 @@ export default function Home() {
         <meta property="og:title" content="My page title" key="title" />
         <link rel="icon" href="/LOGO.jpeg" />
       </Head>
-      <Navbar />
+      <Navbar hasNewMessages={false} />
       <TopDeal />
       <Explore />
       <Service />
