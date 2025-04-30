@@ -33,7 +33,7 @@ const AdminDashboard = ({
   const [replies, setReplies] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    if (session?.user.role !== "ADMIN2" || session.user.role !== "ADMIN1") {
+    if (session?.user.role !== "ADMIN2" && session.user.role !== "ADMIN1") {
       router.push("/");
     }
   }, [session, router]);
