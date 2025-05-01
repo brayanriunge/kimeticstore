@@ -166,7 +166,7 @@ export default function ProductItem() {
       <Head>
         <title> {items?.name}</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.png" />
+        <link rel="icon" href="/LOGO.jpg" />
       </Head>
       <Layout>
         <div className="min-h-screen body-font overflow-hidden mt-16 bg-custom-radial">

@@ -63,7 +63,7 @@ export default function ProductList({ filteredItems }: ProductListProp) {
       <Head>
         <title>Products</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.jpeg" />
+        <link rel="icon" href="/LOGO.jpg" />
       </Head>
 
       {/* {isAboveMediaScreens ? (

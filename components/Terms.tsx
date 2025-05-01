@@ -53,7 +53,7 @@ const Tabs: React.FC = () => {
       <Head>
         <title>Terms</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.png" />
+        <link rel="icon" href="/LOGO.jpg" />
       </Head>
       <div className="flex items-center justify-center min-h-screen bg-primary-clr  p-5 mt-20">
         <div className="bg-white rounded-md shadow-lg overflow-hidden w-full max-w-5xl ">

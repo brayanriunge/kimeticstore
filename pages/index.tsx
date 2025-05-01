@@ -12,9 +12,9 @@ export default function Home() {
       <Head>
         <title>Home</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.jpeg" />
+        <link rel="icon" href="/LOGO.jpg" />
       </Head>
-      <Navbar hasNewMessages={false} />
+      <Navbar />
       <TopDeal />
       <Explore />
       <Service />
