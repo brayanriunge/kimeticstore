@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import Logo from "@/public/LOGO.jpg";
+import Logo from "@/public/LOGO.png";
 import { HiOutlineX } from "react-icons/hi";
 import { HiBars3 } from "react-icons/hi2";
 import { product, productType } from "@/hooks/types";

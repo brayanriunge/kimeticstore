@@ -64,7 +64,7 @@ export default function Cart() {
       <Head>
         <title>Cart</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.jpg" className="bg-white" />
+        <link rel="icon" href="/LOGO.png" className="bg-white" />
       </Head>
       <Layout>
         {cartQuantity > 0 ? (

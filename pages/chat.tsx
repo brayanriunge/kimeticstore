@@ -87,7 +87,7 @@ const Chat = ({ initialMessages }: { initialMessages: Message[] }) => {
       <Head>
         <title>Live chat</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.jpeg" />
+        <link rel="icon" href="/LOGO.png" />
       </Head>
       <div className="flex flex-col h-screen mt-20">
         <div className="flex-1 overflow-y-scroll p-4 space-y-4 bg-gray-50">

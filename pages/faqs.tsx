@@ -8,7 +8,7 @@ export default function faqShow() {
       <Head>
         <title>Faqs</title>
         <meta property="og:title" content="My page title" key="title" />
-        <link rel="icon" href="/LOGO.jpg" />
+        <link rel="icon" href="/LOGO.png" />
       </Head>
       <AccordionCard />
     </Layout>
